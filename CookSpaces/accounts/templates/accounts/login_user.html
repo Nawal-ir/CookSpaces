@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Login User{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+{% block content %}
+
+<section>
+    <div class="container">   
+        {% if msg %}
+        <div class="alert alert-danger">{{msg}}</div>
+        {% endif %}
+        <h1 class="fw-light text-blak " style="margin-top: 150px; margin-left: 250px; margin-bottom: 20px; color: aliceblue;">Login</h1>
+        <div class="row">
+            <div class="col-6" style="margin-left: 250px; margin-bottom: 200px; ">
+
+                <form action="{% url 'accounts:login_user' %}" method="post" class="d-flex flex-column gap-2">
+                    {% csrf_token %}
+
+                    <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
+                    <input name="password" class="form-control" type="password" minlength="6" required placeholder="Password" />
+
+                    <input type="submit" class="btn btn" style="background-color:  rgb(161, 215, 145); color: aliceblue;" value="Login" />
+
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

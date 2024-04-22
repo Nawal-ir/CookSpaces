@@ -1,0 +1,32 @@
+* {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Body */
+#navbarNav{
+    justify-content: center;
+  }
+  
+  .navbar-nav{
+    flex-direction: column;
+    text-align:center;
+    justify-content:center;
+    column-gap: 30px;
+  }
+
+  .navbar{
+      transition: all 0.5s;
+  }
+
+  .navbar-nav a {
+    color: #000;
+  }
+
+  .navbar-scrolled{
+      background-color: rgba(255, 255, 255, 0.377);
+      box-shadow:rgba(0, 0, 0, 0.15);
+  }
+  
+  .navbar-scrolled a{
+    color: #70777f;
+  }

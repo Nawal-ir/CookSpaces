@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block title %} create Account {% endblock %}
+
+{% block content %}
+
+    {% if msg %}
+        <div class="alert alert-danger">{{msg}}</div>
+    {% endif %}
+    <div class="row" style=" margin-left: 20px; margin-bottom: 100px;">
+        <h1 class="fw-light text-blak " style="margin-top: 50px;  margin-bottom: 30px; ">Create Account</h1>
+        <div class="col-6 ">
+            <form action="{% url 'accounts:register_' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
+                <input name="first_name" class="form-control" type="text" minlength="3" required placeholder="First Name" />
+                <input name="last_name" class="form-control" type="text" minlength="3" required placeholder="Last Name" />
+                <input name="email" class="form-control" type="email" minlength="3" required placeholder="Email" />
+                <input name="phone" class="form-control" type="phone" minlength="3" required placeholder="phone" />
+
+                <textarea name="about" class="form-control" placeholder="about yourself"></textarea>
+                <h4>Uplode CV:</h4>
+                <input type="file" class="form-control" name="cv"/>
+
+                <h4>Choose Avatar:</h4>
+                <input type="file" class="form-control" name="avatar" />
+
+                <input name="password" class="form-control" type="password" minlength="6" required placeholder="Password" />
+
+                <input type="submit" class="btn btn mt-5" style="background-color:  rgb(161, 215, 145); " value="Sign Up" />
+
+            </form>
+        </div>
+        <div class="col-6">
+            <img src="/static/image/111.png" class="mp-5 rounded-4" style="width: 500px; height: 600px;  margin-left: 20px; margin-bottom: 20px;">
+        </div>
+    </div>
+{% endblock %}
