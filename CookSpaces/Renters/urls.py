@@ -8,5 +8,5 @@ urlpatterns  = [
     path("profile/",views.profile, name="profile"),
     path("order/",views.my_order, name="my_order"),
     path("booking/",views.booking, name="booking"),
-    # path("favorites/<kitchen_id>",views.my_favorites, name="my_favorites"),
+    # path("favorites/<kitchen_id>",views.saved_kitchens, name="saved_kitchens"),
 ]

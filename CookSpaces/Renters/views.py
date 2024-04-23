@@ -54,6 +54,6 @@ def booking(request:HttpRequest):
     
     return render(request, 'renters/booking.html')
 
-def my_favorites(request:HttpRequest):
+def saved_kitchens(request:HttpRequest):
     
-    return render(request, 'renters/my_favorite.html')
+    return render(request, 'renters/saved_kitchens.html')
