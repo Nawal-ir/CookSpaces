@@ -10,7 +10,7 @@
     <div class="row" style=" margin-left: 20px; margin-bottom: 100px;">
         <h1 class="fw-light text-blak " style="margin-top: 50px;  margin-bottom: 30px; ">Create Account</h1>
         <div class="col-6 ">
-            <form action="{% url 'accounts:register_owner' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
+            <form action="{% url 'KitchenOwner:register_owner' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
@@ -20,7 +20,7 @@
                 <input name="phone" class="form-control" type="phone" minlength="3" required placeholder="phone" />
 
                 <h4>commercial Register:</h4>
-                <input  class="form-control" type="file" minlength="3" required />
+                <input  class="form-control" type="file" name="commercial_register" required />
 
                 <h4>Choose Avatar:</h4>
                 <input type="file" class="form-control" name="avatar" />
@@ -32,7 +32,7 @@
             </form>
         </div>
         <div class="col-6">
-            <img src="/static/image/111.png" class="mp-5 rounded-4" style="width: 500px; height: 600px;  margin-left: 20px; margin-bottom: 20px;">
+            <img src="/static/images/k.jpg" class="mp-5 rounded-4" style="width: 500px; height: 600px;  margin-left: 20px; margin-bottom: 20px;">
         </div>
     </div>
 {% endblock %}
