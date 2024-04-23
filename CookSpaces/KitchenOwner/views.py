@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
-from accounts.models import KitchenOwner,Renter,Chife
+from accounts.models import KitchenOwner
 
 def register_owner(request:HttpRequest):
     msg = None
@@ -34,3 +34,22 @@ def register_owner(request:HttpRequest):
     
 
     return render(request, "accounts/register_owner.html", {"msg" : msg})
+
+
+def owner_prfile(request : HttpRequest):
+    pass 
+
+def update_profile(request :HttpRequest):
+    pass 
+
+def add_kitchen(request :HttpRequest):
+    pass 
+
+def update_kitchen(request :HttpRequest):
+    pass 
+
+def kitchen_details(request :HttpRequest):
+    pass 
+
+def my_orders(request :HttpRequest):
+    pass 
