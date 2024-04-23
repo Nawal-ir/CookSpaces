@@ -1,5 +1,9 @@
 * {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 /* Body */
@@ -30,3 +34,188 @@
   .navbar-scrolled a{
     color: #70777f;
   }
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+#section1 p span{
+  font-size: 25px;
+  font-weight: bold;
+  color: #34586C;
+  text-align: center;
+}
+
+.title{
+  text-align: center;
+}
+
+.collapse{
+  justify-content: center;
+  align-items: center;
+  padding-left: 50%;
+  color: #F4F2EE;
+}
+
+
+
+/* main section  */
+
+section{
+  padding: 100px 100px;
+} 
+
+.main{
+  display: flex;
+  align-items: center;
+  background-color:#F4F2EE;
+  font-family: "Londrina Outline", sans-serif;
+  background: url(../images/main.jpeg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.main h2{
+  color:#F4F2EE ;
+  font-family: "Londrina Outline", sans-serif;
+  font-size: 30px;
+  font-weight: 500 ;
+}
+
+.main h2 span{
+  margin-top: 50px;
+  color: #F4F2EE;
+  font-size: 8vw;
+  font-weight: 600;
+}
+
+.main-btn{
+  color: #f1f0da;
+  background-color: #6A3665 ;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 15px 40px;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  transition: 0.3s smooth;
+}
+
+.main-btn:hover{
+  background-color: #7f4279 ;
+  transform: scale(1.1);
+}
+
+
+
+/* About section  */
+
+.vision {
+  background-color: beige;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  color: #3C3C3C;
+  font-weight: 800;
+  padding-bottom: 30px;
+}
+
+
+/* Projects section  */
+
+.project{
+  background-color: rgb(255, 255, 255);
+}
+
+.neom-icon{
+  width: 100px;
+}
+
+.project-name{
+  color: brown;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.see{
+  display: flex;
+  justify-content: center;
+  color: #3f3f39;
+  border-color: orange;
+  background-color: orange;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 200;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  transition: 0.3s smooth;
+}
+
+.see:hover{
+  background-color: rgb(234, 205, 155);
+  transform: scale(1);
+}
+
+
+/* regiester section  */
+
+.box{
+  box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45), 5px 5px 9px rgba(94,104,121,0.3);
+  height: 150px;
+  width: 150px;
+  background: #bfd2dc;
+  border-radius: 20px;
+  margin: 20px;
+  }
+
+
+/* Our Services  */
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card .icon {
+  color: #6A3665;
+  font-size: 8em;
+  text-align: center;
+}
+
+.info {
+  text-align: center;
+  padding: 40px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #fff;
+  width: 21.25em;
+  box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+  border-radius: 10px;
+  padding: 25px;
+  margin: 15px;
+  transition: 0.7s ease;
+}
+
+
