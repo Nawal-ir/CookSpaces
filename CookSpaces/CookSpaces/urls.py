@@ -22,9 +22,9 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("main.urls")),
-    path("accounts/", include("accounts.urls")),
-    path("KitchenOwner/", include("KitchenOwner.urls")),
-    path("Renters/", include("Renters.urls")),
-    path("Chief/", include("Chief.urls")),
+    path("", include("accounts.urls")),
+    path("", include("KitchenOwner.urls")),
+    path("", include("Renters.urls")),
+    path("", include("Chief.urls")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
