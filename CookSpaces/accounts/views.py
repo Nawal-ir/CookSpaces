@@ -15,7 +15,6 @@ def login_user(request:HttpRequest):
         user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
 
         if user:
-            
             login(request, user)
             return redirect("main:home")
         else:
@@ -28,4 +27,4 @@ def logout_user(request:HttpRequest):
     if request.user.is_authenticated:
         logout(request)
     
-    return redirect('accounts:login_user')
+    return redirect('accounts:login')

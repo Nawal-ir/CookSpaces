@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-6" style="margin-left: 250px; margin-bottom: 200px; ">
 
-                <form action="{% url 'accounts:login_user' %}" method="post" class="d-flex flex-column gap-2">
+                <form action="{% url 'accounts:login' %}" method="post" class="d-flex flex-column gap-2">
                     {% csrf_token %}
 
                     <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
