@@ -14,7 +14,13 @@ def register_owner(request:HttpRequest):
         
             with transaction.atomic():
                 
-                new_user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], first_name=request.POST["first_name"], last_name=request.POST["last_name"], password=request.POST["password"])
+                new_user = User.objects.create_user(
+                    username=request.POST["username"],
+                    email=request.POST["email"],
+                    first_name=request.POST["first_name"],
+                    last_name=request.POST["last_name"],
+                    password=request.POST["password"]
+                    )
                 new_user.save()
 
                 
@@ -22,7 +28,7 @@ def register_owner(request:HttpRequest):
                 register_owner.save()
 
                 
-            return redirect("accounts:login_user")
+            # return redirect("accounts:login_user")
         
         except IntegrityError as e:
             msg = "This username is already taken. Please choose a different username."
@@ -33,10 +39,10 @@ def register_owner(request:HttpRequest):
             print(e)
     
 
-    return render(request, "accounts/register_owner.html", {"msg" : msg})
+    return render(request, "KitchenOwner/register_owner.html", {"msg" : msg})
 
 
-def owner_prfile(request : HttpRequest):
+def owner_profile(request : HttpRequest):
     pass 
 
 def update_profile(request :HttpRequest):
