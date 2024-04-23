@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 class Artical(models.Model):
 
-    title = models.CharField()
+    title = models.CharField(max_length=1000)
     content = models.TextField()
     poster = models.ImageField(upload_to='poster/')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -13,7 +13,7 @@ class Artical(models.Model):
 class Contact(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField()
+    name = models.CharField(max_length=500)
     email = models.EmailField()
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
