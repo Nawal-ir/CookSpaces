@@ -36,3 +36,25 @@ def register_chife(request:HttpRequest):
     
 
     return render(request, "accounts/register_chife.html", {"msg" : msg})
+
+
+def  profile_view(request:HttpRequest, user_name):
+
+    try:
+        user_object = User.objects.get(username=user_name)
+       
+    except:
+        return render(request, "#")
+
+    return render(request, "Chief/profile.html", {"user_object":user_object})
+
+
+def chife_detail(request):
+    chife = Chife.objects.first() 
+    context = {
+        'chife': chife,
+    }
+    return render(request, 'chife_detail.html', context)
+
+def all_chief_view(request: HttpRequest):
+    return render(request, "Chief/all.html")
