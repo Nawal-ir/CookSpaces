@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* Body */
@@ -73,7 +74,7 @@ section{
   align-items: center;
   background-color:#F4F2EE;
   font-family: "Londrina Outline", sans-serif;
-  background: url(../images/main.jpeg) no-repeat;
+  /* background: url(../images/main.jpeg) no-repeat; */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -210,12 +211,33 @@ section{
 
 .card {
   background-color: #fff;
-  width: 21.25em;
   box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
   border-radius: 10px;
   padding: 25px;
   margin: 15px;
   transition: 0.7s ease;
+  width: 400px;
+  height: 400px;
 }
+
+
+
+
+
+/* Counter section  */
+
+.counter-section i { display:block; margin:0 0 10px}
+.counter-section span.counter { font-size:40px; color:#000; line-height:60px; display:block; font-family: "Oswald",sans-serif; letter-spacing: 2px}
+.counter-title{ font-size:12px; letter-spacing:2px; text-transform: uppercase}
+.counter-icon {top:25px; position:relative}
+.counter-style2 .counter-title {letter-spacing: 0.55px; float: left;}
+.counter-style2 span.counter {letter-spacing: 0.55px; float: left; margin-right: 10px;}
+.counter-style2 i {float: right; line-height: 26px; margin: 0 10px 0 0}
+.counter-subheadline span {float: right;}  
+
+.medium-icon {
+    font-size: 40px !important;
+    margin-bottom: 15px !important;
+} 
 
 
