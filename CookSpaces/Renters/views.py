@@ -34,3 +34,20 @@ def register_renter(request:HttpRequest):
     
 
     return render(request, "accounts/register_renter.html", {"msg" : msg})
+
+def profile(request:HttpRequest):
+    
+    return render(request,)
+
+
+def my_order(request:HttpRequest):
+    
+    return render(request,)
+
+def booking(request:HttpRequest):
+    
+    return render(request,)
+
+def my_favorites(request:HttpRequest):
+    
+    return render(request,)
