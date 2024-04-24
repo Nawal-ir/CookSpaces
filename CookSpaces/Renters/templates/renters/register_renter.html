@@ -2,36 +2,51 @@
 
 {% block title %} Create Renter Account {% endblock %}
 
+{% block style%}
+<style>
+.register{
+    background-color: #F4F2EE;;
+}
+</style>
+{% endblock %}
+
 {% block content %}
+<section class="search">
+    <div class="container">
+        <div class="row g-4" style="text-align: center; margin-top: 200px; padding: 33px; margin-left: 200px; margin-right: 200px; width: 700px;">
+            <div  style="position: relative;"><img src="static\images\111.png" alt="Background Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
 
-    {% if msg %}
-        <div class="alert alert-danger">{{msg}}</div>
-    {% endif %}
-    <div class="row" style=" margin-left: 20px; margin-bottom: 100px;">
-        <h1 class="fw-light text-blak " style="margin-top: 50px;  margin-bottom: 30px; ">Create Account</h1>
-        <div class="col-6 ">
-            <form action="{% url 'Renters:register_renter' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
-                <input name="first_name" class="form-control" type="text" minlength="3" required placeholder="First Name" />
-                <input name="last_name" class="form-control" type="text" minlength="3" required placeholder="Last Name" />
-                <input name="email" class="form-control" type="email" required placeholder="Email" />
-                <input name="phone" class="form-control" type="phone" maxlength="10" required placeholder="phone" />
-
-                <textarea name="about" class="form-control" placeholder="Tell us about yourself"></textarea>
-
-                <h4>Choose Avatar:</h4>
-                <input type="file" class="form-control" name="avatar" />
-
-                <input name="password" class="form-control" type="password" minlength="6" required placeholder="Password" />
-
-                <input type="submit" class="btn btn mt-5" style="background-color:  rgb(161, 215, 145); " value="Sign Up" />
-
-            </form>
-        </div>
-        <div class="col-6">
-            <img src="/static/image/111.png" class="mp-5 rounded-4" style="width: 500px; height: 600px;  margin-left: 20px; margin-bottom: 20px;">
         </div>
     </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row mt-2 g-5">
+                {% if msg %}
+                    <div class="alert alert-danger">{{msg}}</div>
+                {% endif %}
+
+                <div class="row justify-content-end" style="margin-bottom: 100px;">
+                    <div class="col-6">
+                        <form action="{% url 'Renters:register_renter' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style="background-color: #F4F2EE; padding: 20px;">
+                            {% csrf_token %}
+                            <h1 class="fw-light text-black mb-4">Create Account</h1>
+                            <input name="username" class="form-control mb-3" type="text" minlength="3" required placeholder="Username" />
+                            <input name="first_name" class="form-control mb-3" type="text" minlength="3" required placeholder="First Name" />
+                            <input name="last_name" class="form-control mb-3" type="text" minlength="3" required placeholder="Last Name" />
+                            <input name="email" class="form-control mb-3" type="email" required placeholder="Email" />
+                            <input name="phone" class="form-control mb-3" type="phone" maxlength="10" required placeholder="phone" />
+                            <textarea name="about" class="form-control mb-3" placeholder="Tell us about yourself"></textarea>
+                            <h4>Choose Avatar:</h4>
+                            <input type="file" class="form-control mb-3" name="avatar" />
+                            <input name="password" class="form-control mb-3" type="password" minlength="6" required placeholder="Password" />
+                            <input type="submit" class="btn btn mt-3" style="background-color: rgb(161, 215, 145);" value="Sign Up" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
