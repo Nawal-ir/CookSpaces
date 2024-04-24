@@ -1,0 +1,85 @@
+{% extends "main/base.html" %}
+
+{% block title %}Add Kitchen{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container my-5">
+<div class="row ">
+    <div class="col-4 my-5">
+            <form action="{% url "KitchenOwner:add_kitchen" owner_id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4>Add Kitchen:</h4>
+                <div class="d-flex flex-column gap-1 ">
+                <!--title-->
+                <label for="title">Title</label>
+                <input type="text" name="title" placeholder="Title">
+                <!--Description-->
+                <textarea name="desc" cols="30" rows="5" placeholder="Description:"></textarea>
+                <!--poster-->
+                <label for="poster">Add Poster</label>
+                <input type="file" accept="image/*" name="poster">
+                <!--space-->
+                <label for="space">Space in m<sup>2</label>
+                <input type="text" name="space">
+                <!--equipments-->
+                {% for e in equipments  %}
+                <div class="d-flex gap-2 ">
+                    <input type="checkbox" name="equipment" id="{{e.id}} value="{{e.name}}"" /> 
+                    <label for="{{e.id}}" class="d-flex align-items-center gap-1">
+                        <span class="material-symbols-outlined">{{e.icon}}</span>
+                        <h5 class="m-0 p-0">{{e.name}}</h5>
+                    </label>
+                </div>
+                {% endfor %}
+
+                    <hr>
+                <!--has_ventilation-->
+                <div class="d-flex gap-2 ">
+                <input type="checkbox" name="has_ventilation" value="True"> Has Ventilation<br>
+                </div>
+                <!--has_toilet-->
+                <div class="d-flex gap-2 ">
+                <input type="checkbox" name="has_toilet" value="True"> Has Toilet<br>
+                </div>
+
+                <!--has_storage-->
+                <div class="d-flex gap-2 ">
+                <input type="checkbox" name="has_storage" value="True"> Has Storage<br>
+                </div>
+
+                <!--has_waitingarea-->
+                <div class="d-flex gap-2 ">
+                <input type="checkbox" name="has_waitingarea" value="True"> Has Waiting Area<br>
+                </div>
+
+                <hr>
+                <div class="d-flex flex-column gap-2 my-2">
+                <!--loc_latitude-->
+                <input type="text" name="loc_latitude" placeholder="loc_latitude">
+                <!--loc_longitude-->
+                <input type="text" name="loc_longitude" placeholder="loc_longitude">
+                </div>  
+                <!--price-->
+                <div class="d-felx">
+                <label for="price">Price</label>
+                <input type="text" name="price">SAR<br>
+                <!--period-->
+                <select name="period">
+                    <option value="Monthly">Monthly</option>
+                    <option value="Annually">Annually</option>
+                </select>
+                </div>  
+
+                <input type="submit" class="btn btn-primary" value="Add">
+             </div>
+
+            </form>
+    </div>
+</div>
+</div>
+</section>
+
+
+{% endblock  %}
