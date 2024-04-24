@@ -2,7 +2,16 @@
 {% block title %}CookSpaces | HOME{% endblock %}
 
 {% block style %}
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 700,
+      'GRAD' 200,
+      'opsz' 24
+    }
 
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -12,67 +21,59 @@
     <div class="main-img" style="position: relative; background-color: #F4F2EE;" >
         <div>
             <img src="static/images/main.jpeg" alt="" class="main-img" style="width: 80%; margin-top: 60px;">
-            <div style="position: absolute; bottom: 0; right: 0; background-color: #F4F2EE; margin: 100px; padding: 280px 150px;">
-                <h2><span>حيث تتحول الأفكار الى واقع ملموس </span><br></h2>
+            <div style="position: absolute; bottom: 0; right: 0; background-color: #F4F2EE; margin: 100px; padding: 250px 100px;">
+                <div>
+                    <h1 style="color: #6E6A6A; font-size: 40px; font-weight: 50%; text-align: center;">Where culinary dreams<br>come to life!</h1>
+                </div>
             </div>
         </div>
     </div>
+
+
+<!-- About section  -->
+<section style="background-color: #F4F2EE;">
+    <div style="padding: 0 80px;">
+        <p class="title"> About us</p>
+        <p class="title2">We are a one-stop solution for cloud restaurants and aspiring chefs ooking to kickstart their culinary journey. At CookSpaces, we understand the challenges of starting a food business, whether<br> it's a cloud kitchen or a personal culinary venture.<br> That's why we've created a platform that seamlessly connects kitchen owners, chefs, and food enthusiasts to bring their culinary visions to reality. </p>
+    </div>
+</section>
 
 <!-- Regeister section  -->
 
-<section style="position:flex; flex-direction: column; background-color: #487E9C ;" >
+<section style="position:flex; flex-direction: column; background-color: #E7C3BC ;" >
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-5" style="margin-top: 300px;">
+            <div class="col-4" style="margin-top: 20px;">
                 <h1 style="font-size: 100px; color: #F4F2EE; text-align: center;"> Join Us <br>Now !</h1>
             </div>
-            <div class="col-7">
-                <div class="row">
-                    <div class="col-md-6"> 
-                        <div class="content">
-                            <div class="card">
-                                <div class="icon">
-                                    <i class="fas fa-edit"></i>
-                                </div>
-                                <div class="info">
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
+            <div class="col7" style="margin-top: 20px;">
+                <div class="">
+                    <div class="col-3">
+                        <div class="card">
+                            <h3 class="card__title">Title
+                            </h3>
+                            <p class="card__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                            <div class="card__arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
+                                    <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3232 10.7626L14.5303 4.96967C14.2374 4.67678 13.7626 4.67678 13.4697 4.96967C13.1768 5.26256 13.1768 5.73744 13.4697 6.03033L18.6893 11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H18.6893L13.4697 17.9697Z"></path>
+                                </svg>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="content">
-                            <div class="card">
-                                <div class="icon">
-                                    <i class="fas fa-video"></i>
-                                </div>
-                                <div class="info">
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12"> 
-                        <div class="content">
-                            <div class="card">
-                                <div class="icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div class="info">
-                                    <h3></h3>
-                                    <p></p>
-                                </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <h3 class="card__title">Title
+                            </h3>
+                            <p class="card__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                            <div class="card__arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="15" width="15">
+                                    <path fill="#fff" d="M13.4697 17.9697C13.1768 18.2626 13.1768 18.7374 13.4697 19.0303C13.7626 19.3232 14.2374 19.3232 14.5303 19.0303L20.3232 13.2374C21.0066 12.554 21.0066 11.446 20.3232 10.7626L14.5303 4.96967C14.2374 4.67678 13.7626 4.67678 13.4697 4.96967C13.1768 5.26256 13.1768 5.73744 13.4697 6.03033L18.6893 11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H18.6893L13.4697 17.9697Z"></path>
+                                </svg>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
     
 </section>
 
@@ -261,57 +262,113 @@
   
 </section>
 
-<hr style="color: #6E6A6A; margin-left: 300px; margin-right: 300px;">
+<!-- <hr style="color: #6E6A6A; margin-left: 300px; margin-right: 300px;"> -->
 
 
 
 
 <!-- FAQ  -->
-
-<section>
-    <h2 class="title">FAQ </h2>
-    <h4 class="title" style="color: #6E6A6A;">We Are Here To Help </h4>
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Accordion Item #1
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <p><strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.</p>
-            </div>
-          </div>
+<section >
+    <h2 class="title">FAQs</h2>
+    <div class="accordion accordion-flush" id="accordionExample">
+        <div class="border-bottom py-3" id="headingOne">
+           <h3 class="mb-0 fw-bold">
+              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <span class="me-auto" style="color: #6E6A6A;">
+              What is the cost of an online course
+              </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
+                add
+                </span>
+              <span class="collapse-toggle ms-4">
+              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+              </span>
+              </a>
+           </h3>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+           <div class="py-3 fs-4" style="color: #818181;">
+              Create beautiful website with this Geeks UI template. Get started building a site today.
+           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Accordion Item #3
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
+        <!-- Card  -->
+        <!-- Card header  -->
+        <div class="border-bottom py-3" id="headingTwo">
+           <h3 class="mb-0 fw-bold">
+              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <span class="me-auto" style="color: #6E6A6A;">
+              What do I need to take a course?
+              </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
+                add
+                </span>
+              <span class="collapse-toggle ms-4">
+              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+              </span>
+              </a>
+           </h3>
         </div>
-      </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+           <div class="py-3 fs-4" style="color: #818181;">
+              Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+              nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+           </div>
+        </div>
+        <!-- Card  -->
+        <!-- Card header  -->
+        <div class="border-bottom py-3 " id="headingThree">
+           <h3 class="mb-0 fw-bold">
+              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <span class="me-auto" style="color: #6E6A6A;">
+              What do I receive for taking this course?
+              </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
+                add
+                </span>
+              <span class="collapse-toggle ms-4">
+              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+              </span>
+              </a>
+           </h3>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+           <div class="py-3 fs-4" style="color: #818181;">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+              squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+              quinoa nesciunt laborum eiusmod.
+           </div>
+        </div>
+        <!-- Card  -->
+        <!-- Card header  -->
+        <div class="pt-3 " id="headingFour">
+           <h3 class="mb-0 fw-bold">
+              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              <span class="me-auto" style="color: #6E6A6A;">
+              What willI get if I subscribe to this Certificate?
+              </span> <span class="material-symbols-outlined" style="color: #6E6A6A;" >
+                add
+                </span>
+              <span class="collapse-toggle ms-4">
+              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+              </span>
+              </a>
+           </h3>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+           <div class="py-3 fs-4" style="color: #818181;">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+              squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+       </div>
+           </div>
+        </div>
+        <br><br>
+        <div class="mt-10 text-center">
+           <a href="#" class="btn btn-outline-secondary">More questions? <span style="color: #6A3665;">Contact us</span></a>
+        </div>
 </section>
 
 
+
+
+
+<!-- Script for the counter section -->
 <script>
     $(document).ready(function() {
 
