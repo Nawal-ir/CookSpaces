@@ -5,6 +5,7 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
     overflow-x: hidden;
+
 }
 
 /* Body */
@@ -50,9 +51,6 @@ html {
   text-align: center;
 }
 
-.title{
-  text-align: center;
-}
 
 .collapse{
   justify-content: center;
@@ -129,6 +127,18 @@ section{
   color: #3C3C3C;
   font-weight: 800;
   padding-bottom: 30px;
+  text-align: center;
+}
+
+.title2{
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  color: #878181;
+  font-weight: 800;
+  padding-bottom: 30px;
+  text-align: center;
+
 }
 
 
