@@ -24,26 +24,69 @@ def register_renter(request:HttpRequest):
                 register_renter = Renter(
                     user=new_user, 
                     about=request.POST["about"],
-                    avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),
+                    avatar=request.FILES.get("avatar", Renter.avatar.field.get_default()),
                     phone=request.POST["phone"]
                     )
                 register_renter.save()
 
-            return redirect("accounts:login_user")
+            return redirect("accounts:login")
         
         except IntegrityError as e:
             msg = "This username is already taken. Please choose a different username."
             print(e)
 
         except Exception as e:
-            msg = "Something went wrong. Please try again."
+            msg = f"Something went wrong. Please try again. {e}"
             print(e)
     
     return render(request, "renters/register_renter.html", {"msg" : msg})
 
-def profile(request:HttpRequest):
+def profile(request:HttpRequest, user_id):
+    try:
+        user=User.objects.get(id=user_id)
+        user_profile = Renter.objects.get(user=user)
+    except:
+        return render(request, "main/404.html")
+
+    return render(request, "renters/profile.html",{"user_profile": user_profile,})
+
+
+def update_profile(request:HttpRequest):
+    msg = None
+
+    if not request.user.is_authenticated:
+        return redirect("accounts:login_user")
     
-    return render(request, 'renters/profile.html')
+    if request.method == "POST":
+        
+        try:
+
+            with transaction.atomic():
+                user:User = request.user
+
+                user.first_name = request.POST["first_name"]
+                user.last_name = request.POST["last_name"]
+                user.email = request.POST["email"]
+
+                user.save()
+                
+                try:
+                    profile:Renter= user.renter
+                except Exception as e:
+                    profile =Renter(user=user)
+
+                profile.about = request.POST["about"]
+                profile.avatar = request.FILES.get("avatar", profile.avatar)
+
+                profile.save()
+
+                return redirect("renters:user_profile", user_id=user.id)
+
+        except Exception as e:
+            msg = f"Something went wrong {e}"
+            print(e)
+
+    return render(request, "renters/update_profile.html", {"msg" : msg})
 
 
 def my_order(request:HttpRequest):

@@ -5,29 +5,61 @@
 {% block style%}
 <style>
 .register{
-    background-color: #F4F2EE;;
+    background-image: url("/static/images/111.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: relative;
 }
 </style>
 {% endblock %}
 
 {% block content %}
-<section class="search">
-    <div class="container">
-        <div class="row g-4" style="text-align: center; margin-top: 200px; padding: 33px; margin-left: 200px; margin-right: 200px; width: 700px;">
-            <div  style="position: relative;"><img src="static\images\111.png" alt="Background Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+<!-- <section class="register">
+    <div class="container register">
+        <div class="row mt-2 g-5">
+            <div class="d-flex flex-column gap-2">
+                    {% if msg %}
+                        <div class="alert alert-danger">{{msg}}</div>
+                    {% endif %}
 
+                    <div class="row justify-content-end" style="margin-bottom: 100px;">
+                        <div class="col-6">
+                            <form action="{% url 'Renters:register_renter' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style="background-color: #F4F2EE; padding: 20px;">
+                                {% csrf_token %}
+                                <h1 class="fw-light text-black mb-4">Create Account</h1>
+                                <input name="username" class="form-control mb-3" type="text" minlength="3" required placeholder="Username" />
+                                <input name="first_name" class="form-control mb-3" type="text" minlength="3" required placeholder="First Name" />
+                                <input name="last_name" class="form-control mb-3" type="text" minlength="3" required placeholder="Last Name" />
+                                <input name="email" class="form-control mb-3" type="email" required placeholder="Email" />
+                                <input name="phone" class="form-control mb-3" type="number" maxlength="10" required placeholder="phone" />
+                                <textarea name="about" class="form-control mb-3" placeholder="Tell us about yourself"></textarea>
+                                <h4>Choose Avatar:</h4>
+                                <input type="file" class="form-control mb-3" name="avatar" />
+                                <input name="password" class="form-control mb-3" type="password" minlength="6" required placeholder="Password" />
+                                <input type="submit" class="btn btn mt-3" style="background-color: rgb(161, 215, 145);" value="Sign Up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</section> -->
+
 <section>
     <div class="container">
         <div class="row mt-2 g-5">
+            <div class="col-4">
+                <img src="/static/images/about.jpeg" alt="" style="width: 200%;height: 400x; margin-top: 50px; ">
+            </div>
+
+            <div class="col-8" style=" background-color: #F4F2EE; padding-bottom: 50px; border-radius: 30px; ">
                 {% if msg %}
                     <div class="alert alert-danger">{{msg}}</div>
                 {% endif %}
 
                 <div class="row justify-content-end" style="margin-bottom: 100px;">
-                    <div class="col-6">
+                    <div class="col-12">
                         <form action="{% url 'Renters:register_renter' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style="background-color: #F4F2EE; padding: 20px;">
                             {% csrf_token %}
                             <h1 class="fw-light text-black mb-4">Create Account</h1>
