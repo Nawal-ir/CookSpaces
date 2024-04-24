@@ -6,15 +6,21 @@ from django.contrib.auth.models import User
 
 
 class Order(models.Model):
+    status = models.TextChoices("status",["accepted","rejected", "pending","paid"])
     
     renter = models.ForeignKey(Renter,on_delete=models.CASCADE)
     kitchen = models.ForeignKey(Kitchen,on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     note = models.TextField()
-    
-    status = models.TextChoices("status",["accepted","rejected", "pending","paid"])
     status = models.CharField(max_length=64,choices=status.choices)
+    
+class Review(models.Model):
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    evaluation = models.PositiveIntegerField( validators=[MinValueValidator(1), MaxValueValidator(5)],null=True)
 
 class Payment(models.Model):
     
@@ -26,6 +32,6 @@ class Payment(models.Model):
 
 class BookMark(models.Model):
     
-    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE)
+    kitchen = models.OneToOneField(kitchen, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

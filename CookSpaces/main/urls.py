@@ -5,11 +5,11 @@ app_name = "main"
 
 urlpatterns  = [
     path("", views.home, name="home"),
-    path("All/", views.all_kitchen, name="all_kitchen"),
-    path("Detail/", views.kitchen_detail, name="kitchen_detail"),
-    path("Delete/", views.delete_kitchen, name="delete_kitchen"),
-    path("Articals/", views.articals, name="articals"),
-    path("About/", views.about, name="about"),
-    path("Contact/", views.contact, name="contact"),
+    path("all/", views.all_kitchen, name="all_kitchen"),
+    path("detail/", views.kitchen_detail, name="kitchen_detail"),
+    path("delete/", views.delete_kitchen, name="delete_kitchen"),
+    path("articals/", views.articals, name="articals"),
+    path("about/", views.about, name="about"),
+    path("contact/", views.contact, name="contact"),
     path("reviews/add/", views.add_review, name="add_review"),
 ]

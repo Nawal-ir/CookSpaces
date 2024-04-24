@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+{% block content %}
+
+<section>
+    <div class="container">   
+
+        <h1 class="fw-light text-blak" style="margin-top: 150px;margin-bottom: 20px; text-align: center;">Sign Up</h1>
+        <div class="row">
+            <div class="col-6 d-flex justify-content-center gap-4" style="width: auto; margin-left: 200px;">
+                <div class="p-4 rounded-4" style="border-left: 5px groove; border-right: 5px groove;">
+                    <a style="text-decoration: none; color: black;" href="{% url 'KitchenOwner:register_owner' %}"><h1>Kitchen Owner</h1></a>
+                </div>
+
+                <div class="p-4 rounded-4" style="border-left: 5px groove; border-right: 5px groove;">
+                    <a style="text-decoration: none; color: black;" href="{% url 'Renters:register_renter' %}"><h1>Renters</h1></a>
+                </div>
+
+                <div class="p-4 rounded-4" style="border-left: 5px groove; border-right: 5px groove;">
+                    <a style="text-decoration: none; color: black;" href="{% url 'Chief:register_chief' %}"><h1>Chief</h1></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

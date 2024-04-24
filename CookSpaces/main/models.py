@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 class Artical(models.Model):
 
+
     title = models.CharField(max_length=1000)
     content = models.TextField()
     poster = models.ImageField(upload_to='poster/')
