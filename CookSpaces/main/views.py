@@ -3,6 +3,9 @@ from django.http import HttpRequest, HttpResponse
 
 def home(requset:HttpRequest):
     
+    if requset.user.is_authenticated:
+        print(requset.user.first_name)
+    
     return render(requset, "main/home.html")
 
 def all_kitchen(requset:HttpRequest):

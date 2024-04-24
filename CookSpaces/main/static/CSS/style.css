@@ -3,8 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+
 
 }
 
@@ -49,14 +48,6 @@ html {
   font-weight: bold;
   color: #34586C;
   text-align: center;
-}
-
-
-.collapse{
-  justify-content: center;
-  align-items: center;
-  padding-left: 50%;
-  color: #F4F2EE;
 }
 
 
