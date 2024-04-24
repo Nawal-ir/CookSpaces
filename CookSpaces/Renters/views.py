@@ -10,18 +10,25 @@ def register_renter(request:HttpRequest):
 
     if request.method == "POST":
         try:
-
-        
             with transaction.atomic():
                 
-                new_user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], first_name=request.POST["first_name"], last_name=request.POST["last_name"], password=request.POST["password"])
+                new_user = User.objects.create_user(
+                    username=request.POST["username"], 
+                    email=request.POST["email"], 
+                    first_name=request.POST["first_name"], 
+                    last_name=request.POST["last_name"], 
+                    password=request.POST["password"]
+                    )
                 new_user.save()
 
-                
-                register_renter = Renter (user=new_user, about=request.POST["about"],avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),phone=request.POST["phone"])
+                register_renter = Renter(
+                    user=new_user, 
+                    about=request.POST["about"],
+                    avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),
+                    phone=request.POST["phone"]
+                    )
                 register_renter.save()
 
-                
             return redirect("accounts:login_user")
         
         except IntegrityError as e:
@@ -32,5 +39,21 @@ def register_renter(request:HttpRequest):
             msg = "Something went wrong. Please try again."
             print(e)
     
+    return render(request, "renters/register_renter.html", {"msg" : msg})
 
-    return render(request, "accounts/register_renter.html", {"msg" : msg})
+def profile(request:HttpRequest):
+    
+    return render(request, 'renters/profile.html')
+
+
+def my_order(request:HttpRequest):
+    
+    return render(request, 'renters/my_order.html')
+
+def booking(request:HttpRequest):
+    
+    return render(request, 'renters/booking.html')
+
+def saved_kitchens(request:HttpRequest):
+    
+    return render(request, 'renters/saved_kitchens.html')

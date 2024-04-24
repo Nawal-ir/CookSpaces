@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% block title %}all chiefs{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container p-2">
+            
+            <div class="row">
+                {% for rec in recipes %}
+                <div class="col-12 mb-3">
+                    <div class="d-flex flex-row align-items-center border border-1 shadow p-3 ">
+                        <div class="w-40">
+                            <img src="{{  rec.image.url }}" class="w-100  card-poster"  style="height: 300px;" />
+                        </div>
+                        <div class="w-75 ps-3">
+                            <h2><a href="{% url 'main:detail_recipes' rec.id  %}" class="text-decoration-none text-black">{{rec.name }}</a></h2>
+                            <h3><a href="{% url 'accounts:user_profile' rec.user.id %}" class="text-decoration-none text-black"> {{rec.user.username}}</a></h3>
+                            <h6 class="cat pt-1 pb-1 rounded-pill {{ rec.category }}" style="width: 100px; background-color: rgb(116, 233, 174); text-align: center;">{{ rec.category }}</h6>
+                            <h6 class="text-muted">{{ rec.published_at }}</h6>
+                           
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+{% endblock %}
