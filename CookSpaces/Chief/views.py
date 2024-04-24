@@ -8,13 +8,13 @@ from accounts.models import KitchenOwner,Renter,Chife
 
 # Create your views here.
 def register_chife(request:HttpRequest):
-    msg = None
+    msg = ""
 
     if request.method == "POST":
         try:
 
         
-            with transaction.atomic():
+         with transaction.atomic():
                 
                 new_user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], first_name=request.POST["first_name"], last_name=request.POST["last_name"], password=request.POST["password"])
                 new_user.save()
@@ -24,7 +24,7 @@ def register_chife(request:HttpRequest):
                 register_chife.save()
 
                 
-            return redirect("accounts:login_user")
+         return redirect("accounts:login_user")
         
         except IntegrityError as e:
             msg = "This username is already taken. Please choose a different username."
@@ -35,26 +35,14 @@ def register_chife(request:HttpRequest):
             print(e)
     
 
-    return render(request, "accounts/register_chife.html", {"msg" : msg})
+    return render(request, "chief/register_chife.html", {"msg" : msg})
 
 
-def  profile_view(request:HttpRequest, user_name):
-
-    try:
-        user_object = User.objects.get(username=user_name)
-       
-    except:
-        return render(request, "#")
-
-    return render(request, "Chief/profile.html", {"user_object":user_object})
+def  profile_view(request:HttpRequest):
 
 
-def chife_detail(request):
-    chife = Chife.objects.first() 
-    context = {
-        'chife': chife,
-    }
-    return render(request, 'chife_detail.html', context)
+    return render(request, "chief/chief_profile.html")
+
 
 def all_chief_view(request: HttpRequest):
-    return render(request, "Chief/all.html")
+    return render(request, "Chief/all_chief.html")
