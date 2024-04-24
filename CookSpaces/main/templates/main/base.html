@@ -30,30 +30,64 @@
     {% endblock %}
 
   </head>
-  <body>
+  <body style="background: linear-gradient(#ffffff, #a8a8a893); background-attachment:  fixed;">
 
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-collapse fixed-top shadow p-2 mb-1">
-        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-collapse fixed-top p-2 mb-1">
+        <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand d-flex flex-column justify-content-center align-items-center" href="{% url 'main:home' %}">
-            <h6 class="fa-fade" style="font-size: x-small; text-align: center;">CookSpaces</h6></a>
+            <h4 class="fa-fade" style="text-align: center;">CookSpaces</h4></a>
 
                     
           <div id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="{% url 'main:home' %}">HOME</a>
+                <a class="nav-link " aria-current="page" href="{% url 'main:all_kitchen' %}">KITCHENS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">ABOUT</a>
+                <a class="nav-link" href="{% url 'main:articals' %}">ARTICALS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">CONTACT US</a>
+                <a class="nav-link" href="{% url 'main:about' %}">ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:contact' %}">CONTACT US</a>
               </li>
             </ul>
+          </div>
+
+          <div class="d-flex gap-3 align-items-center">
+            <a class="btn btn-dark" href="#" style="padding: 5px;">Add Kitchen</a>
+            
+            {% if request.user.is_authenticated %} 
+            <div class="d-flex gap-2">
+              <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  welcome, <strong> {{ request.user.username }} </strong>
+                </a>
+                <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                  <li><a class="dropdown-item" href="#">My Profile</a></li>
+                  <li><a class="dropdown-item" href="#">My Saved Kitchen</a></li>
+
+                  <!-- <li><a class="dropdown-item" href="#">My Orders</a></li> -->
+                  
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+  
+            {% else %}
+            <div>
+              <a href="{% url 'accounts:register' %}" style="color: #02020b; text-decoration: none;">Sign Up</a>
+              /
+              <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">Login</a>
+            </div>
+  
+            {% endif %}
           </div>
 
         </div>
@@ -70,9 +104,11 @@
         })
       </script>
     </div>
-      
-    {% block content %}
-    {% endblock %}
+      <div class="container">
+        {% block content %}
+        {% endblock %}
+
+      </div>
 
         <!-- Footer -->
 
@@ -96,6 +132,7 @@
                   <h5>Explore</h5>
                   <ul class="list-unstyled">
                     <li class="mb-2"><a href="/" style="color: #080822; text-decoration: none;">Home</a></li>
+                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">Kitchens</a></li>
                     <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">About</a></li>
                     <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">Contact Us</a></li>
                   </ul>
@@ -117,7 +154,7 @@
               <div class="row">
                 <hr>
                 <div class="col d-flex" style="justify-content: space-between;">
-                  © 2024 by. Nawal Alrashed, All rights reserved.
+                  © 2024 by. CookSpaces Team, All rights reserved.
                   <div class="d-flex gap-3">
                     <a href="#" style="color: #080822; text-decoration: none;">Terms & Conditions</a>
                     <a href="#" style="color: #080822; text-decoration: none;">Privacy Policy</a>

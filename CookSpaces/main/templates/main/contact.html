@@ -1,10 +1,69 @@
 {% extends 'main/base.html' %}
-{% block title %}CookSpaces | CONTACT US{% endblock %}
+{% load static %}
 
-{% block style %}
-
-{% endblock %}
+{% block title %} CookSpaces | CONTACT US {% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row" style="margin-top: 120px;">
+        <div class="col">
+            <div class="d-flex flex-column p-3 rounded-4 w-100"
+            style="color:aliceblue; 
+            background: linear-gradient(217deg, rgba(41, 134, 196, 0.8), rgba(255,0,0,0) 70.71%),
+                        linear-gradient(127deg, rgba(7, 115, 129, 0.8), rgba(0,255,0,0) 70.71%),
+                        linear-gradient(336deg, rgba(2, 2, 148, 0.8), rgba(0,0,255,0) 70.71%);">
+                <!-- <h1>Contact Us</h1> -->
+    
+                <div class="row mt-4">
+                    <div class="col-12 col-md-7 order-2 order-md-2">
+                        <form action="{% url 'main:contact' %}" method="post" class="d-flex flex-column gap-2">
+                            {% csrf_token %}
+    
+                            <div class="row">
+                                <div class="col">
+                                    <label for="first_name" class="form-label">First Name:</label>
+                                    <input name="first" type="text" class="form-control" id="first_name" placeholder="First Name..." required>
+                                </div>
+    
+                                <div class="col">
+                                    <label for="last_name" class="form-label">Last Name:</label>
+                                    <input name="last" type="text" class="form-control" id="last_name" placeholder="Last Name..." required>
+                                </div>
+                            </div><!--First Name & Last Name-->
+    
+                            <div class="col">
+                                <label for="email" class="form-label">Email Address:</label>
+                                <div class="input-group">
+                                  <span class="input-group-text">@</span>
+                                  <input name="email" type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+                                </div>
+                            </div><!--Email-->
+    
+                            <label for="message">Your Message:</label>
+                            <textarea name="message" id="message" placeholder="Messages..." cols="30" rows="5" class="form-control"></textarea>
+            
+                            <input type="submit" class="btn btn-dark rounded-4" value="Send" style="background: linear-gradient(#081b22, #051116, #02070b);"/>
+            
+                        </form>
+                    </div>
+    
+                    <div class="col col-md-5 order-1 order-md-1 d-flex flex-column justify-content-center align-items-center fa-fade">
+                        <!-- <img src="{% static 'images/plan.jpg' %}" alt="image" class="rounded-4" style="opacity: 0.8; background-size: cover; width: 100%; height: 53vh;"> -->
+                        <i class="fa fa-thin fa-paper-plane fa-3x" style="color: #ffffff;"></i>
+                        <h1>Contact Us</h1>
+                    </div>
+                </div> <!-- row 2 : Contact Form -->
 
+            </div>
+
+            <div class="row mt-4 ">
+                <div class="col d-flex justify-content-center">
+                    {% if request.user.is_superuser %}
+                        <a href="#" class="btn btn-outline-dark">Go to Messages...</a>
+                    {% endif %}
+                </div>
+            </div><!-- row 3 : Message Button for Admin-->
+        </div><!-- col 1-->
+    </div> <!-- row 1-->
+</div>
 {% endblock %}

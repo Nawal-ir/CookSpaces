@@ -6,6 +6,10 @@ from django.db import IntegrityError,transaction
 from accounts.models import KitchenOwner,Renter,Chife
 
 # Create your views here.
+def register_user(request:HttpRequest):
+
+    return render(request,'accounts/register.html')
+
 
 def login_user(request:HttpRequest):
     msg = None
