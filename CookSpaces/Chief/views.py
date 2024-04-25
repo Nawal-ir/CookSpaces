@@ -50,12 +50,9 @@ def  profile_view(request:HttpRequest, user_id):
 
 
 def all_chief_view(request: HttpRequest):
-    if "cat" in request.GET:
-        chife = chife.objects.filter(category=request.GET["cat"])
-    else:
-   
-       chife = Chife.objects.all()
 
-    return render(request, "Chief/all_chief.html",  {'chife': chife})
+    chife = Chife.objects.all()
+
+    return render(request,"chief/all_chief.html", {'chife': chife})
 
 

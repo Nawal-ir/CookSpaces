@@ -7,14 +7,14 @@
         <div class="col-md-8">
             <h1>All Chife</h1>
             <div class="row">
-                {% for Chife in Chife %}
+                {% for Chife in chife %}
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="{{  user_object.Chife.avatar.url }}" class="card-img-top" alt="Chife Image">
+                        <img src="{{Chife.avatar.url }}" class="card-img-top" alt="Chife Image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ user_object.Chife.user.get_full_name }}</h5>
-                            <p class="card-text">{{  user_object.Chife.about }}</p>
-                            <li><strong>Username:</strong> {{ user_object.username }}</li>
+                            <h5 class="card-title">{{ Chife.user.first_name}}</h5>
+                            <p class="card-text">{{ Chife.about }}</p>
+                            <li><strong>Username:</strong> {{Chife.username }}</li>
                         </div>
                     </div>
                 </div>
