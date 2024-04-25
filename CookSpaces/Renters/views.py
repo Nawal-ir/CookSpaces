@@ -3,7 +3,9 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
-from accounts.models import KitchenOwner,Renter,Chife
+from accounts.models import KitchenOwner,Renter
+from KitchenOwner.models import Kitchen 
+from Renters.models import BookMark
 
 def register_renter(request:HttpRequest):
     msg = None
@@ -43,19 +45,24 @@ def register_renter(request:HttpRequest):
 
 def profile(request:HttpRequest, user_id):
     try:
-        user=User.objects.get(id=user_id)
-        user_profile = Renter.objects.get(user=user)
+        user_profile = User.objects.get(pk=user_id)
+        
     except:
         return render(request, "404.html")
 
     return render(request, "renters/profile.html",{"user_profile": user_profile,})
 
 
-def update_profile(request:HttpRequest):
+def update_profile(request:HttpRequest, user_id):
     msg = None
 
     if not request.user.is_authenticated:
         return redirect("accounts:login")
+    
+    try: 
+        user_info = User.objects.get(pk=user_id)
+    except:
+        return render(request, "404.html")
     
     if request.method == "POST":
         
@@ -80,13 +87,13 @@ def update_profile(request:HttpRequest):
 
                 profile.save()
 
-                return redirect("renters:profile", user_id=user.id)
+                return redirect("Renters:profile", user_id=user.id)
 
         except Exception as e:
             msg = f"Something went wrong {e}"
             print(e)
 
-    return render(request, "renters/profile_update.html", {"msg" : msg})
+    return render(request, "renters/profile_update.html", {"user_info":user_info, "msg" : msg})
 
 
 def my_order(request:HttpRequest):
@@ -97,6 +104,40 @@ def booking(request:HttpRequest):
     
     return render(request, 'renters/booking.html')
 
-def saved_kitchens(request:HttpRequest):
+
+def add_remove_saved_view(request: HttpRequest, kitchen_id):
+
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
     
-    return render(request, 'renters/saved_kitchens.html')
+    try:
+        kitchen = Kitchen.objects.get(pk=kitchen_id)
+
+        saved_kitchen = BookMark.objects.filter(user=request.user, kitchen=kitchen).first()
+
+        if not saved_kitchen:
+            saved = BookMark(user=request.user, kitchen=kitchen)
+            saved.save()
+        else:
+            saved_kitchen.delete()
+    
+    except Exception as e:
+        print(e)
+
+    return render(request, 'renters/saved_kitchens.html',kitchen_id=kitchen_id)
+
+def saved_kitchens(request:HttpRequest , kitchen_id):
+        message = None
+        try:
+            kitchen = Kitchen.objects.get(pk=kitchen_id)
+            is_saved=request.user.is_authenticate and BookMark.objects.filter(user=request.user, kitchen=kitchen).exists()
+        except Kitchen.DoesNotExist:
+            return render(request, "404.html")
+        except Exception as e:
+            message = f"Something went wrong {e}"            
+            print(e)
+        
+
+        return render(request, "renters/kitchen_datails.html", {"kitchen" :  kitchen,"is_saved" : is_saved, "message" : message})
+
+    
