@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator  
+from KitchenOwner.models import Kitchen
 
 # Create your models here.
 class Artical(models.Model):
@@ -21,6 +22,7 @@ class Contact(models.Model):
 
 class Review(models.Model):
 
+    kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     evaluation = models.PositiveIntegerField( validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
