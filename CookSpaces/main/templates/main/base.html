@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %} {% endblock %}</title>
 
-    <link rel="shortcut icon" href="#" type="image/x-icon">
     <!-- CSS Style -->
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
 
@@ -62,35 +61,7 @@
           <div class="d-flex gap-3 align-items-center">
             <a class="btn btn-dark" href="#" style="padding: 5px;">Add Kitchen</a>
             
-            {% if request.user.is_authenticated %} 
-            <div class="d-flex gap-2">
-              <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  welcome, <strong> {{ request.user.username }} </strong>
-                </a>
-                <ul class="dropdown-menu" style="background: #e4e4e4b7;">
-                  <li><a class="dropdown-item" href="#">My Profile</a></li>
-                  <li><a class="dropdown-item" href="#">My Saved Kitchen</a></li>
 
-                  <!-- <li><a class="dropdown-item" href="#">My Orders</a></li> -->
-                  
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
-                </ul>
-              </div>
-            </div>
-  
-            {% else %}
-            <div>
-              <a href="{% url 'accounts:register' %}" style="color: #02020b; text-decoration: none;">Sign Up</a>
-              /
-              <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">Login</a>
-            </div>
-  
-            {% endif %}
-          </div>
-
-        </div>
       </nav>
 
       <script>
@@ -104,11 +75,8 @@
         })
       </script>
     </div>
-      <div class="container">
         {% block content %}
         {% endblock %}
-
-      </div>
 
         <!-- Footer -->
 

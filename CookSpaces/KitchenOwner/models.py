@@ -4,10 +4,12 @@ from accounts.models import KitchenOwner
 
 class Equipment(models.Model):
    name = models.CharField(max_length=64, unique=True)
-   quantity = models.IntegerField(default=1)
-
-def __str__(self) -> str:
+   # add icon field and delete quantity
+   icon = models.CharField(max_length=64, default="")
+   
+   def __str__(self):
         return self.name
+    
     
 class Kitchen (models.Model):    
     #choices 
@@ -36,6 +38,6 @@ class Kitchen (models.Model):
 class KitchenImage(models.Model):
     kitchen = models.ForeignKey(Kitchen,on_delete=models.CASCADE)
     image = models.ImageField(upload_to="images/")
-    
+
 
 
