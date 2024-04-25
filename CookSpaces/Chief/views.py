@@ -20,29 +20,39 @@ def register_chife(request:HttpRequest):
                 new_user.save()
 
                 
-                register_chife= Chife(user=new_user,about=request.POST["about"] ,avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),phone=request.POST, cv=request.FILES.get("cv"))
-                register_chife.save()
+                profile= Chife(user=new_user,about=request.POST["about"] ,avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),phone=request.POST["phone"], cv=request.FILES.get("cv"))
+                profile.save()
 
                 
-         return redirect("accounts:login_user")
+         return redirect("accounts:login")
         
         except IntegrityError as e:
             msg = "This username is already taken. Please choose a different username."
             print(e)
 
         except Exception as e:
-            msg = "Something went wrong. Please try again."
+            msg = f"Something went wrong {e}. Please try again."
             print(e)
     
 
     return render(request, "chief/register_chife.html", {"msg" : msg})
 
 
-def  profile_view(request:HttpRequest):
+def  profile_view(request:HttpRequest, user_id):
+    try:
+        user_object = User.objects.get(pk=user_id)
+        
+    except:
+        return render(request, "404.html")
 
 
-    return render(request, "chief/chief_profile.html")
+    return render(request, "chief/chief_profile.html", {"user_object":user_object})
 
 
 def all_chief_view(request: HttpRequest):
-    return render(request, "Chief/all_chief.html")
+
+    chife = Chife.objects.all()
+
+    return render(request,"chief/all_chief.html", {'chife': chife})
+
+
