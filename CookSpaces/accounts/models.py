@@ -22,3 +22,6 @@ class Chife(models.Model):
     about=models.TextField()
     phone=models.IntegerField()
     cv=models.FileField()
+
+    def __str__(self) -> str:
+        return self.user.username

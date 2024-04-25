@@ -7,14 +7,14 @@
         <div class="col-md-8">
             <h1>All Chife</h1>
             <div class="row">
-                {% for Chife in Chife %}
+                {% for Chife in chife %}
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="{{  user_object.Chife.avatar.url }}" class="card-img-top" alt="Chife Image">
+                        <img src="{{Chife.avatar.url }}" class="card-img-top" alt="Chife Image">
                         <div class="card-body">
-                            <h5 class="card-title">{{ user_object.Chife.user.get_full_name }}</h5>
-                            <p class="card-text">{{  user_object.Chife.about }}</p>
-                            <li><strong>Username:</strong> {{ user_object.username }}</li>
+                            <h5 class="card-title">{{ Chife.user.first_name}}</h5>
+                            <p class="card-text">{{ Chife.about }}</p>
+                            <li><strong>Username:</strong> {{Chife.username }}</li>
                         </div>
                     </div>
                 </div>
@@ -23,4 +23,79 @@
         </div>
     </div>
 </div>
+<style>
+
+    
+
+.card {
+  width: 17em;
+  height: 22.5em;
+  background: #f9f7f7;
+  transition: 1s ease-in-out;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.card .info {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  font-size: 0.72em;
+  margin: 1em;
+}
+
+.card .img {
+  width: 4.8em;
+  height: 4.8em;
+  background: white;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.card .share {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.card a {
+  color: white;
+  transition: .4s ease-in-out;
+}
+
+.card a:hover {
+  color: red;
+}
+
+.card button {
+  padding: 0.8em 1.7em;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  transition: .4s ease-in-out;
+}
+
+.card button:hover {
+  background: red;
+  color: white;
+  cursor: pointer;
+}
+</style>
 {% endblock %}
