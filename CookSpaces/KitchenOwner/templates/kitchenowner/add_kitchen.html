@@ -24,9 +24,9 @@
                 <label for="space">Space in m<sup>2</label>
                 <input type="text" name="space">
                 <!--equipments-->
-                {% for e in equipments  %}
-                <div class="d-flex gap-2 ">
-                    <input type="checkbox" name="equipment" id="{{e.id}} value="{{e.name}}"" /> 
+                {% for e in equipments %}
+                <div class="d-flex gap-2">
+                    <input type="checkbox" name="equipments" id="{{e.id}}" value="{{e.id}}" />
                     <label for="{{e.id}}" class="d-flex align-items-center gap-1">
                         <span class="material-symbols-outlined">{{e.icon}}</span>
                         <h5 class="m-0 p-0">{{e.name}}</h5>
