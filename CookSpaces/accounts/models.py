@@ -9,6 +9,7 @@ class KitchenOwner(models.Model):
     avatar=models.FileField(upload_to="images/", default="images/default.jpg")
     phone=models.IntegerField()
     verified=models.BooleanField()
+    
     def __str__(self):
         return f"{self.user.username}"
 
@@ -18,6 +19,9 @@ class Renter(models.Model):
     avatar=models.FileField(upload_to="images/", default="images/default.jpg")
     phone=models.IntegerField()
     about=models.TextField()
+
+    def __str__(self):
+        return f"{self.user.username}"
     
 class Chife(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
