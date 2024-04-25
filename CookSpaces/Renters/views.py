@@ -46,7 +46,7 @@ def profile(request:HttpRequest, user_id):
         user=User.objects.get(id=user_id)
         user_profile = Renter.objects.get(user=user)
     except:
-        return render(request, "main/404.html")
+        return render(request, "404.html")
 
     return render(request, "renters/profile.html",{"user_profile": user_profile,})
 
@@ -55,7 +55,7 @@ def update_profile(request:HttpRequest):
     msg = None
 
     if not request.user.is_authenticated:
-        return redirect("accounts:login_user")
+        return redirect("accounts:login")
     
     if request.method == "POST":
         
@@ -80,13 +80,13 @@ def update_profile(request:HttpRequest):
 
                 profile.save()
 
-                return redirect("renters:user_profile", user_id=user.id)
+                return redirect("renters:profile", user_id=user.id)
 
         except Exception as e:
             msg = f"Something went wrong {e}"
             print(e)
 
-    return render(request, "renters/update_profile.html", {"msg" : msg})
+    return render(request, "renters/profile_update.html", {"msg" : msg})
 
 
 def my_order(request:HttpRequest):
