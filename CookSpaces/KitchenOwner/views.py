@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
 from accounts.models import KitchenOwner
 from .models import Kitchen,Equipment
+
 
 def register_owner(request:HttpRequest):
     msg = None
@@ -23,6 +24,9 @@ def register_owner(request:HttpRequest):
                     password=request.POST["password"]
                     )
                 new_user.save()
+                if not user.groups.filter(name='Kitchen_owner').exists():
+                    group = Group.objects.get(name="Kitchen_owner")
+                    user.groups.add(group)
 
                 
                 register_owner = KitchenOwner(
@@ -65,7 +69,7 @@ def add_kitchen(request :HttpRequest,owner_id):
             kitchen_owner = KitchenOwner.objects.get(id=owner_id),
             title = request.POST["title"],
             desc = request.POST["desc"],
-            poster = request.POST.get("poster"),
+            poster = request.FILES.get("poster"),
             space = request.POST["space"],
             
             #py default False 
@@ -89,8 +93,11 @@ def add_kitchen(request :HttpRequest,owner_id):
 def update_kitchen(request :HttpRequest):
     pass 
 
-def kitchen_details(request :HttpRequest):
-    pass
+def kitchen_details(request :HttpRequest,kitchen_id):
+    kitchen=Kitchen.objects.get(id=kitchen_id)
+    
+    return render(request,"KitchenOwner/kitchen_details.html",{"kitchen":kitchen})
+    
 
 def my_orders(request :HttpRequest):
     pass 
