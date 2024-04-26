@@ -6,5 +6,48 @@
 
 
 
+<section class="container mt-5">
+    <h1>Update your profile</h1>
+
+    {% if msg %}
+        <div class="alert alert-danger" role="alert">
+        {{ msg }}
+        </div>
+    {% endif %}
+    <div class="row">
+    
+        <div class="col-6">
+
+            <form class="d-flex flex-column gap-1" action="{% url 'Chief:update_user_view' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                
+                
+                <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
+                <input name="first_name" class="form-control" type="text" minlength="3" required placeholder="First Name" />
+                <input name="last_name" class="form-control" type="text" minlength="3" required placeholder="Last Name" />
+                <input name="email" class="form-control" type="email" minlength="3" required placeholder="Email" />
+                <input name="phone" class="form-control" type="number" minlength="3" required placeholder="phone" />
+
+                <textarea name="about" class="form-control" placeholder="about yourself"></textarea>
+                <h4>CV:</h4>
+                <input type="file" class="form-control" name="cv" />
+
+                <textarea class="form-control" name="about" placeholder="About you..">{{ request.user.profile.about }}</textarea>
+                <div class="d-flex align-items-center gap-2 ">
+                <img src="{{Chife.avatar.url }}" class="card-img-top" alt="Chife Image">
+
+                <input class="form-control" type="file" name="avatar"  placeholder="choose avatar"/>
+                </div>
+                
+
+                <input class="btn btn-primary" type="submit" value="Update profile" />
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
