@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="col-5">
-            <form action="{% url 'renters:profile_update' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
+            <form action="{% url 'Renters:update_profile' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h4>Choose Avatar:</h4>
                 <img src="{{user.profile.avatar.url}}" class="avatar" style="width: 100px;" />

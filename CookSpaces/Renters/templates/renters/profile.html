@@ -13,8 +13,8 @@
             <img src="{{ user_profile.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle">
             <h5>@{{user_profile.username}}</h5>
                 <div class=" d-flex justify-content-end align-items-center" >
-                    {% if request.user == user_object %}
-                        <a href="{% url 'Renters:update_profile' user_info.id %}" class="btn btn-warning">Update</a>
+                    {% if request.user == user_profile %}
+                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
                     {% endif %}
                 </div>
         </div>

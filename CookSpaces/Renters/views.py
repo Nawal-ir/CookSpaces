@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
 from accounts.models import KitchenOwner,Renter
@@ -22,7 +22,9 @@ def register_renter(request:HttpRequest):
                     password=request.POST["password"]
                     )
                 new_user.save()
-
+                if not new_user.groups.filter(name='Renter').exists():
+                    group = Group.objects.get(name="Renter")
+                    new_user.groups.add(group)
                 register_renter = Renter(
                     user=new_user, 
                     about=request.POST["about"],
