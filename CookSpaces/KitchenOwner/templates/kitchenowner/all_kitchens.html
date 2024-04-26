@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block title %} all kitchens {% endblock  %}
+{% block content  %}
+<section>
+    <div class="row">
+        <div class="col-4 d-flex flex-column gap-3">
+                
+                    {% for kitchen in kitchens %}
+                    <div class=" border border-dark ">
+                        <img src="{{kitchen.poster.url}}" alt="" class="w-50 rounded-4 ">
+                        <a href="{% url "KitchenOwner:kitchen_details" kitchen.id %}"><h3>{{kitchen.title}}</h3></a>
+                        {{kitchen.price}}
+                        {{kitchen.space}}
+                    </div>
+                    {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock  %}
+
+

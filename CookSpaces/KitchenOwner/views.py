@@ -20,21 +20,21 @@ def register_owner(request:HttpRequest):
         
             with transaction.atomic():
                 
-                new_user = User.objects.create_user(
+                user = User.objects.create_user(
                     username=request.POST["username"],
                     email=request.POST["email"],
                     first_name=request.POST["first_name"],
                     last_name=request.POST["last_name"],
                     password=request.POST["password"]
                     )
-                new_user.save()
+                user.save()
                 if not user.groups.filter(name='Kitchen_owner').exists():
                     group = Group.objects.get(name="Kitchen_owner")
                     user.groups.add(group)
 
                 
                 register_owner = KitchenOwner(
-                    user=new_user,
+                    user=user,
                     commercial_register=request.FILES.get("commercial_register"),
                     avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),
                     phone=request.POST["phone"],
@@ -126,12 +126,17 @@ def kitchen_details(request :HttpRequest,kitchen_id):
         return render(request, "404.html")
     except Exception as e:
         print(e)
-
-
+        
     return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved})
     
+def all_kitchens(request :HttpRequest):
+    kitchens = Kitchen.objects.all()
+    
+    return render(request,"KitchenOwner/all_kitchens.html",{"kitchens":kitchens})
+
 
 def my_orders(request :HttpRequest,owner_id):
     orders = Order.objects.all()
     
     return render (request)
+
