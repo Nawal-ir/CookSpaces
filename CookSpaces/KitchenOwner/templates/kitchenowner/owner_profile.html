@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{owner.user.first_name}}{% endblock  %}
+
+{% block content %}
+<section>
+
+    <div class="row justify-content-center">
+        <div class="col-4 px-5">
+            <img src="{{owner.avatar.url}}" class="avatar w-100 rounded-4" />
+            <h5>{{owner.user.first_name}}</h5>
+            {% if request.user.is_authenticated and request.user == owner.user %}
+            <div class=" d-flex justify-content-end align-items-center" >
+                <a href="{% url "KitchenOwner:update_owner_profile" owner.user.username %}" class="btn btn-warning">Update</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-4">
+
+            <div class="d-flex flex-column">
+                <h3 style="text-transform: capitalize;">{{owner.user.first_name}} {{ user_object.last_name}}</h3>
+                <a href="mailto:{{owner.user.email}}">{{ owner.user.email }}</a>
+                <a href="{{owner.commercial_register}}" download><p>commercial register  <i class="bi bi-download"></i></p></a>
+                <p>Phone:{{owner.phone}}</p>
+                <p class="mt-2"></p>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+
+
+
