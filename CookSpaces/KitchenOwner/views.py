@@ -7,8 +7,10 @@ from accounts.models import KitchenOwner
 from main.models import Review
 from Renters.models import BookMark
 from .models import Kitchen,Equipment
+from Renters.models import Order
 
 
+#kitchen owner register:
 def register_owner(request:HttpRequest):
     msg = None
 
@@ -54,13 +56,33 @@ def register_owner(request:HttpRequest):
 
     return render(request, "KitchenOwner/register_owner.html", {"msg" : msg})
 
-
-def owner_profile(request : HttpRequest):
-    # owner = KitchenOwner.objects.get() 
-    pass 
-
-def update_profile(request :HttpRequest):
-    pass 
+#kitchen owner profile:
+def owner_profile(request : HttpRequest,owner_username):
+    owner = KitchenOwner.objects.get(user__username=owner_username) 
+    
+    return render(request,"KitchenOwner/owner_profile.html",{"owner":owner})
+    
+#kitchen owner update profile:
+def update_owner_profile(request :HttpRequest,owner_username):
+    owner = KitchenOwner.objects.get(user__username=owner_username) 
+    msg=""
+    if request.method == "POST":
+        try:
+            with transaction.atomic():
+                user = owner.user
+                user.email = request.POST["email"]
+                user.save()
+                
+                owner.commercial_register = request.FILES.get("commercial_register")
+                owner.avatar = request.FILES.get("avatar",owner.avatar)
+                owner.phone = request.POST["phone"]
+                owner.save()
+                return redirect("KitchenOwner:owner_profile",owner_username)
+            
+        except Exception as e :
+            msg = f"something went wrong !{e.__class__} "
+    
+    return render(request,"KitchenOwner/update_owner_profile.html",{"owner":owner,"msg":msg})
 
 def add_kitchen(request :HttpRequest, owner_id):
     
@@ -109,5 +131,7 @@ def kitchen_details(request :HttpRequest,kitchen_id):
     return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved})
     
 
-def my_orders(request :HttpRequest):
-    pass 
+def my_orders(request :HttpRequest,owner_id):
+    orders = Order.objects.all()
+    
+    return render (request)
