@@ -34,6 +34,8 @@ class Kitchen (models.Model):
     period = models.CharField(max_length=100,choices=periods.choices)
     status = models.CharField(max_length=100,choices=status_choices.choices)
     
+    def __str__(self) -> str:
+        return self.title    
     
 class KitchenImage(models.Model):
     kitchen = models.ForeignKey(Kitchen,on_delete=models.CASCADE)

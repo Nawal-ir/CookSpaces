@@ -47,7 +47,7 @@
                 <a class="nav-link " aria-current="page" href="{% url 'main:all_kitchen' %}">KITCHENS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:articals' %}">ARTICALS</a>
+                <a class="nav-link" href="{% url 'main:articles' %}">ARTICALS</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'main:about' %}">ABOUT</a>
@@ -60,6 +60,31 @@
 
           <div class="d-flex gap-3 align-items-center">
             <a class="btn btn-dark" href="#" style="padding: 5px;">Add Kitchen</a>
+            
+            {% if request.user.is_authenticated %} 
+            <div class="d-flex gap-2">
+              <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  welcome, <strong>{{request.user.username }}</strong>
+                </a>
+                <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                  <li><a class="dropdown-item" href="#">My Profile</a></li>
+                  <li><a class="dropdown-item" href="">My Saved Kitchen</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+  
+            {% else %}
+            <div>
+              <a href="{% url 'accounts:register' %}" style="color: #02020b; text-decoration: none;">Sign Up</a>
+              /
+              <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">Login</a>
+            </div>
+  
+            {% endif %}
+          </div>
             
 
       </nav>
@@ -87,7 +112,7 @@
                 <div class="col-4 col-lg-3 mb-3">
       
                   <a class="navbar-brand d-flex flex-column align-items-center" href="{% url 'main:home' %}">
-                    <h6 class="fa-fade" style="font-size: medium; text-align: center;">CookSpaces</h6></a>
+                    <h4 class="fa-fade" style="text-align: center;">CookSpaces</h4></a>
                     <!-- <ul class="list-unstyled d-flex flex-row justify-content-center gap-5 mt-4">
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-facebook"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-instagram"></i></a></li>
@@ -100,9 +125,9 @@
                   <h5>Explore</h5>
                   <ul class="list-unstyled">
                     <li class="mb-2"><a href="/" style="color: #080822; text-decoration: none;">Home</a></li>
-                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">Kitchens</a></li>
-                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">About</a></li>
-                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">Contact Us</a></li>
+                    <li class="mb-2"><a href="{% url 'main:all_kitchen' %}" style="color: #080822; text-decoration: none;">Kitchens</a></li>
+                    <li class="mb-2"><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">About</a></li>
+                    <li class="mb-2"><a href="{% url 'main:contact' %}" style="color: #080822; text-decoration: none;">Contact Us</a></li>
                   </ul>
                 </div>
       

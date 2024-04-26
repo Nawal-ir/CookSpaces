@@ -4,6 +4,8 @@ from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
 from accounts.models import KitchenOwner
+from main.models import Review
+from Renters.models import BookMark
 from .models import Kitchen,Equipment
 from Renters.models import Order
 
@@ -41,7 +43,7 @@ def register_owner(request:HttpRequest):
                 register_owner.save()
 
                 
-            return redirect("accounts:login_user")
+            return redirect("accounts:login")
         
         except IntegrityError as e:
             msg = "This username is already taken. Please choose a different username."
@@ -82,8 +84,7 @@ def update_owner_profile(request :HttpRequest,owner_username):
     
     return render(request,"KitchenOwner/update_owner_profile.html",{"owner":owner,"msg":msg})
 
-#add kitchen : 
-def add_kitchen(request :HttpRequest,owner_id):
+def add_kitchen(request :HttpRequest, owner_id):
     
     equipments = Equipment.objects.all()
     
@@ -112,14 +113,22 @@ def add_kitchen(request :HttpRequest,owner_id):
         
     return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"owner_id":owner_id})
 
-
 def update_kitchen(request :HttpRequest):
     pass 
 
 def kitchen_details(request :HttpRequest,kitchen_id):
-    kitchen=Kitchen.objects.get(id=kitchen_id)
-    
-    return render(request,"KitchenOwner/kitchen_details.html",{"kitchen":kitchen})
+    try:
+        #getting a kitchen detail
+        kitchen = Kitchen.objects.get(pk=kitchen_id)
+        reviews = Review.objects.filter(kitchen=kitchen)
+        is_saved = request.user.is_authenticated and  BookMark.objects.filter(user=request.user, kitchen=kitchen).exists()
+    except Kitchen.DoesNotExist:
+        return render(request, "404.html")
+    except Exception as e:
+        print(e)
+
+
+    return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved})
     
 
 def my_orders(request :HttpRequest,owner_id):
