@@ -1,5 +1,7 @@
 from django.contrib import admin
-from accounts.models import Renter
+from .models import Order, Payment ,BookMark
 # Register your models here.
 
-admin.site.register(Renter)
+admin.site.register(Order)
+admin.site.register(Payment)
+admin.site.register(BookMark)

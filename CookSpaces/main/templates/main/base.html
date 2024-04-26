@@ -47,7 +47,7 @@
                 <a class="nav-link " aria-current="page" href="{% url 'main:all_kitchen' %}">KITCHENS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:articals' %}">ARTICALS</a>
+                <a class="nav-link" href="{% url 'main:articles' %}">ARTICALS</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'main:about' %}">ABOUT</a>
@@ -112,7 +112,7 @@
                 <div class="col-4 col-lg-3 mb-3">
       
                   <a class="navbar-brand d-flex flex-column align-items-center" href="{% url 'main:home' %}">
-                    <h6 class="fa-fade" style="font-size: medium; text-align: center;">CookSpaces</h6></a>
+                    <h4 class="fa-fade" style="text-align: center;">CookSpaces</h4></a>
                     <!-- <ul class="list-unstyled d-flex flex-row justify-content-center gap-5 mt-4">
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-facebook"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-instagram"></i></a></li>
@@ -125,9 +125,9 @@
                   <h5>Explore</h5>
                   <ul class="list-unstyled">
                     <li class="mb-2"><a href="/" style="color: #080822; text-decoration: none;">Home</a></li>
-                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">Kitchens</a></li>
-                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">About</a></li>
-                    <li class="mb-2"><a href="#" style="color: #080822; text-decoration: none;">Contact Us</a></li>
+                    <li class="mb-2"><a href="{% url 'main:all_kitchen' %}" style="color: #080822; text-decoration: none;">Kitchens</a></li>
+                    <li class="mb-2"><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">About</a></li>
+                    <li class="mb-2"><a href="{% url 'main:contact' %}" style="color: #080822; text-decoration: none;">Contact Us</a></li>
                   </ul>
                 </div>
       
@@ -158,6 +158,6 @@
           </footer>      
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- <script src="@@path/vendor/countup.js/dist/countUp.umd.js"></script> -->
+    <script src="@@path/vendor/countup.js/dist/countUp.umd.js"></script>
   </body>
 </html>

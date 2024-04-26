@@ -19,6 +19,9 @@ class Renter(models.Model):
     avatar=models.FileField(upload_to="images/", default="images/default.jpg")
     phone=models.IntegerField()
     about=models.TextField()
+
+    def __str__(self):
+        return f"{self.user.username}"
     
     def __str__(self):
         return f"{self.user.username}"
