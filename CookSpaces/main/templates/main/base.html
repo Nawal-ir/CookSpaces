@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,8 +77,8 @@
             </div>
   
             {% else %}
-            <div>
-              <a href="{% url 'accounts:register' %}" style="color: #02020b; text-decoration: none;">Sign Up</a>
+            <div >
+              <a href="{% url 'main:home' %}#sign_up" style="color: #02020b; text-decoration: none;"  >Sign Up</a>
               /
               <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">Login</a>
             </div>
