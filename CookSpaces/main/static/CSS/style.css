@@ -1,8 +1,8 @@
 * {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
-
 }
+
 
 /* Body */
 #navbarNav{
@@ -59,7 +59,7 @@ section{
   align-items: center;
   background-color:#F4F2EE;
   font-family: "Londrina Outline", sans-serif;
-  /* background: url(../images/main.jpeg) no-repeat; */
+  background: url(../images/main7.jpeg) no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -132,7 +132,7 @@ section{
 /* Projects section  */
 
 .project{
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(229, 183, 85);
 }
 
 .neom-icon{
@@ -229,7 +229,7 @@ section{
 } 
 
 
-/* this card is inspired form this - https://georgefrancis.dev/ */
+
 
 .card {
   --border-radius: 0.75rem;
@@ -296,3 +296,209 @@ section{
 .card:hover .card__arrow svg {
   transform: translateX(3px);
 }
+
+
+
+
+/* Regeister section   */
+
+
+.card-regeister {
+  --bg: #546441;
+  --hover-bg: #d1cfc2;
+  --hover-text: #353433;
+  max-width: 23ch;
+  text-align: center;
+  background: var(--bg);
+  padding: 1.5em;
+  padding-block: 1.8em;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: .3s cubic-bezier(.6,.4,0,1),transform .15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  box-shadow: #6e6b80;
+}
+
+.kitchen-body {
+  color: #464853;
+  line-height: 1.5em;
+  font-size: 1em;
+}
+
+.card-regeister > :not(span) {
+  transition: .3s cubic-bezier(.6,.4,0,1);
+}
+
+.card-regeister > strong {
+  display: block;
+  font-size: 1.4rem;
+  letter-spacing: -.035em;
+}
+
+.card-regeister span {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--hover-text);
+  border-radius: 5px;
+  font-weight: bold;
+  top: 100%;
+  transition: all .3s cubic-bezier(.6,.4,0,1);
+}
+
+.card-regeister:hover span {
+  top: 0;
+  font-size: 2em;
+}
+
+.card-regeister:hover {
+  background: var(--hover-bg);
+}
+
+.card-regeister:hover>div,.card-regeister:hover>strong {
+  opacity: 0;
+}
+
+
+
+
+
+/* article section  */
+
+.card-article {
+  box-sizing: border-box;
+  display: flex;
+  max-width: 320px;
+  background-color: rgba(255, 255, 255, 1);
+  transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-article:hover {
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.081);
+}
+
+.date-time-container {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  padding: 0.5rem;
+}
+
+.date-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  gap: 1rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 1);
+}
+
+.separator {
+  width: 1px;
+  flex: 1 1 0%;
+  background-color: rgba(17, 24, 39, 0.1);
+}
+
+.content {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.infos {
+  border-left: 1px solid rgba(17, 24, 39, 0.1);
+  padding: 1rem;
+}
+
+.title3 {
+  font-weight: 700;
+  text-decoration: #34586C;
+  text-transform: uppercase;
+  font-size: 18.72px;
+  color: rgba(17, 24, 39, 1);
+}
+
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(55, 65, 81, 1);
+}
+
+.action {
+  display: block;
+  background-color: #b8a1a1;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(17, 24, 39, 1);
+  transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action:hover {
+  background-color: rgba(250, 204, 21, 1);
+}
+
+
+
+
+/* about section  */
+/* .about{ */
+  /* background-image: url(../images/about2.jpeg); */
+/* } */
+
+
+
+.home{
+  background-color: #F8F6EB;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* overflow: hidden; */
+  animation: moveRightLeft 10s infinite;
+}
+
+
+@keyframes moveRightLeft{
+  0%{
+    transform:translateX(0);
+  }
+  50% {
+    transform: translateX(100px);
+
+    }
+  100%{
+    transform: translateX(-100px);
+  }
+}
+
+
+/* services  */
+/* .ourservices {
+  background-image: url(../images/cloud.png);
+} */
+
+
+
