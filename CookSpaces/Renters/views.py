@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
 from accounts.models import KitchenOwner,Renter,Chife
@@ -21,6 +21,10 @@ def register_renter(request:HttpRequest):
                     )
                 new_user.save()
 
+                if not new_user.groups.filter(name='Renter').exists():
+                    group = Group.objects.get(name="Renter")
+                    new_user.groups.add(group)
+
                 register_renter = Renter(
                     user=new_user, 
                     about=request.POST["about"],
@@ -29,7 +33,7 @@ def register_renter(request:HttpRequest):
                     )
                 register_renter.save()
 
-            return redirect("accounts:login_user")
+            return redirect("accounts:login")
         
         except IntegrityError as e:
             msg = "This username is already taken. Please choose a different username."
