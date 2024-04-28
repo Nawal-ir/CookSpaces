@@ -47,18 +47,19 @@ def all_article(request:HttpRequest):
     
     kitchens = Article.objects.all()
     
-    #calculate the page content
-    limit = 4
-    pages_count = [str(n) for n in range(1, math.ceil(kitchens.count()/limit)+1)] #use list comprehension to convert number to string number
-    start = (int(request.GET.get("page", 1))-1)*limit
-    end = (start)+limit
+    # #calculate the page content
+    # limit = 4
+    # pages_count = [str(n) for n in range(1, math.ceil(kitchens.count()/limit)+1)] #use list comprehension to convert number to string number
+    # start = (int(request.GET.get("page", 1))-1)*limit
+    # end = (start)+limit
     
-    #apply the limit/slicing
-    kitchens = kitchens[start:end]
+    # #apply the limit/slicing
+    # kitchens = kitchens[start:end]
 
-    # print(start, end)
-
-    return render(request, "main/articles.html", {"kitchens" : kitchens, "pages_count":pages_count})
+    # # print(start, end)
+    
+# "pages_count":pages_count
+    return render(request, "main/articles.html", {"kitchens" : kitchens })
 
 def about(request:HttpRequest):
     
