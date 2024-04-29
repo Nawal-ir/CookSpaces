@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
 from accounts.models import KitchenOwner,Renter,Chife
@@ -57,5 +57,10 @@ def all_chief_view(request: HttpRequest):
     chife = Chife.objects.all()
 
     return render(request,"chief/all_chief.html", {'chife': chife})
+
+
+
+def update_user_view(request: HttpRequest):
+    return render(request,"chief/update.html")
 
 
