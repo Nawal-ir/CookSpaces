@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+
+{% block title %}order details{% endblock%}
+
+{% block content %}
+
+<!--kitchen details-->
+<section>
+    <div class="row">
+        <div class="col">
+           <h1>المطبخ</h1>
+            <h1>{{order.kitchen.title}}</h1>
+            {{order.kitchen.price}}
+        </div>
+    </div>
+</section>
+
+<!--order details-->
+<hr>
+<section>
+    <div class="row">
+        <div class="col">
+           <h1>الطلب</h1>
+            <h1>{{order.note}}</h1>
+            {{order.start_date}}
+            {{order.end_date}}
+            <div>
+                <a href="{% url "KitchenOwner:reject_order" order.id %}" class="btn btn-danger">رفض</a>
+                <a href="{% url "KitchenOwner:accept_order" order.id %}" class="btn btn-success">قبول</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- accept order-->
+
+
+{% endblock  %}
+
+
+

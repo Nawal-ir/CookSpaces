@@ -13,8 +13,8 @@ class Equipment(models.Model):
     
 class Kitchen (models.Model):    
     #choices 
-    periods = models.TextChoices("Monthly","Annually")
-    status_choices = models.TextChoices("approved","rejected","pending")
+    periods = models.TextChoices("period",["Monthly","Annually"])
+    status_choices = models.TextChoices("status",["accepted","rejected", "pending"])
     
     kitchen_owner = models.ForeignKey(KitchenOwner,on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
