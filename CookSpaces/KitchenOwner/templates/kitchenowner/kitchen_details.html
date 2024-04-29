@@ -2,8 +2,24 @@
 
 {% block title %}kitchen details{% endblock  %}
 
+{% block styles %}
+<style>
+
+  .sc{
+    padding: 30px 30px;
+  }
+
+  #map {
+    width: 400px;
+    height: 300px;
+  }
+</style>
+{% endblock  %}
+
 {% block content %}
-<section>
+
+<!--kitchen-->
+<section class="sc mt-5">
     <div class="container">
         <div class="row">
             <div class="col-6">
@@ -25,10 +41,86 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <h2>Our location</h2>
+        <div id="map"></div>
+      </div>
+    </div>
 </section>
-
-<section>
-
+<!--decription-->
+<section class="sc">
 <p>{{kitchen.desc}}</p>
+<hr>
 </section>
+<!--sending order-->
+<section class="sc">
+  <div class="row d-flex justify-content-center">
+    <div class="col-8">
+      <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post" class="m-0">
+        {% csrf_token %}
+        <h1>!أرسل طلب استئجار</h1>
+        <div class="d-flex flex-column">
+          <label for="start_date">:من</label>
+          <input type="date" name="start_date" class="form-control mb-3" >
+          <label for="end_date">:الى</label>
+          <input type="date" name="end_date" class="form-control mb-3">
+          <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+          <input type="submit" class="btn btn-primary" value="إرسال">
+          {% if msg %}
+          <div class="alert alert-success" role="alert">
+            {{msg}}
+          </div>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+</section>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1xTP268Ltwj4NX1Hku24XNFPJNZ-kTSQ&callback=initMap" async defer></script>
+<script type="text/javascript">
+        // JavaScript code goes here
+
+let currentMarker = null; // Marker reference to keep track of the existing marker
+
+
+function initMap() {
+    var mapOptions = {
+        center: {lat: {{kitchen.loc_latitude}}, lng:{{kitchen.loc_longitude}}},  // Change this to your preferred initial center
+        zoom: 12
+    };
+
+    // Create a map object and specify the DOM element for display.
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    // This event listener will call addMarker() function when the map is clicked.
+
+    addMarker({lat:{{kitchen.loc_latitude}}, lng:{{kitchen.loc_longitude}}}, map);
+
+}
+
+// Adds a marker to the map.
+function addMarker(location, map) {
+    // Add the marker at the clicked location.
+    // If there's an existing marker, remove it
+    if (currentMarker) {
+        currentMarker.setMap(null);
+    }
+    // Add a new marker at the clicked location
+    currentMarker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
+
+    // Optionally re-center the map on the new marker
+    //map.setCenter(location);
+}
+</script>
 {% endblock  %}

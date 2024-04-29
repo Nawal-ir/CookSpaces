@@ -1,0 +1,68 @@
+{% extends "main/base.html" %}
+
+{% block title %}my orders {% endblock  %}
+
+{% block content %}
+<section>
+    <div class="row">
+        <div class="col d-flex flex-column gap-3">
+            
+            <div class="bg bg-success">
+                <h2>الطلبات المقبولة</h2>
+            </div>
+            {% for order in orders  %}
+                {% if order.status == "accepted" %}
+            <div class="border border-dark">
+                {{order.start_date}}
+                {{order.end_date}}
+                {% if order.note %}
+                {{order.note}}
+                {{order.renter.user.username}}
+                {{order.kitchen.kitchen_owner.user.username}}
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            <div class="bg bg-secondary">
+                <h2>الطلبات المعلقة</h2>
+            </div>
+            {% for order in orders  %}
+            {% if order.status == "pending" %} 
+            <div class="border border-dark">
+                {{order.start_date}}
+                {{order.end_date}}
+                {% if order.note %}
+                {{order.note}}
+                {{order.renter.user.username}}
+                {{order.kitchen.kitchen_owner.user.username}}
+                <div>
+                    <a href="{% url "KitchenOwner:reject_order" order.id %}" class="btn btn-danger">رفض</a>
+                    <a href="{% url "KitchenOwner:accept_order" order.id %}" class="btn btn-success">قبول</a>
+                    <a href="{% url "KitchenOwner:order_details" order.id %}">تفاصيل الطلب</a>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            <div class="bg bg-danger">
+                <h2>الطلبات المرفوضة</h2>
+            </div>
+            {% for order in orders  %}
+            {% if order.status == "rejected" %} 
+
+            <div class="border border-dark">
+                {{order.start_date}}
+                {{order.end_date}}
+                {% if order.note %}
+                {{order.note}}
+                {{order.renter.user.username}}
+                {{order.kitchen.kitchen_owner.user.username}}
+                
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+
