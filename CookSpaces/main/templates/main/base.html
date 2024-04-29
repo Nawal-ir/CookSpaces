@@ -29,10 +29,11 @@
     {% endblock %}
 
   </head>
-  <body style="background: linear-gradient(#ffffff, #a8a8a893); background-attachment:  fixed;">
+  <!-- <body style="background: linear-gradient(#ffffff, #a8a8a893); background-attachment:  fixed;"> -->
+    <body style="background: #F4F2EE; background-attachment:  fixed;">
 
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-collapse fixed-top p-2 mb-1">
+        <nav class="navbar navbar-expand-lg navbar-collapse fixed-top p-2 mb-1 " >
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,43 +45,91 @@
           <div id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="{% url 'main:all_kitchen' %}">KITCHENS</a>
+                <a class="nav-link " aria-current="page" href="{% url 'main:all_kitchen' %}">المطابخ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:articles' %}">ARTICALS</a>
+                <a class="nav-link" href="{% url 'main:articles' %}">مقالات</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:about' %}">ABOUT</a>
+                <a class="nav-link" href="{% url 'main:about' %}">من نحن</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:contact' %}">CONTACT US</a>
+                <a class="nav-link" href="{% url 'main:contact' %}">تواصل معنا</a>
               </li>
             </ul>
           </div>
 
           <div class="d-flex gap-3 align-items-center">
-            <a class="btn btn-dark" href="#" style="padding: 5px;">Add Kitchen</a>
-            
-            {% if request.user.is_authenticated %} 
+            {% if request.user.is_authenticated and request.user.is_superuser %}
             <div class="d-flex gap-2">
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  welcome, <strong>{{request.user.username }}</strong>
+                   admin <strong>{{request.user.username }}</strong> مرحبا
                 </a>
                 <ul class="dropdown-menu" style="background: #e4e4e4b7;">
-                  <li><a class="dropdown-item" href="#">My Profile</a></li>
-                  <li><a class="dropdown-item" href="">My Saved Kitchen</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل خروج</a></li>
                 </ul>
               </div>
             </div>
-  
+          {% elif request.user.is_authenticated %}
+            {% for group in request.user.groups.all %}
+              {% if group.name == 'Kitchen_owner' %}
+                  <a class="btn btn-dark" href="{% url 'KitchenOwner:add_kitchen' request.user.id %}" style="padding: 5px;">إضافة مطبخ</a>
+                  
+                  <div class="d-flex gap-2">
+                    <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        مرحبا, <strong>{{request.user.username }}</strong>
+                      </a>
+                      <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                        <li><a class="dropdown-item" href="{% url 'KitchenOwner:owner_profile' request.user.username %}">الملف الشخصي</a></li>
+                        <li><a class="dropdown-item" href="">طلباتي</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                      </ul>
+                    </div>
+                  </div>
+              {% endif %}
+
+              {% if group.name == 'Renter' %}
+              <a class="btn btn-dark" href="{% url 'Chief:all_chief_view' %}" style="padding: 5px;">عرض جميع الطهاة</a>
+
+              <div class="d-flex gap-2">
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <strong>{{request.user.username }}</strong> مرحبا
+                  </a>
+                  <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                    <li><a class="dropdown-item" href="{% url 'Renters:profile' %}">الملف الشخصي</a></li>
+                    <li><a class="dropdown-item" href="">مطابخي المحفوظة</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+
+              {% if group.name == 'Chef' %}
+              <div class="d-flex gap-2">
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <strong>{{request.user.username }}</strong> مرحبا شيف
+                  </a>
+                  <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                    <li><a class="dropdown-item" href="{% url 'Chief:profile' request.user.id %}">الملف الشخصي</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
+
             {% else %}
             <div >
-              <a href="{% url 'main:home' %}#sign_up" style="color: #02020b; text-decoration: none;"  >Sign Up</a>
+              <a href="{% url 'main:home' %}" style="color: #02020b; text-decoration: none;"  >تسجيل جديد</a>
               /
-              <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">Login</a>
+              <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">تسجيل دخول</a>
             </div>
   
             {% endif %}
@@ -121,25 +170,24 @@
                   </ul> -->
                 </div>
       
-                <div class="col-4 col-lg-2 offset-lg-1 mb-3">
-                  <h5>Explore</h5>
+                <div class="col-4 col-lg-2 offset-lg-1 mb-3 text-center">
+                  <h5>تصفح</h5>
                   <ul class="list-unstyled">
-                    <li class="mb-2"><a href="/" style="color: #080822; text-decoration: none;">Home</a></li>
-                    <li class="mb-2"><a href="{% url 'main:all_kitchen' %}" style="color: #080822; text-decoration: none;">Kitchens</a></li>
-                    <li class="mb-2"><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">About</a></li>
-                    <li class="mb-2"><a href="{% url 'main:contact' %}" style="color: #080822; text-decoration: none;">Contact Us</a></li>
+                    <li class="mb-2"><a href="/" style="color: #080822; text-decoration: none;">الرئيسية</a></li>
+                    <li class="mb-2"><a href="{% url 'main:all_kitchen' %}" style="color: #080822; text-decoration: none;">المطابخ</a></li>
+                    <li class="mb-2"><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">من نحن</a></li>
+                    <li class="mb-2"><a href="{% url 'main:contact' %}" style="color: #080822; text-decoration: none;">تواصل معنا</a></li>
                   </ul>
                 </div>
       
                 <div class="col-6 mb-3">
                   <div class="d-flex justify-content-center">
-                    <h5>Join us</h5>
+                    <h5>شاركنا رأيك</h5>
                   </div>
                   <ul class="list-unstyled d-flex flex-row justify-content-center gap-5 mt-4">
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-facebook"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-instagram"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-x-twitter"></i></a></li>
-                    <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-youtube"></i></a></li>
                   </ul>
                 </div>
               </div>

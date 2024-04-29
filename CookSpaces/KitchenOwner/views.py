@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate
 from django.db import IntegrityError,transaction
-from accounts.models import KitchenOwner
+from accounts.models import KitchenOwner,Renter
 from main.models import Review
 from Renters.models import BookMark
 from .models import Kitchen,Equipment
@@ -89,6 +89,9 @@ def add_kitchen(request :HttpRequest, owner_id):
     equipments = Equipment.objects.all()
     
     if request.method == "POST":
+        
+        lat =  float(request.POST["loc_latitude"])
+        lng = float(request.POST["loc_longitude"])
         kitchen = Kitchen(
             kitchen_owner = KitchenOwner.objects.get(id=owner_id),
             title = request.POST["title"],
@@ -103,8 +106,8 @@ def add_kitchen(request :HttpRequest, owner_id):
             has_waitingarea = request.POST.get("has_waitingarea", False),
             price = request.POST["price"],
             #choices:
-            loc_latitude = request.POST["loc_latitude"],
-            loc_longitude = request.POST["loc_longitude"],
+            loc_latitude = lat,
+            loc_longitude = lng,
             period = request.POST.get("period"),
             status = "pending"
         )
@@ -134,9 +137,44 @@ def all_kitchens(request :HttpRequest):
     
     return render(request,"KitchenOwner/all_kitchens.html",{"kitchens":kitchens})
 
+def rental_request(request : HttpRequest,kitchen_id):
+    kitchen=Kitchen.objects.get(id=kitchen_id)
+    renter =Renter.objects.get(user__id=request.user.id)
+    if request.method =="POST":
+        order = Order(
+            renter = renter,
+            kitchen=kitchen,
+            start_date = request.POST["start_date"],
+            end_date=request.POST["end_date"],
+            note = request.POST["note"],
+            status="pending"
+        )
+        order.save()
+        msg="Your request was successfully sent!"
+        
+    return render(request,"kitchenowner/kitchen_details.html",{"kitchen":kitchen,"msg":msg})
 
-def my_orders(request :HttpRequest,owner_id):
-    orders = Order.objects.all()
+
+def owner_orders(request :HttpRequest,owner_id):
+    orders = Order.objects.filter(kitchen__kitchen_owner__user__id=owner_id)
     
-    return render (request)
+    return render (request,"KitchenOwner/owner_orders.html",{"orders":orders})
 
+def reject_order(request:HttpRequest,order_id):
+    order = Order.objects.get(id=order_id)
+    owner_id = order.kitchen.kitchen_owner.user.id
+    order.status = "rejected"
+    order.save()
+    return redirect("KitchenOwner:owner_orders",owner_id)
+
+def accept_order(request : HttpRequest, order_id):
+    order = Order.objects.get(id=order_id)
+    owner_id = order.kitchen.kitchen_owner.user.id
+    order.status = "accepted"
+    order.save()
+    return redirect("KitchenOwner:owner_orders",owner_id)
+
+def order_details(request : HttpRequest,order_id):
+    order = Order.objects.get(id=order_id)
+    
+    return render(request,"KitchenOwner/order_details.html",{"order":order})

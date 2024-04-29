@@ -24,6 +24,11 @@ def register_renter(request:HttpRequest):
                     password=request.POST["password"]
                     )
                 new_user.save()
+
+                if not new_user.groups.filter(name='Renter').exists():
+                    group = Group.objects.get(name="Renter")
+                    new_user.groups.add(group)
+
                 if not new_user.groups.filter(name='Renter').exists():
                     group = Group.objects.get(name="Renter")
                     new_user.groups.add(group)
@@ -35,6 +40,7 @@ def register_renter(request:HttpRequest):
                     )
                 register_renter.save()
 
+            return redirect("accounts:login")
             return redirect("accounts:login")
         
         except IntegrityError as e:

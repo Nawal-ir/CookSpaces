@@ -31,7 +31,7 @@ class Chife(models.Model):
     avatar=models.FileField(upload_to="images/", default="images/default.jpg")
     about=models.TextField()
     phone=models.IntegerField()
-    cv=models.FileField()
+    cv=models.FileField(upload_to="images/", default="images/default.jpg")
 
     def __str__(self) -> str:
         return self.user.username

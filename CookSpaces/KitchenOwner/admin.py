@@ -7,3 +7,4 @@ from .models import Equipment,Kitchen
     
 admin.site.register(Equipment)
 admin.site.register(Kitchen)
+
