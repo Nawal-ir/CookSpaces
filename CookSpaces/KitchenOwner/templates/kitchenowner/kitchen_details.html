@@ -10,7 +10,7 @@
   }
 
   #map {
-    width: 400px;
+    width: auto;
     height: 300px;
   }
 </style>
@@ -21,51 +21,74 @@
 <!--kitchen-->
 <section class="sc mt-5">
     <div class="container">
-        <div class="row">
-            <div class="col-6">
+      <div class="row">
+        <div class="col-6">
               <img src="{{kitchen.poster.url}}" alt="" class="w-100 rounded-4 ">
             </div>
             
-            <div class="col">
-            <div class="d-felx flex-column gap-2">  
+            <div class="col"
+            style="display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;">
+                <div class="d-flex justify-content-end">
+                  {% if request.user.is_authenticated and request.user.username == recipe.user.username or request.user.is_superuser %}
+                    <a href="{% url 'main:delete_kitchen' kitchen.id %}" class="btn"><span class="material-symbols-rounded">delete</span></a>
+                  {% endif %}
+                </div>
                 <h1>{{kitchen.title}}</h1>
 
-                <h4>Equipments:</h4>
-                {% for e in kitchen.equipment.all %}
-                {{e.name}}
-                <span class="material-symbols-outlined">{{e.icon}}</span>
-                {% endfor %}
-                <h3>Price:{{kitchen.price}} SAR/{{kitchen.period}}</h3>
-              </div>
-              </div>
-            </div>
-        </div>
-    </div>
+                <div class="row">
+                  <h4>Equipments: </h4>
+                  <div class="col d-flex align-items-center gap-2">
+                    {% for e in kitchen.equipment.all %}
+                    <span class="material-symbols-outlined">{{e.icon}}</span>
+                      {{e.name}}
+                    {% endfor %}
+                  </div>
 
-    <div class="row">
-      <div class="col">
-        <h2>Our location</h2>
-        <div id="map"></div>
+                </div>
+                <h5>Space: {{kitchen.space}} m<sup>2</sup></h5>
+                <h5>Price:{{kitchen.price}} SAR/{{kitchen.period}}</h5>
+        </div>
+      </div> <!--Kitchen Detail-->
+
+      <!--decription-->
+      <div class="row">
+        <div class="col">
+          <h2>Description</h2>
+          <p class="d-flex justify-content-center">{{kitchen.desc}}</p>
+        </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>Our location</h2>
+            <div id="map"></div>
+        </div>
+      </div> <!--Our Locations-->
     </div>
 </section>
-<!--decription-->
-<section class="sc">
-<p>{{kitchen.desc}}</p>
-<hr>
-</section>
+
+        <hr>
 <!--sending order-->
-<section class="sc">
+<section>
   <div class="row d-flex justify-content-center">
     <div class="col-8">
-      <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post" class="m-0">
+      <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post">
         {% csrf_token %}
-        <h1>!أرسل طلب استئجار</h1>
+        <h1 class="d-flex justify-content-center">!أرسل طلب استئجار</h1>
         <div class="d-flex flex-column">
-          <label for="start_date">:من</label>
-          <input type="date" name="start_date" class="form-control mb-3" >
-          <label for="end_date">:الى</label>
-          <input type="date" name="end_date" class="form-control mb-3">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="start_date" class="form-label d-flex justify-content-end">:من</label>
+              <input type="date" name="start_date" id="start_date" class="form-control">
+            </div>
+            <div class="col">
+              <label for="end_date" class="form-label d-flex justify-content-end">:الى</label>
+              <input type="date" name="end_date" id="end_date" class="form-control">
+            </div>
+          </div>
           <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
           <input type="submit" class="btn btn-primary" value="إرسال">
           {% if msg %}
@@ -80,9 +103,6 @@
 </section>
 
 
-</section>
-
-
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1xTP268Ltwj4NX1Hku24XNFPJNZ-kTSQ&callback=initMap" async defer></script>
 <script type="text/javascript">
@@ -94,8 +114,7 @@ let currentMarker = null; // Marker reference to keep track of the existing mark
 function initMap() {
     var mapOptions = {
         center: {lat: {{kitchen.loc_latitude}}, lng:{{kitchen.loc_longitude}}},  // Change this to your preferred initial center
-        zoom: 12
-    };
+        zoom: 12 };
 
     // Create a map object and specify the DOM element for display.
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);

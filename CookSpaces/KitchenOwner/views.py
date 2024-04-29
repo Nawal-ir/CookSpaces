@@ -84,7 +84,7 @@ def update_owner_profile(request :HttpRequest,owner_username):
     
     return render(request,"KitchenOwner/update_owner_profile.html",{"owner":owner,"msg":msg})
 
-def add_kitchen(request :HttpRequest, owner_id):
+def add_kitchen(request :HttpRequest):
     
     equipments = Equipment.objects.all()
     
@@ -93,7 +93,7 @@ def add_kitchen(request :HttpRequest, owner_id):
         lat =  float(request.POST["loc_latitude"])
         lng = float(request.POST["loc_longitude"])
         kitchen = Kitchen(
-            kitchen_owner = KitchenOwner.objects.get(id=owner_id),
+            kitchen_owner = request.user.kitchenowner,
             title = request.POST["title"],
             desc = request.POST["desc"],
             poster = request.FILES.get("poster"),
@@ -114,7 +114,7 @@ def add_kitchen(request :HttpRequest, owner_id):
         kitchen.save()
         kitchen.equipment.set(request.POST.getlist("equipments",[]))
         
-    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"owner_id":owner_id})
+    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments})
 
 def update_kitchen(request :HttpRequest):
     pass 
