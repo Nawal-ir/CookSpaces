@@ -23,9 +23,6 @@ def register_chife(request:HttpRequest):
                     group = Group.objects.get(name="Chef")
                     new_user.groups.add(group)
                 
-                
-
-                
                 profile= Chife(user=new_user,about=request.POST["about"] ,avatar=request.FILES.get("avatar", KitchenOwner.avatar.field.get_default()),phone=request.POST["phone"], cv=request.FILES.get("cv"))
                 profile.save()
 
