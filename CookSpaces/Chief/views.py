@@ -61,6 +61,8 @@ def all_chief_view(request: HttpRequest):
 
 
 def update_user_view(request: HttpRequest):
-    return render(request,"chief/update.html")
+    
 
+
+    return render(request,"chief/update.html")
 
