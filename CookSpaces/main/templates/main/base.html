@@ -60,23 +60,71 @@
           </div>
 
           <div class="d-flex gap-3 align-items-center">
-            <a class="btn btn-dark" href="#" style="padding: 5px;">إضافة مطبخ</a>
-            
-            {% if request.user.is_authenticated %} 
+            {% if request.user.is_authenticated and request.user.is_superuser %}
             <div class="d-flex gap-2">
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  welcome, <strong>{{request.user.username }}</strong>
+                   admin <strong>{{request.user.username }}</strong> مرحبا
                 </a>
-                <ul class="dropdown-menu" style="background: #F4F2EE;">
-                  <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
-                  <li><a class="dropdown-item" href="">العلامات المرجعيه</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                  <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل خروج</a></li>
                 </ul>
               </div>
             </div>
-  
+          {% elif request.user.is_authenticated %}
+            {% for group in request.user.groups.all %}
+              {% if group.name == 'Kitchen_owner' %}
+                  <a class="btn btn-dark" href="{% url 'KitchenOwner:add_kitchen' request.user.id %}" style="padding: 5px;">إضافة مطبخ</a>
+                  
+                  <div class="d-flex gap-2">
+                    <div class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        مرحبا, <strong>{{request.user.username }}</strong>
+                      </a>
+                      <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                        <li><a class="dropdown-item" href="{% url 'KitchenOwner:owner_profile' request.user.username %}">الملف الشخصي</a></li>
+                        <li><a class="dropdown-item" href="">طلباتي</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                      </ul>
+                    </div>
+                  </div>
+              {% endif %}
+
+              {% if group.name == 'Renter' %}
+              <a class="btn btn-dark" href="{% url 'Chief:all_chief_view' %}" style="padding: 5px;">عرض جميع الطهاة</a>
+
+              <div class="d-flex gap-2">
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <strong>{{request.user.username }}</strong> مرحبا
+                  </a>
+                  <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                    <li><a class="dropdown-item" href="{% url 'Renters:profile' %}">الملف الشخصي</a></li>
+                    <li><a class="dropdown-item" href="">مطابخي المحفوظة</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+
+              {% if group.name == 'Chef' %}
+              <div class="d-flex gap-2">
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <strong>{{request.user.username }}</strong> مرحبا شيف
+                  </a>
+                  <ul class="dropdown-menu" style="background: #e4e4e4b7;">
+                    <li><a class="dropdown-item" href="{% url 'Chief:profile' request.user.id %}">الملف الشخصي</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
+
             {% else %}
             <div >
               <a href="{% url 'main:home' %}" style="color: #02020b; text-decoration: none;"  >تسجيل جديد</a>
@@ -134,13 +182,12 @@
       
                 <div class="col-6 mb-3">
                   <div class="d-flex justify-content-center">
-                    <h5>Join us</h5>
+                    <h5>شاركنا رأيك</h5>
                   </div>
                   <ul class="list-unstyled d-flex flex-row justify-content-center gap-5 mt-4">
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-facebook"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-instagram"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-x-twitter"></i></a></li>
-                    <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-youtube"></i></a></li>
                   </ul>
                 </div>
               </div>
