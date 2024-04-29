@@ -131,47 +131,6 @@ section{
 }
 
 
-/* Projects section  */
-
-.project{
-  background-color: rgb(229, 183, 85);
-}
-
-.neom-icon{
-  width: 100px;
-}
-
-.project-name{
-  color: brown;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  font-weight: 500;
-  margin-top: 20px;
-}
-
-.see{
-  display: flex;
-  justify-content: center;
-  color: #3f3f39;
-  border-color: orange;
-  background-color: orange;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 200;
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  transition: 0.3s smooth;
-}
-
-.see:hover{
-  background-color: rgb(234, 205, 155);
-  transform: scale(1);
-}
-
-
 /* regiester section  */
 
 .box{
@@ -182,6 +141,7 @@ section{
   border-radius: 20px;
   margin: 20px;
   }
+
 
 
 /* Our Services  */
@@ -198,19 +158,6 @@ section{
   flex-direction: row;
   flex-wrap: wrap;
 }
-/* 
-.card {
-  background-color: #fff;
-  box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
-  border-radius: 10px;
-  padding: 25px;
-  margin: 15px;
-  transition: 0.3s ease;
-  width: 200px;
-  height: 200px;
-} */
-
-
 
 
 
@@ -300,8 +247,6 @@ section{
 }
 
 
-
-
 /* Regeister section   */
 
 
@@ -371,58 +316,6 @@ section{
 .card-regeister:hover>div,.card-regeister:hover>strong {
   opacity: 0;
 }
-
-
-
-
-
-
-
-
-/* about section  */
-/* .about{ */
-  /* background-image: url(../images/about2.jpeg); */
-/* } */
-
-
-
-/* .home{
-  background-color: #F8F6EB;
-  margin-top: 70px;
-  margin-bottom: 70px; */
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* overflow: hidden; */
-  /* animation: moveRightLeft 10s infinite;
-} */
-
-
-/* @keyframes moveRightLeft{
-  0%{
-    transform:translateX(0);
-  }
-  50% {
-    transform: translateX(100px);
-
-    }
-  100%{
-    transform: translateX(-100px);
-  }
-} */
-
-
-/* services  */
-/* .ourservices {
-  background-image: url(../images/cloud.png);
-} */
-
-
-
-
-
-
-
-
 
 
 
