@@ -304,9 +304,11 @@ section{
 
 
 .card-regeister {
-  --bg: #546441;
+  --bg: #7C887B;
+  background-color: linear( #F4F2EE , #FFD4DD);
   --hover-bg: #d1cfc2;
   --hover-text: #353433;
+  box-shadow: #3f3f39;
   max-width: 23ch;
   text-align: center;
   background: var(--bg);
@@ -372,94 +374,6 @@ section{
 
 
 
-/* article section  */
-
-.card-article {
-  box-sizing: border-box;
-  display: flex;
-  max-width: 320px;
-  background-color: rgba(255, 255, 255, 1);
-  transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-article:hover {
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.081);
-}
-
-.date-time-container {
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  padding: 0.5rem;
-}
-
-.date-time {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  grid-gap: 1rem;
-  gap: 1rem;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: rgba(17, 24, 39, 1);
-}
-
-.separator {
-  width: 1px;
-  flex: 1 1 0%;
-  background-color: rgba(17, 24, 39, 0.1);
-}
-
-.content {
-  display: flex;
-  flex: 1 1 0%;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.infos {
-  border-left: 1px solid rgba(17, 24, 39, 0.1);
-  padding: 1rem;
-}
-
-.title3 {
-  font-weight: 700;
-  text-decoration: #34586C;
-  text-transform: uppercase;
-  font-size: 18.72px;
-  color: rgba(17, 24, 39, 1);
-}
-
-.description {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  color: rgba(55, 65, 81, 1);
-}
-
-.action {
-  display: block;
-  background-color: #b8a1a1;
-  padding: 0.75rem 1.25rem;
-  text-align: center;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: rgba(17, 24, 39, 1);
-  transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.action:hover {
-  background-color: rgba(250, 204, 21, 1);
-}
-
 
 
 
@@ -470,18 +384,18 @@ section{
 
 
 
-.home{
+/* .home{
   background-color: #F8F6EB;
   margin-top: 70px;
-  margin-bottom: 70px;
+  margin-bottom: 70px; */
   /* display: flex; */
   /* justify-content: space-between; */
   /* overflow: hidden; */
-  animation: moveRightLeft 10s infinite;
-}
+  /* animation: moveRightLeft 10s infinite;
+} */
 
 
-@keyframes moveRightLeft{
+/* @keyframes moveRightLeft{
   0%{
     transform:translateX(0);
   }
@@ -492,7 +406,7 @@ section{
   100%{
     transform: translateX(-100px);
   }
-}
+} */
 
 
 /* services  */
@@ -502,3 +416,114 @@ section{
 
 
 
+
+
+
+
+
+
+
+
+/* articla section  */
+
+.notification {
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  position: relative;
+  width: 18rem;
+  height: 8rem;
+  /* background: #29292c; */
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #283F31, #8EB89C, #FFD4DD);
+  --color: #32a6ff
+}
+
+.notification:before {
+  position: absolute;
+  content: "";
+  inset: 0.0625rem;
+  border-radius: 0.9375rem;
+  background: #7C887B;
+  z-index: 2
+}
+
+.notification:after {
+  position: absolute;
+  content: "";
+  width: 0.25rem;
+  inset: 0.65rem auto 0.65rem 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gradient);
+  transition: transform 300ms ease;
+  z-index: 4;
+}
+
+.notification:hover:after {
+  transform: translateX(0.15rem)
+}
+
+.notititle {
+  color: #FEFCE9;
+  padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.notification:hover .notititle {
+  transform: translateX(0.15rem)
+}
+
+.notibody {
+  color: #FFD4DD;
+  padding: 0 1.25rem;
+  transition: transform 300ms ease;
+  z-index: 5;
+}
+
+.notification:hover .notibody {
+  transform: translateX(0.25rem)
+}
+
+.notiglow,
+.notiborderglow {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side at center, white, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.notiglow {
+  z-index: 3;
+}
+
+.notiborderglow {
+  z-index: 1;
+}
+
+.notification:hover .notiglow {
+  opacity: 0.1
+}
+
+.notification:hover .notiborderglow {
+  opacity: 0.1
+}
+
+.note {
+  color: var(--color);
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  width: 75%;
+}
