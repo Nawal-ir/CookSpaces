@@ -1,52 +1,68 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block title %} Create Renter Account {% endblock %}
 
 {% block style%}
 <style>
 .register{
-    background-image: url("/static/images/111.png");
-    background-repeat: no-repeat;
-    background-size:cover;
-    position: relative;
+    background-color: #F4F2EE;
 }
+
 </style>
 {% endblock %}
 
 {% block content %}
-<section>
-    <div class="container">
-        <div class="row mt-2 g-5">
-            <div class="col-4">
-                <img src="/static/images/about.jpeg" alt="" style="width: 200%;height: 400x; margin-top: 50px; ">
-            </div>
+<main >
 
-            <div class="col-6" style=" background-color: #F4F2EE; padding-bottom: 50px; border-radius: 30px; ">
+    <div style="
+    margin-top: 100px;
+    background-image: url('/static/images/Screenshot 2024-04-27 223816.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 750px;
+    direction: rtl;
+    margin-bottom: 400px;">
+
+        
+        <div class="container ">
+            <div class="row " >
                 {% if msg %}
-                    <div class="alert alert-danger">{{msg}}</div>
+                <div class="alert alert-danger">{{msg}}</div>
                 {% endif %}
-
-                <div class="row justify-content-end" style="margin-bottom: 100px;">
-                    <div class="col-12">
-                        <form action="{% url 'Renters:register_renter' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style="background-color: #F4F2EE; padding: 20px;">
+                
+                <div class="row" style=" margin-top: 80px;">
+                    <div class="col-6">
+                        <form action="{% url 'Renters:register_renter' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style="background-color: #F4F2EE; padding: 30px; border-radius: 20px; border: 20px; ">
                             {% csrf_token %}
-                            <h1 class="fw-light text-black mb-4">Create Account</h1>
-                            <input name="username" class="form-control mb-3" type="text" minlength="3" required placeholder="Username" />
-                            <input name="first_name" class="form-control mb-3" type="text" minlength="3" required placeholder="First Name" />
-                            <input name="last_name" class="form-control mb-3" type="text" minlength="3" required placeholder="Last Name" />
-                            <input name="email" class="form-control mb-3" type="email" required placeholder="Email" />
-                            <input name="phone" class="form-control mb-3" type="phone" maxlength="10" required placeholder="phone" />
-                            <textarea name="about" class="form-control mb-3" placeholder="Tell us about yourself"></textarea>
-                            <h4>Choose Avatar:</h4>
-                            <input type="file" class="form-control mb-3" name="avatar" />
-                            <input name="password" class="form-control mb-3" type="password" minlength="6" required placeholder="Password" />
-                            <input type="submit" class="btn btn mt-3" style="background-color: rgb(161, 215, 145);" value="Sign Up" />
-                        </form>
+                            <h1 class="fw-light text-black mb-4 ">انشاء حساب</h1>
+                            <input name="username" class="form-control mb-3" type="text" minlength="3" required placeholder="اسم المستخدم" />
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="first_name" class="form-label">الاسم الاول :</label>
+                                    <input name="first" type="text" class="form-control" id="first_name" placeholder="الاسم الاول ..." required>
+                                </div>
+    
+                                <div class="col">
+                                    <label for="last_name" class="form-label">الاسم الثاني :</label>
+                                    <input name="last" type="text" class="form-control" id="last_name" placeholder="الاسم الثاني ..." required>
+                                </div>
+                            </div>
+                                <input name="email" class="form-control mb-3" type="email" required placeholder="Email" />
+                                <input name="phone" class="form-control mb-3" type="phone" maxlength="10" required placeholder="رقم الجوال" />
+                                <textarea name="about" class="form-control mb-3" placeholder="أخبرنا عن نفسك"></textarea>
+                                <h4> صورة العرض:</h4>
+                                <input type="file" class="form-control mb-3" name="avatar" />
+                                <input name="password" class="form-control mb-3" type="password" minlength="6" required placeholder="الرقم السري" />
+                                <input type="submit" class="btn btn mt-3" style="background-color: chocolate;" value="سجل الان" />
+                            </form>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
-</section>
+</main>
+
+
 
 {% endblock %}
