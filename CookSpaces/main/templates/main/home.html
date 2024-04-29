@@ -33,9 +33,9 @@
 
       <div class="row">
         <div class="col">
-          <img src="static/images/mainpink2.jpeg" alt="" style="width: 800px;padding-top: 50px;">
+          <img src="static/images/mainpink1.jpeg" alt="" style="width: 800px;padding-top: 50px;">
         </div>
-        <div class="col" style="background-color: #F4F2EE;">
+        <div class="col" style="background-color: #fff; padding-right: 50px; padding-top: 30px;">
 
                              <h1 class="display- mt-4 mb-4 mb-5" style="color: #8EB89C; direction: rtl; text-align: center; padding-top:200px ;" >وجهتك الأولى<br><u class="text-warning"><span style="color: #1E4D57;font-size: 150%;">لعالم المطاعم السحابية</span></u></h1>
                    <p class="mb-5" style="direction: rtl;text-align: center;font-size: 200%; font-weight: bold; color: #6E6A6A;">مهمتنا نشاركك رحلتك <br> لتحقيق أهدافك وتحويل افكارك لواقع     </p>
@@ -117,7 +117,7 @@
 </section> -->
 
 
-<section class="ourservices" style="background-color:#283F31; ">
+<section class="ourservices" style="background-color:#00815b; ">
   <div class="py-8">
       <div class="container " style="direction: rtl;">
           <div class="row ">
@@ -247,7 +247,6 @@
     </div>
 </section>
 
-<hr style="color: #6E6A6A; margin-left: 300px; margin-right: 300px;">
 
 <!-- Article section  -->
 
@@ -296,6 +295,9 @@
 
           </div>
         </div>
+        <div class="mt-10 text-center d-flex justify-content-center">
+          <a href="{% url 'main:contact' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> أعرف أكثر</span></a>
+       </div>
     </div>
 
       <div class="col-6 text-center pt-5">
@@ -304,73 +306,12 @@
       </div>
 
   </div>
-</section>
-
-
-
-
-<!-- Regeister section  -->
-
-<section style="position:flex; flex-direction: column; background-color: #8EB89C ;" >
-
-<div style="background-color: #F4F2EE; padding: 50px; border-radius: 30px; " >
-    <div class="row">
-        <div class="col-8">
-            <div class="row " style="padding-left: 100px; border-radius: 20px;">
-
-              <div class="col-4" style="color: #F8F6EB;">
-                <div class="card-regeister">
-                    <div class="icon-regeister">
-                        <img src="/static/images/chefhat.png" alt="" style="width: 30px;">
-                    </div>
-                    <strong> مستعد للعمل كـ شيف؟
-                    </strong>
-                    <div class="card__body" style="color:#FFD4DD">
-                        ! مكانك هنا
-                    </div>
-                    <a href="{% url 'Chief:register_chife' %}"><span>سجٌل معنا</span></a>
-                    
-                </div>
-            </div>
-
-                <div class="col-4" style="color: #F8F6EB;">
-                    <div class="card-regeister">
-                        <div class="icon-regeister">
-                            <img src="/static/images/kitchenicon.png" alt="" style="width: 30px;">
-                        </div>
-                        <strong> عندك مطبخ وبتعرضه للايجار؟
-                        </strong>
-                        <div class="card__body" style="color:#FFD4DD">
-                            ! مكانك هنا
-                        </div>
-                      <a href="{% url 'KitchenOwner:register_owner' %}"><span>سجٌل معنا</span></a>  
-                    </div>
-                </div>
-
-                
-                <div class="col-4" style="color: #F8F6EB;">
-                    <div class="card-regeister">
-                        <div class="icon-regeister">
-                            <img src="/static/images/restaurant.png" alt="" style="width: 30px;">
-                        </div>
-                        <strong> تفكر تفتح مطعم سحابي؟
-                        </strong>
-                        <div class="card__body" style="color:#FFD4DD">
-                            ! مكانك هنا
-                        </div>
-                        <a href=""><span>سجٌل معنا</span></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-4">
-            <h1 style="font-size: 400%; text-align: center; padding-right: 50px; padding-top: 70px;"><u class="text-warning"><span style="color: #CA9A9A;"  > ابدأ رحلتك الآن </span></u></h1>
-        </div>
-    </div>
-</div>
 
 </section>
+
+
+
+
 
 
 <!-- section -->
@@ -828,9 +769,9 @@
 
 
 <section style="background-color: #F4F2EE; direction: rtl; justify-content: center;box-shadow: #6E6A6A;">
-<div style="background-color: #283F31; padding: 40px; border-radius: 30px;">
+<div >
     <div class="title">
-        <h1 style="font-size: 100%; text-align: right;color: #8EB89C;"> دوّرعن مطبخ <u class="text-warning"><span style="color: #FFD4DD;">قريب منك  </span></u></h1>
+        <h1 style="font-size: 100%; text-align: right;color: #8EB89C;"> دوّرعن مطبخ <u class="text-warning"><span style="color: #111;">قريب منك  </span></u></h1>
     </div>
     <br> <br> <br>
     <div class="row px-3">
@@ -872,7 +813,7 @@
 
 <div class="row">
     <div class="text-center" style="margin-top:30px;">
-        <a href="#" class="btn px-5" style="background-color: #8EB89C;"> <span style="color: #F4F2EE;">أكثر</span></a>
+        <a href="#" class="btn btn-dark " style="background-color: #272928; width: 100px;"> <span style="color: #F4F2EE;">أكثر</span></a>
      </div>
 </div>
 </div>
@@ -884,22 +825,20 @@
 
 
 
-<hr style="color: #6E6A6A; margin-left: 300px; margin-right: 300px;">
 
 
 
 
 <!-- FAQ  -->
-<section style="background-color: #F4F2EE; direction: rtl;">
+<section style="background-color: #fff; direction: rtl;">
     <h2 class="title">اسئلة شائعة</h2>
     <br>
     <div class="accordion accordion-flush" id="accordionExample">
         <div class="border-bottom py-3" id="headingOne">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <span class="me-auto" style="color: #6E6A6A;">
-              What is the cost of an online course
-              </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
+           <h3 class="mb-0 fw-bold" >
+              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              <span class="me-auto text-end" style="color: #6E6A6A; ;">
+اقدر افاوض بأسعار المطابخ؟ </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
                 add
                 </span>
               <span class="collapse-toggle ms-4">
@@ -910,8 +849,8 @@
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
            <div class="py-3 fs-4" style="color: #818181;">
-              Create beautiful website with this Geeks UI template. Get started building a site today.
-           </div>
+كل مطبخ يختلف عن الثاني. بعض المطابخ المعروضة أسعارها قابلة للتفاوض وبعضها غير قابلة للتفاوض
+          </div>
         </div>
 
 
@@ -983,9 +922,28 @@
         </div>
         <br><br> <br><br>
         <div class="mt-10 text-center">
-           <a href="{% url 'main:contact' %}" class="btn " style="background-color: #8EB89C; "><span style="color: #F4F2EE;">تواصل معنا</span></a>
+           <a href="{% url 'main:contact' %}" class="btn " style="background-color: #272928; "><span style="color: #F4F2EE;"> انضم لنا </span></a>
         </div>
 </section>
+
+
+
+
+
+
+<section style="background-color:#00815b;">
+  <div class="row title" style="color: #F4F2EE;">
+    نجاح الغد يبدأ اليوم 
+  </div>
+  <br>
+  <div class="row  d-flex justify-content-center">
+    <div class="mt-10 text-center">
+      <a href="{% url 'accounts:register' %}" class="btn " style="background-color: #272928; "><span style="color: #F4F2EE;">تواصل معنا</span></a>
+   </div>
+
+  </div>
+</section>
+
 
 
 

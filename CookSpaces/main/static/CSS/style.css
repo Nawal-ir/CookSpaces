@@ -1,5 +1,7 @@
 * {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "El Messiri", sans-serif;
+
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 
 }
 
@@ -304,7 +306,7 @@ section{
 
 
 .card-regeister {
-  --bg: #7C887B;
+  --bg: #00815b;
   background-color: linear( #F4F2EE , #FFD4DD);
   --hover-bg: #d1cfc2;
   --hover-text: #353433;
@@ -447,8 +449,8 @@ section{
   content: "";
   inset: 0.0625rem;
   border-radius: 0.9375rem;
-  background: #7C887B;
-  z-index: 2
+  background: #F4F2EE;
+  z-index: 2;
 }
 
 .notification:after {
@@ -467,7 +469,7 @@ section{
 }
 
 .notititle {
-  color: #FEFCE9;
+  color: #00815b;
   padding: 0.65rem 0.25rem 0.4rem 1.25rem;
   font-weight: 500;
   font-size: 1.1rem;
@@ -480,7 +482,7 @@ section{
 }
 
 .notibody {
-  color: #FFD4DD;
+  color: #111;
   padding: 0 1.25rem;
   transition: transform 300ms ease;
   z-index: 5;
