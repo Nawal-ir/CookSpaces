@@ -3,7 +3,38 @@
 
 {% block styles %}
 <style>
-	
+	.cat {
+    background-color: rgba(21, 128, 155, 0.377);
+    color:white;
+    align-self: flex-start;
+}
+.مقبولة {
+    background-color: rgba(2, 90, 131, 0.664);
+}
+.مقبولة:hover {
+    box-shadow: 0 0 20px rgba(2, 90, 131, 0.664);
+}
+
+.مرفوضة {
+    background-color: rgba(255, 0, 0, 0.473);
+}
+.مرفوضة:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.473);
+}
+
+.تحت {
+    background-color: rgba(228, 183, 37, 0.473);
+}
+.تحت:hover {
+    box-shadow: 0 0 20px rgba(228, 183, 37, 0.473);
+}
+
+.مدفوعة {
+  background-color: rgba(0, 128, 0, 0.473);
+}
+.مدفوعة:hover {
+  box-shadow: 0 0 20px rgba(0, 128, 0, 0.473);
+}
     .panel-title {display: inline;font-weight: bold;}
     .checkbox.pull-right { margin: 0; }
     .pl-ziro { padding-left: 0px; }
@@ -14,34 +45,51 @@
 {% endblock %}
 
 {% block content %}
-	<section class="all mb-5" style="direction: rtl;">
+	<section style="direction: rtl; padding: 0; margin-top: 100px;">
 		<div class="container">
-			<div class="row g-4">
-				<div class="col-12 mb-3">
+			<div class="row">
+                <h1>طلباتي</h1>
+				<div class="col">
 					
-					<div class="d-flex justify-content-center  align-items-center mt-4">
+					<div class="d-flex justify-content-center align-items-center">
 						<div class="d-flex gap-2">
-							<a href="{% url 'Renters:my_order' %}" class="p-2 ps-3 pe-3 rounded-pill cat  text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
+							<a href="{% url 'Renters:my_order' %}" class="p-2 ps-3 pe-3 rounded-pill cat text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
 							
 							{% for val, key in status %}
-								<a href="?cat={{val}}" class="p-2 ps-3 pe-3 rounded-pill cat {% if request.GET.cat == val %} {{ val }} {% endif %} text-decoration-none "  style="color: rgb(3, 53, 36);">{{val}}</a>
+								<a href="?cat={{val}}" class="p-2 ps-3 pe-3 rounded-pill cat {% if request.GET.cat == val %} {{ val }} {% endif %} text-decoration-none"  style="color: rgb(3, 53, 36);">{{val}}</a>
 							{% endfor %}
 							
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-<section>
-	<!-- <div class="card" style="width: 20rem;">
-		<img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
-		<div class="card-body">
-		   <h5 class="card-title">Card title</h5>
-		   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            
+            <div class="row py-4">
+                {% for order in orders %}
+                <div class="col">
+                    <div class="card" style="width: 20rem;">
+                        <img src="{{order.kitchen.image.url}}" alt="poster" style="background-size: cover; height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{order.kitchen.title}}</h5>
+                            <h6 class="text-muted">{{order.status}}</h6>
+                            <div class="d-flex justify-content-end">
+                                <a href="{% url 'KitchenOwner:kitchen_details' order.kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+            <!-- <div class="card" style="width: 20rem;">
+                <img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 		   <a href="#" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
 		</div>
 	 </div> -->
+    </div>
 </section>
 <section class="pay">
     <p>
@@ -83,6 +131,7 @@
                                     </div>
 									<div>
 										<h4>القيمة</h4>
+                                        <p>{{orders.price}}</p>
 									</div>
                                     <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
                                 </form>

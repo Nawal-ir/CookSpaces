@@ -10,7 +10,7 @@ def home(request:HttpRequest):
     if request.user.is_authenticated:
         print(request.user.first_name)
     
-    kitchens = Kitchen.objects.all()
+    kitchens = Kitchen.objects.all()[:3]
     
     return render(request, "main/home.html",  {"kitchens":kitchens})
 

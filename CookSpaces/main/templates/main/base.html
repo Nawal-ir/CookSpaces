@@ -31,7 +31,7 @@
 
   </head>
   <!-- <body style="background: linear-gradient(#ffffff, #a8a8a893); background-attachment:  fixed;"> -->
-    <body style="background: #fff; background-attachment:  fixed;">
+    <body style="background: #fff; background-attachment:  fixed; direction: rtl;">
 
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-collapse fixed-top p-2 mb-1 " >
@@ -40,7 +40,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand d-flex flex-column justify-content-center align-items-center" href="{% url 'main:home' %}">
-            <h4 class="fa-fade" style="text-align: center;">CookSpaces</h4></a>
+            <h4 style="text-align: center;">CookSpaces</h4></a>
 
                     
           <div id="navbarSupportedContent">
@@ -65,7 +65,7 @@
             <div class="d-flex gap-2">
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   admin <strong>{{request.user.username }}</strong> مرحبا
+                   مرحبا <strong>{{request.user.username }}</strong> (admin)
                 </a>
 
                 <ul class="dropdown-menu" style="background: #e4e4e4b7;">
@@ -94,18 +94,18 @@
               {% endif %}
 
               {% if group.name == 'Renter' %}
-              <a class="btn btn-dark" href="{% url 'Chief:all_chief_view' %}" style="padding: 5px;">عرض جميع الطهاة</a>
+              <!-- <a class="btn btn-dark" href="{% url 'Chief:all_chief_view' %}" style="padding: 5px;">عرض جميع الطهاة</a> -->
 
               <div class="d-flex gap-2">
                 <div class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     <strong>{{request.user.username }}</strong> مرحبا
+                     مرحبا <strong>{{request.user.username }}</strong> 
                   </a>
                   <ul class="dropdown-menu" style="background: #e4e4e4b7;">
                     <li><a class="dropdown-item" href="{% url 'Renters:profile' request.user.id %}">الملف الشخصي</a></li>
 
                     <li><a class="dropdown-item" href="{% url 'Renters:saved_kitchens' %}">مطابخي المحفوظة</a></li>
-
+                    <li><a class="dropdown-item" href="{% url 'Renters:my_order' %}">طلباتي</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
                   </ul>
@@ -113,7 +113,7 @@
               </div>
               {% endif %}
 
-              {% if group.name == 'Chef' %}
+              <!-- {% if group.name == 'Chef' %}
               <div class="d-flex gap-2">
                 <div class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,7 +126,7 @@
                   </ul>
                 </div>
               </div>
-              {% endif %}
+              {% endif %} -->
             {% endfor %}
 
             {% else %}
@@ -195,13 +195,13 @@
                 </div>
               </div>
       
-              <div class="row">
+              <div class="row" style="direction: ltr;">
                 <hr>
                 <div class="col d-flex" style="justify-content: space-between;">
                   © 2024 by. CookSpaces Team, All rights reserved.
                   <div class="d-flex gap-3">
-                    <a href="#" style="color: #080822; text-decoration: none;">Terms & Conditions</a>
-                    <a href="#" style="color: #080822; text-decoration: none;">Privacy Policy</a>
+                    <a href="#" style="color: #080822; text-decoration: none;">الشروط والأحكام</a>
+                    <a href="#" style="color: #080822; text-decoration: none;">سياسة الخصوصية</a>
                   </div>
                 </div>
               </div>
