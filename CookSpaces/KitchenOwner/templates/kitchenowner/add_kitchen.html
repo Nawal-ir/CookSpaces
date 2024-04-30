@@ -78,6 +78,26 @@
                 </select>
                 </div> 
 
+                  <!--is_negotiable-->
+                <div class="mt-5">
+                    <h5>السعر قابل للتفاوض</h5>
+                    <input type="radio" name="is_negotiable" value="True">
+                    <label for="html">نعم</label><br>
+                    <input type="radio" name="is_negotiable" value="False">
+                    <label for="css">لا</label><br>
+                </div>   
+
+                <!--city-->
+                <div class="">
+                    <h5>city</h5>
+                    <select name="city" class="form-select" required>
+                        {% for city,val in city %}
+                            <option value="{{val}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+        
+
                 <div id="map"></div>
 
                 <input type="submit" class="btn btn-primary" value="Add">
