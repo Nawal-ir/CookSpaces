@@ -2,15 +2,13 @@
 
 {% block title %} all kitchens {% endblock  %}
 {% block content  %}
-<section>
-    <div class="row">
-        <div class="col-4 d-flex gap-3">
-                
+<div class="container">
+    <div class="row" style="margin-top: 150px;">
+                <h1>All Kitchens</h1>
                     {% for kitchen in kitchens %}
-                    <div class="row px-3">
-                        <div class="col d-flex justify-content-center" style="justify-items: center;">
+                        <div class="col-4 d-flex mt-2">
                             <div class="card" style="width: 20rem;">
-                                <img src="{{kitchen.poster.url}}" class="card-img-top" alt="">
+                                <img src="{{kitchen.image.url}}" class="card-img-top" alt="poster">
                                 <div class="card-body">
                                    <h5 class="card-title">{{kitchen.title}}</h5>
                                    <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
@@ -21,12 +19,10 @@
                                 </div>
                              </div>
                         </div>
-                    </div>                    
-
+                        
                     {% endfor %}
-        </div>
-    </div>
-</section>
+            </div>                    
+</div>
 
 
 

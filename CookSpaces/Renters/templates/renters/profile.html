@@ -42,7 +42,7 @@
 
 .card{
     border:none;
-    width: 1000px;
+    width: 735px;
     position:relative;
     border-radius:8px;
     cursor:pointer;
@@ -169,27 +169,21 @@
     </div>
 </div>       
 </section> -->
-<section>
-  <div class="container mt-5">
-    
-    <div class="row d-flex justify-content-center">
+<section>    
+    <div class="row">
         
         <div class="col-md-7">
             
-            <div class="card p-3 py-4">
+            <div class="card">
                 
                 <div class="text-center">
                   <img src="{{ user_profile.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
                   <h5>@{{user_profile.username}}</h5>
-                  <div class=" d-flex justify-content-end align-items-center mt-5" >
-                      {% if request.user == user_profile %}
-                          <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
-                      {% endif %}
-                  </div>
+
                 </div>
                 
                 <div class="text-center mt-3">
-                    <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
+                    <span class="bg-secondary px-3 rounded text-white">Pro</span>
                     <h3 style="text-transform: capitalize;">{{user_profile.first_name}} {{ user_profile.last_name}}</h3>
                     <a href="mailto:{{user_profile.email}}">{{ user_profile.email }}</a>
                     
@@ -218,13 +212,16 @@
                 
                
                 
-                
+                <div class=" d-flex justify-content-center align-items-center" >
+                    {% if request.user == user_profile %}
+                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
+                    {% endif %}
+                </div>
             </div>
             
         </div>
         
     </div>
     
-  </div>
 </section>
 {% endblock %}

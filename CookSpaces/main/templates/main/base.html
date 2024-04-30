@@ -102,8 +102,8 @@
                      <strong>{{request.user.username }}</strong> مرحبا
                   </a>
                   <ul class="dropdown-menu" style="background: #e4e4e4b7;">
-                    <li><a class="dropdown-item" href="{% url 'Renters:profile' %}">الملف الشخصي</a></li>
-                    <li><a class="dropdown-item" href="">مطابخي المحفوظة</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Renters:profile' request.user.id %}">الملف الشخصي</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Renters:saved_kitchens' %}">مطابخي المحفوظة</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
                   </ul>
@@ -173,7 +173,7 @@
                 </div>
       
                 <div class="col-4 mb-3">
-                  <ul class="list-unstyled d-flex justify-content-center gap-5">
+                  <ul class="list-unstyled d-flex justify-content-center gap-4">
                     <li><a href="/" style="color: #080822; text-decoration: none;">الرئيسية</a></li>
                     <li><a href="{% url 'KitchenOwner:all_kitchens' %}" style="color: #080822; text-decoration: none;">المطابخ</a></li>
                     <li><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">من نحن</a></li>

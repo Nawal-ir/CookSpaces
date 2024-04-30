@@ -96,7 +96,7 @@ def add_kitchen(request :HttpRequest):
             kitchen_owner = request.user.kitchenowner,
             title = request.POST["title"],
             desc = request.POST["desc"],
-            poster = request.FILES.get("poster"),
+            image = request.FILES.get("poster", Kitchen.image.field.default),
             space = request.POST["space"],
             
             #py default False 

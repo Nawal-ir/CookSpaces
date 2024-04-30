@@ -10,7 +10,9 @@ def home(request:HttpRequest):
     if request.user.is_authenticated:
         print(request.user.first_name)
     
-    return render(request, "main/home.html")
+    kitchens = Kitchen.objects.all()
+    
+    return render(request, "main/home.html",  {"kitchens":kitchens})
 
 def delete_kitchen(request:HttpRequest, kitchen_id):
 

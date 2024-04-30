@@ -13,6 +13,85 @@
     width: auto;
     height: 300px;
   }
+
+  /* Saved */
+.bookmark {
+  font-size: 2rem;
+  color: rgb(255, 166, 0);
+}
+
+  /*star rating*/
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.radio-input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-label {
+  cursor: pointer;
+  font-size: 0;
+  color: rgba(0, 0, 0, 0.2);
+  transition: color 0.1s ease-in-out;
+}
+
+.radio-label:before {
+  content: "★";
+  display: inline-block;
+  font-size: 32px;
+}
+
+.radio-input:checked ~ .radio-label {
+  color: gold;
+}
+
+.radio-label:hover,
+.radio-label:hover ~ .radio-label {
+  color: goldenrod;
+}
+
+.radio-input:checked + .radio-label:hover,
+.radio-input:checked + .radio-label:hover ~ .radio-label,
+.radio-input:checked ~ .radio-label:hover,
+.radio-input:checked ~ .radio-label:hover ~ .radio-label,
+.radio-label:hover ~ .radio-input:checked ~ .radio-label {
+  color: darkgoldenrod;
+}
+
+.checked {
+      color: orange;
+}
+
+.average-rating {
+  position: relative;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: transparent;
+  width: auto;
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 25px;
+}
+
+.average-rating::before {
+  --percent: calc(4.3/5*100%);
+  content: "★★★★★";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, gold var(--percent), rgba(0, 0, 0, 0.2) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 </style>
 {% endblock  %}
 
@@ -23,7 +102,7 @@
     <div class="container">
       <div class="row">
         <div class="col-6">
-              <img src="{{kitchen.poster.url}}" alt="" class="w-100 rounded-4 ">
+              <img src="{{kitchen.image.url}}" alt="" class="w-100 rounded-4 ">
             </div>
             
             <div class="col"
@@ -32,7 +111,8 @@
             justify-content: center;
             gap: 10px;">
                 <div class="d-flex justify-content-end">
-                  {% if request.user.is_authenticated and request.user.username == recipe.user.username or request.user.is_superuser %}
+                  <a href="{% url 'Renters:add_remove_saved_view' kitchen.id %}" {% if not request.user.is_authenticated %} data-bs-toggle="modal" data-bs-target="#savedModal" {% endif %} class="text-decoration-none"><i class="bi {% if is_saved %} bi-bookmark-fill {% else %} bi-bookmark {% endif %} bookmark"></i></a>
+                  {% if request.user.is_authenticated and request.user.username == kitchen.user.username or request.user.is_superuser %}
                     <a href="{% url 'main:delete_kitchen' kitchen.id %}" class="btn"><span class="material-symbols-rounded">delete</span></a>
                   {% endif %}
                 </div>
@@ -102,7 +182,90 @@
   </div>
 </section>
 
+<!--Reviews-->
+<section>
+  <hr>
 
+  <h2 id="reviews">Reviews ({{reviews.count}})</h2>
+  <div class="container">
+      
+      <div class="row mt-4">
+          <div class="col-12 col-md-6 order-1 order-md-1 d-flex gap-2">
+              {% for review in reviews %}
+              <div class="d-flex flex-column p-3 rounded-4 w-100" style="border-left: 5px groove; border-right: 5px groove;">
+                  <div class="d-flex gap-2">
+                      <span class="material-symbols-rounded ">account_circle</span>
+                      <h4>{{ review.user.username }}</h4>
+                  </div>
+                  <div>
+                      <span class="fa fa-star {% if review.evaluation >= 1 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if review.evaluation >= 2 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if review.evaluation >= 3 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if review.evaluation >= 4 %} checked {% endif %}"></span>
+                      <span class="fa fa-star {% if review.evaluation >= 5 %} checked {% endif %}"></span>
+                  </div>
+                  <h6 class="text-muted">{{ review.created_at }}</h6>
+                  <p>{{ review.content }}</p>
+              </div>
+              {% endfor %}
+          </div>
+      
+          <div class="col col-md-6 order-2 order-md-2 d-flex justify-content-end">
+              <div class="d-flex flex-column border border-1 shadow p-3 rounded-4" style="color: aliceblue; width: 500px; background: linear-gradient(#144c5a, #123d4e, #0f3943);">
+                  
+                  {% if request.user.is_authenticated %}
+                  <form action="{% url 'main:add_review' kitchen.id %}" method="post" class="d-flex flex-column gap-2">
+                      {% csrf_token %}
+                      
+                      <label for="content" class="d-flex justify-content-center" style="font-size: 32px;">Share Your Review</label>
+                      <div class="star-rating">
+                          <input class="radio-input" type="radio" id="star5" name="evaluation" value="5" />
+                          <label class="radio-label" class for="star5" title="5 stars">5 stars</label>
+                          
+                          <input class="radio-input" type="radio" id="star4" name="evaluation" value="4" />
+                          <label class="radio-label" for="star4" title="4 stars">4 stars</label>
+                          
+                          <input class="radio-input" type="radio" id="star3" name="evaluation" value="3" />
+                          <label class="radio-label" for="star3" title="3 stars">3 stars</label>
+                          
+                          <input class="radio-input" type="radio" id="star2" name="evaluation" value="2" />
+                          <label class="radio-label" for="star2" title="2 stars">2 stars</label>
+                          
+                          <input class="radio-input" type="radio" id="star1" name="evaluation" value="1" />
+                          <label class="radio-label" for="star1" title="1 star">1 star</label>
+                      </div>
+                      <textarea id="content" name="content" class="form-control" placeholder="Write Your Review..." required></textarea>
+  
+                      <input type="submit" value="Add Review" class="btn btn-dark" style="background: linear-gradient(#081b22, #051116, #02070b);"/>
+                  </form>
+                  {% else %} 
+                      <div class="alert alert-warning">You must <a href="{% url 'accounts:login' %}">Sign in</a> to write a review.</div>
+                  {% endif %}
+      
+              </div>
+          </div>
+      </div> <!--Review Row-->
+  </div><!--END Reviews-->
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="savedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Saved Recipe</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Please <a href="{% url 'accounts:login' %}">Login</a> to save the recipe.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1xTP268Ltwj4NX1Hku24XNFPJNZ-kTSQ&callback=initMap" async defer></script>
 <script type="text/javascript">
