@@ -14,7 +14,7 @@ class Order(models.Model):
     end_date = models.DateField()
     note = models.TextField()
     status = models.CharField(max_length=64,choices=status.choices)
-
+    
 
 class Payment(models.Model):
     

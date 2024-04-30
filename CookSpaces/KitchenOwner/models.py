@@ -15,6 +15,7 @@ class Kitchen (models.Model):
     #choices 
     periods = models.TextChoices("period",["Monthly","Annually"])
     status_choices = models.TextChoices("status",["accepted","rejected", "pending"])
+    cities = models.TextChoices("city",[('Riyadh', 'الرياض'), ('Jeddah', 'جدة'), ('Dammam', 'الدمام')])
     
     kitchen_owner = models.ForeignKey(KitchenOwner,on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
@@ -30,10 +31,11 @@ class Kitchen (models.Model):
     loc_latitude = models.FloatField()
     loc_longitude = models.FloatField()
     price = models.FloatField()
-    
+    is_negotiable = models.BooleanField(default=False)
+    city = models.CharField(max_length=100,choices=cities.choices)
     period = models.CharField(max_length=100,choices=periods.choices)
     status = models.CharField(max_length=100,choices=status_choices.choices)
-    
+
     def __str__(self) -> str:
         return self.title    
     
