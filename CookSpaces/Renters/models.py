@@ -15,7 +15,7 @@ class Order(models.Model):
     note = models.TextField()
     status = models.CharField(max_length=64,choices=state.choices)
     created_at = models.DateTimeField(auto_now_add=True)
-    price = models.FloatField()
+    price = models.FloatField(null=True)
 
 
 class Payment(models.Model):
