@@ -2,8 +2,92 @@
 
 {% block title %}Profile{% endblock %}
 
+{% block styles %}
+<style>
+    .card{
+    border:none;
+    width: 735px;
+    position:relative;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left: 200px;
+}
+
+.card:before{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#E1BEE7;
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:after{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#8E24AA;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:hover::after{
+    transform:scaleY(1);
+}
+
+
+.fonts{
+    font-size:11px;
+}
+
+.social-list{
+    display:flex;
+    list-style:none;
+    justify-content:center;
+    padding:0;
+}
+
+.social-list li{
+    padding:10px;
+    color:#8E24AA;
+    font-size:19px;
+}
+
+
+.buttons button:nth-child(1){
+       border:1px solid #8E24AA !important;
+       color:#8E24AA;
+       height:40px;
+}
+
+.buttons button:nth-child(1):hover{
+       border:1px solid #8E24AA !important;
+       color:#fff;
+       height:40px;
+       background-color:#8E24AA;
+}
+
+.buttons button:nth-child(2){
+       border:1px solid #8E24AA !important;
+       background-color:#8E24AA;
+       color:#fff;
+        height:40px;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container">
+<!-- <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card profile-card-4">
@@ -38,5 +122,60 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+<section>    
+    <div class="row">
+        
+        <div class="col-md-7">
+            
+            <div class="card">
+                
+                <div class="text-center">
+                  <img src="{{ user_object.chife.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
+                  <h5>@{{user_object.username}}</h5>
+
+                </div>
+                
+                <div class="text-center mt-3">
+                    <span class="bg-secondary px-3 rounded text-white">Pro</span>
+                    <h3 style="text-transform: capitalize;">{{user_object.first_name}} {{ user_object.last_name}}</h3>
+                    <a href="mailto:{{user_object.email}}">{{ user_object.email }}</a>
+                    
+                    
+                    <div class="px-4 mt-1">
+                      <p class="mt-2">{{ user_object.chife.about }}</p>
+                      <a href="{{user_object.chife.cv}}" download><p>CV<i class="bi bi-download"></i></p></a>
+                    </div>
+                    
+                     <ul class="social-list">
+                        <li><i class="fa fa-facebook"></i></li>
+                        <li><i class="fa fa-dribbble"></i></li>
+                        <li><i class="fa fa-instagram"></i></li>
+                        <li><i class="fa fa-linkedin"></i></li>
+                        <li><i class="fa fa-google"></i></li>
+                    </ul>
+                    
+                    <div class="buttons">
+                        
+                        <button class="btn btn-outline-primary px-4">Message</button>
+                        <button class="btn btn-primary px-4 ms-3">Contact</button>
+                    </div>
+                </div>
+                
+               
+                
+                <div class=" d-flex justify-content-center align-items-center" >
+                    {% if request.user == user_object %}
+                        <a href="{% url 'Chief:update_user_view' user_object.id %}" class="btn btn-warning">Update</a>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</section>
 {% endblock %}

@@ -222,141 +222,122 @@
     <div class="title">
         <h1 style="font-size: 100%; text-align: right;color: #8EB89C;"> دوّر عن مطبخ <u class="text-warning"><span style="color: #111;">يناسبك   </span></u></h1>
     </div>
-    <br> <br> <br>
+
+    {% for kitchen in kitchens %}
     <div class="row px-3">
-    <div class="col d-flex justify-content-center" style="justify-items: center;">
-        <div class="card" style="width: 20rem;">
-            <img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
-            <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
-            </div>
-         </div>
-    </div>
+        <div class="col d-flex justify-content-center" style="justify-items: center;">
+            <div class="card" style="width: 20rem;">
+                <img src="{{kitchen.poster.url}}" class="card-img-top" alt="poster">
+                <div class="card-body">
+                   <h5 class="card-title">{{kitchen.title}}</h5>
+                   <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
+                   <h6>Price: {{kitchen.price}} SR/{{kitchen.period}}</h6>
+                   <div class="d-flex justify-content-end">
+                        <a href="{% url 'KitchenOwner:kitchen_details' kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
+                   </div>
+                </div>
+             </div>
+        </div>
+    </div>                    
 
-    <div class="col d-flex justify-content-center">
-        <div class="card" style="width: 20rem;">
-            <img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
-            <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
-            </div>
-         </div>
-    </div>
-
-    <div class="col d-flex justify-content-center">
-        <div class="card" style="width: 20rem;">
-            <img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
-            <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
-            </div>
-         </div>
-    </div>
-    
-</div>
+    {% endfor %}
 <br><br> <br>
 
 <div class="row">
     <div class="text-center" style="margin-top:30px;">
-        <a href="{% url 'main:all_kitchen' %}" class="btn btn-dark " style="background-color: #272928; width: 100px;"> <span style="color: #F4F2EE;">أكثر</span></a>
+        <a href="{% url 'KitchenOwner:all_kitchens' %}" class="btn btn-dark " style="background-color: #272928; width: 100px;"> <span style="color: #F4F2EE;">أكثر</span></a>
      </div>
 </div>
 </div>
-
-
 
 </section>
 
 
 <!-- FAQ  -->
 <section style="background-color: #fff; direction: rtl;">
-    <h2 class="title">اسئلة شائعة</h2>
-    <br>
-    <div class="accordion accordion-flush" id="accordionExample">
-        <div class="border-bottom py-3" id="headingOne">
-           <h3 class="mb-0 fw-bold" >
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <span class="me-auto text-end" style="color: #6E6A6A; ;">
-اقدر افاوض بأسعار المطابخ؟ </span><span class="material-symbols-outlined" style="color: #6E6A6A; " >
-                add
-                </span>
-              <span class="collapse-toggle ms-4">
-              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
-              </span>
-              </a>
-           </h3>
-        </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-           <div class="py-3 fs-4" style="color: #818181;">
+  <h2 class="title">اسئلة شائعة</h2>
+  <br>
+  <div class="accordion accordion-flush" id="accordionExample">
+      <div class="border-bottom py-3" id="headingOne">
+         <h3 class="mb-0 fw-bold" >
+            <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <span class="material-symbols-outlined" style="color: #6E6A6A; " >
+              add
+              </span><span class="me-auto text-end" style="color: #6E6A6A; ;">
+اقدر افاوض بأسعار المطابخ؟ </span>
+            <span class="collapse-toggle ms-4">
+            <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+            </span>
+            </a>
+         </h3>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+         <div class="py-3 fs-4" style="color: #818181;">
 كل مطبخ يختلف عن الثاني. بعض المطابخ المعروضة أسعارها قابلة للتفاوض وبعضها غير قابلة للتفاوض
-          </div>
         </div>
+      </div>
 
 
-        <div class="border-bottom py-3" id="headingTwo">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <span class="me-auto" style="color: #6E6A6A;">
-اقدر أسأجر المطبخ لفترة محددة؟              </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
-                add
-                </span>
-              <span class="collapse-toggle ms-4">
-              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
-              </span>
-              </a>
-           </h3>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-           <div class="py-3 fs-4" style="color: #818181;">
+      <div class="border-bottom py-3" id="headingTwo">
+         <h3 class="mb-0 fw-bold">
+            <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <span class="material-symbols-outlined" style="color: #6E6A6A;" >
+              add
+              </span><span class="me-auto" style="color: #6E6A6A;">
+اقدر أسأجر المطبخ لفترة محددة؟              </span>
+            <span class="collapse-toggle ms-4">
+            <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+            </span>
+            </a>
+         </h3>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+         <div class="py-3 fs-4" style="color: #818181;">
 طبعًا تقدر ! تحدد الموعد المرغوب من وإلى متى وقت حجز المطبخ  
-           </div>
-        </div>
+         </div>
+      </div>
 
 
-        <div class="border-bottom py-3 " id="headingThree">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              <span class="me-auto" style="color: #6E6A6A;">
-كيف أعرف إذا صاحب المطبخ موثوق ومعلومات المطبخ صحيحة؟              </span><span class="material-symbols-outlined" style="color: #6E6A6A;" >
-                add
-                </span>
-              <span class="collapse-toggle ms-4">
-              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
-              </span>
-              </a>
-           </h3>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-           <div class="py-3 fs-4" style="color: #818181;">
-            تقدر تشوف تقييمات المستخدمين السابقة للمطبخ 
-           </div>
-        </div>
+      <div class="border-bottom py-3 " id="headingThree">
+         <h3 class="mb-0 fw-bold">
+            <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <span class="material-symbols-outlined" style="color: #6E6A6A;" >
+              add
+              </span><span class="me-auto" style="color: #6E6A6A;">
+كيف أعرف إذا صاحب المطبخ موثوق ومعلومات المطبخ صحيحة؟              </span>
+            <span class="collapse-toggle ms-4">
+            <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+            </span>
+            </a>
+         </h3>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+         <div class="py-3 fs-4" style="color: #818181;">
+          تقدر تشوف تقييمات المستخدمين السابقة للمطبخ 
+         </div>
+      </div>
 
-        
-        <div class="pt-3 " id="headingFour">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              <span class="me-auto" style="color: #6E6A6A;">
-كيف اتواصل مع أصحاب المطابخ قبل الحجز؟              </span> <span class="material-symbols-outlined" style="color: #6E6A6A;" >
-                add
-                </span>
-              <span class="collapse-toggle ms-4">
-              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
-              </span>
-              </a>
-           </h3>
-        </div>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-           <div class="py-3 fs-4" style="color: #818181;">
-            معلومات أصاحب المطابخ موجودة في حال احتجت أي استفسار تقدر تتواصل معهم  
+      
+      <div class="pt-3 " id="headingFour">
+         <h3 class="mb-0 fw-bold">
+            <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+             <span class="material-symbols-outlined" style="color: #6E6A6A;" >
+              add
+              </span><span class="me-auto" style="color: #6E6A6A;">
+كيف اتواصل مع أصحاب المطابخ قبل الحجز؟              </span>
+            <span class="collapse-toggle ms-4">
+            <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+            </span>
+            </a>
+         </h3>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+         <div class="py-3 fs-4" style="color: #818181;">
+          معلومات أصحاب المطابخ موجودة في حال احتجت أي استفسار تقدر تتواصل معهم  
 
-       </div>
-           </div>
-        </div>
+          </div>
+      </div>
+  </div>
         <br><br> <br><br>
         <div class="mt-10 text-center">
            <a href="{% url 'main:contact' %}" class="btn " style="background-color: #272928; "><span style="color: #F4F2EE;"> تواصل معنا </span></a>

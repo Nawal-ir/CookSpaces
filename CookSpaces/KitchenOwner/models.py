@@ -19,7 +19,7 @@ class Kitchen (models.Model):
     kitchen_owner = models.ForeignKey(KitchenOwner,on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)
     desc = models.TextField()
-    poster = models.ImageField(upload_to="images/")
+    image = models.ImageField(upload_to="posters/" ,default='posters/no_image.jpg')
     space = models.FloatField()
     
     has_ventilation = models.BooleanField(default=False)

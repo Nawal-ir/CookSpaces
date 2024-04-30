@@ -78,24 +78,24 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row" style="margin-top: 100px;">
         <div class="col-md-8">
             <h1>All Chife</h1>
             <div class="row">
                 {% for Chife in chife %}
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{Chife.avatar.url }}" class="card-img-top" alt="Chife Image">
-                        <div class="card-body">
-                            <a href="{% url 'Chief:profile' Chife.user.username %}"><h5 class="card-title">{{ Chife.user.first_name}}</h5></a>
-                            <p class="card-text">{{ Chife.about }}</p>
-                            <p class="card-text">{{ Chife.cv }}</p>
+                  <div class="col d-flex justify-content-center" style="justify-items: center;">
+                      <div class="card" style="width: 20rem;">
+                          <img src="{{Chife.avatar.url}}" class="card-img-top" alt="">
+                          <div class="card-body">
+                             <h5 class="card-title">{{Chife.user.first_name}} {{Chife.user.last_name}}</h5>
+                             <div class="d-flex justify-content-end">
+                                  <a href="{% url 'Chief:profile' Chife.user.username %}" class="btn btn-outline-warning" style="color: #6E6A6A;">View Profile</a>
+                             </div>
+                          </div>
+                       </div>
+                  </div>
 
-                            <li><strong>Username:</strong> {{Chife.username }}</li>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+          {% endfor %}
             </div>
         </div>
     </div>
