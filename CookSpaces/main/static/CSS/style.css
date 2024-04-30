@@ -1,5 +1,7 @@
 * {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "El Messiri", sans-serif;
+
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 
 }
 
@@ -129,47 +131,6 @@ section{
 }
 
 
-/* Projects section  */
-
-.project{
-  background-color: rgb(229, 183, 85);
-}
-
-.neom-icon{
-  width: 100px;
-}
-
-.project-name{
-  color: brown;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  font-weight: 500;
-  margin-top: 20px;
-}
-
-.see{
-  display: flex;
-  justify-content: center;
-  color: #3f3f39;
-  border-color: orange;
-  background-color: orange;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 200;
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  transition: 0.3s smooth;
-}
-
-.see:hover{
-  background-color: rgb(234, 205, 155);
-  transform: scale(1);
-}
-
-
 /* regiester section  */
 
 .box{
@@ -180,6 +141,7 @@ section{
   border-radius: 20px;
   margin: 20px;
   }
+
 
 
 /* Our Services  */
@@ -196,19 +158,6 @@ section{
   flex-direction: row;
   flex-wrap: wrap;
 }
-/* 
-.card {
-  background-color: #fff;
-  box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
-  border-radius: 10px;
-  padding: 25px;
-  margin: 15px;
-  transition: 0.3s ease;
-  width: 200px;
-  height: 200px;
-} */
-
-
 
 
 
@@ -298,13 +247,11 @@ section{
 }
 
 
-
-
 /* Regeister section   */
 
 
 .card-regeister {
-  --bg: #7C887B;
+  --bg: #00815b;
   background-color: linear( #F4F2EE , #FFD4DD);
   --hover-bg: #d1cfc2;
   --hover-text: #353433;
@@ -372,58 +319,6 @@ section{
 
 
 
-
-
-
-
-
-/* about section  */
-/* .about{ */
-  /* background-image: url(../images/about2.jpeg); */
-/* } */
-
-
-
-/* .home{
-  background-color: #F8F6EB;
-  margin-top: 70px;
-  margin-bottom: 70px; */
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* overflow: hidden; */
-  /* animation: moveRightLeft 10s infinite;
-} */
-
-
-/* @keyframes moveRightLeft{
-  0%{
-    transform:translateX(0);
-  }
-  50% {
-    transform: translateX(100px);
-
-    }
-  100%{
-    transform: translateX(-100px);
-  }
-} */
-
-
-/* services  */
-/* .ourservices {
-  background-image: url(../images/cloud.png);
-} */
-
-
-
-
-
-
-
-
-
-
-
 /* articla section  */
 
 .notification {
@@ -447,8 +342,8 @@ section{
   content: "";
   inset: 0.0625rem;
   border-radius: 0.9375rem;
-  background: #7C887B;
-  z-index: 2
+  background: #F4F2EE;
+  z-index: 2;
 }
 
 .notification:after {
@@ -467,7 +362,7 @@ section{
 }
 
 .notititle {
-  color: #FEFCE9;
+  color: #00815b;
   padding: 0.65rem 0.25rem 0.4rem 1.25rem;
   font-weight: 500;
   font-size: 1.1rem;
@@ -480,7 +375,7 @@ section{
 }
 
 .notibody {
-  color: #FFD4DD;
+  color: #111;
   padding: 0 1.25rem;
   transition: transform 300ms ease;
   z-index: 5;

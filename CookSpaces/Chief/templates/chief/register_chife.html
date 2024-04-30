@@ -3,6 +3,8 @@
 {% block title %} create Account {% endblock %}
 
 {% block content %}
+
+
 <section>
     {% if msg %}
     <div class="alert alert-danger">{{msg}}</div>
@@ -18,7 +20,7 @@
         </div>
       </div>
 
-    <div class="col-6">
+    <div class="col-6" >
         <form action="{% url 'Chief:register_chife' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style="direction: ltr; padding-top: 20px;">
             {% csrf_token %}
 
@@ -42,9 +44,6 @@
 
         </form>
     </div>
-    <!-- <div class="col-6">
-        <img src="/static/images/signup.jpeg" class="mp-5 rounded-4" style="width: 500px; height: 600px;  margin-left: 20px; margin-bottom: 20px;">
-    </div> -->
 
 </div>
 </section>
