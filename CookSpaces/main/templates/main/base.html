@@ -105,7 +105,9 @@
                   </a>
                   <ul class="dropdown-menu" style="background: #e4e4e4b7;">
                     <li><a class="dropdown-item" href="{% url 'Renters:profile' request.user.id %}">الملف الشخصي</a></li>
+
                     <li><a class="dropdown-item" href="{% url 'Renters:saved_kitchens' %}">مطابخي المحفوظة</a></li>
+
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
                   </ul>

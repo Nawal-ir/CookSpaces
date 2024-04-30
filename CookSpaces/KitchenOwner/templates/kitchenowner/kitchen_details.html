@@ -154,7 +154,42 @@
 <!--sending order-->
 <div class="container">
   <div class="row d-flex justify-content-center">
+
       <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-dark">book</button>
+
+    <div class="col-8">
+      <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post">
+        {% csrf_token %}
+        <h1 class="d-flex justify-content-center">!أرسل طلب استئجار</h1>
+        <div class="d-flex flex-column">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="start_date" class="form-label d-flex justify-content-end">:من</label>
+              <input type="date" name="start_date" id="start_date" class="form-control">
+            </div>
+            <div class="col">
+              <label for="end_date" class="form-label d-flex justify-content-end">:الى</label>
+              <input type="date" name="end_date" id="end_date" class="form-control">
+            </div>
+          </div>
+          <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+          {% if kitchen.is_negotiable %}
+          <!-- يقدر يعدل على السعر-->
+          <input type="text" name="price" value="{{kitchen.price}}">
+          {% else %}
+          <!--فقط يشوف السعر من غير ما يقدر يعدله -->
+          <input type="text" name="price" value="{{kitchen.price}}" readonly>
+          {% endif %}
+          <input type="submit" class="btn btn-primary" value="إرسال">
+          {% if msg %}
+          <div class="alert alert-success" role="alert">
+            {{msg}}
+          </div>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+
   </div>
 
 </div>

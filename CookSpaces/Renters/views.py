@@ -19,8 +19,8 @@ def register_renter(request:HttpRequest):
                 new_user = User.objects.create_user(
                     username=request.POST["username"], 
                     email=request.POST["email"], 
-                    first_name=request.POST["first_name"], 
-                    last_name=request.POST["last_name"], 
+                    first_name=request.POST["first"], 
+                    last_name=request.POST["last"], 
                     password=request.POST["password"]
                     )
                 new_user.save()
@@ -94,6 +94,7 @@ def update_profile(request:HttpRequest, user_id):
 
                 profile.about = request.POST["about"]
                 profile.avatar = request.FILES.get("avatar", profile.avatar)
+                profile.phone = request.POST["phone"]
 
                 profile.save()
 
@@ -116,41 +117,67 @@ def my_order(request:HttpRequest):
 
 
 
-# def checkout_view(request: HttpRequest):
+def accept(request: HttpRequest):
     
-#     if request.method == 'POST':
-#         user = request.user
-#         kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
-#         total_price = sum(item.kitchen.price for item in kitchen)
-#         subject = 'Purchase Invoice'
-#         message = f'السلام عليكم {user.username}, السعر: {total_price}ريال. شكرا لاختيارك خدماتنا! نحن نقدر تفضيلك وثقتك بنا ونتطلع إلى خدمتك مرة أخرى قريبًا.'
-#         send_html_email_to_user(subject, message, user.email)
-#         return render(request, 'renters/my_order.html')
-#     elif:
-#         user = request.user
-#         kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
-#         total_price = sum(item.kitchen.price for item in kitchen)
-#         message = None
-#     else:
-#         kitchen.exists() and kitchen.first().status == 'rejected':
-#         message = 'تم رفض الطلب.'
+    if request.method == 'POST':
+        user = request.user
+        kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
+        total_price = sum(item.kitchen.price for item in kitchen)
+        subject = 'حالة الطلب'
+        message = f'السلام عليكم {user.username}, السعر: {total_price}ريال. شكرا لاختيارك خدماتنا! نحن نقدر تفضيلك وثقتك بنا ونتطلع إلى خدمتك مرة أخرى قريبًا,تم قبول الطلب.'
+        send_html_email_to_user(subject, message, user.email)
+        return render(request, 'renters/my_order.html')
+    else:
+        user = request.user
+        kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
+        total_price = sum(item.kitchen.price for item in kitchen)        
+        return render(request, 'renters/my_order.html', {'kitchen': kitchen, 'total_price': total_price,'message': message})
+
+
+def send_html_email_to_user(subject,msg,user_email):
+    subject = subject
+    message = msg
+    email_from =settings.EMAIL_HOST_USER
+    recipient_list = [user_email]
+
+    email = EmailMessage(subject, message, email_from, recipient_list)
+    email.content_subtype = 'html'  # Enable HTML content
+    try:
+        email.send()
+    except Exception as e:
+        print(e)
+
+
+def reject(request: HttpRequest):
+    
+    if request.method == 'POST':
+        user = request.user
+        kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
+        subject = 'حالة الطلب'
+        message = f'السلام عليكم {user.username}, تم رفض الطلب'
+        send_html_email_to_user(subject, message, user.email)
+        return render(request, 'renters/my_order.html')
+    else:
+        user = request.user
+        kitchen = user.order_set.all()  # Example, replace with actual retrieval logic       
+    return render(request, 'renters/my_order.html', {'kitchen': kitchen,'message': message})
+
+
+def send_html_email_to_user(subject,msg,user_email):
+    subject = subject
+    message = msg
+    email_from =settings.EMAIL_HOST_USER
+    recipient_list = [user_email]
+
+    email = EmailMessage(subject, message, email_from, recipient_list)
+    email.content_subtype = 'html'  # Enable HTML content
+    try:
+        email.send()
+    except Exception as e:
+        print(e)
         
-#     return render(request, 'renters/my_order.html', {'kitchen': kitchen, 'total_price': total_price,'message': message})
-
-
-# def send_html_email_to_user(subject,msg,user_email):
-#     subject = subject
-#     message = msg
-#     email_from =settings.EMAIL_HOST_USER
-#     recipient_list = [user_email]
-
-#     email = EmailMessage(subject, message, email_from, recipient_list)
-#     email.content_subtype = 'html'  # Enable HTML content
-#     try:
-#         email.send()
-#     except Exception as e:
-#         print(e)
-
+        
+        
 def add_remove_saved_view(request: HttpRequest, kitchen_id):
 
     if not request.user.is_authenticated:
