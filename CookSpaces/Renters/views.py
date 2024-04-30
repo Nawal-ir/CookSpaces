@@ -186,31 +186,20 @@ def add_remove_saved_view(request: HttpRequest, kitchen_id):
     try:
         kitchen = Kitchen.objects.get(pk=kitchen_id)
 
-        saved_kitchen = BookMark.objects.filter(user=request.user, kitchen=kitchen).first()
+        saved_kitchens = BookMark.objects.filter(user=request.user, kitchen=kitchen).first()
 
-        if not saved_kitchen:
+        if not saved_kitchens:
             saved = BookMark(user=request.user, kitchen=kitchen)
             saved.save()
         else:
-            saved_kitchen.delete()
+            saved_kitchens.delete()
     
     except Exception as e:
         print(e)
 
-    return render(request, 'renters/saved_kitchens.html',kitchen_id=kitchen_id)
+    return redirect("KitchenOwner:kitchen_details", kitchen_id=kitchen_id)
 
-def saved_kitchens(request:HttpRequest , kitchen_id):
-        message = None
-        try:
-            kitchen = Kitchen.objects.get(pk=kitchen_id)
-            is_saved=request.user.is_authenticate and BookMark.objects.filter(user=request.user, kitchen=kitchen).exists()
-        except Kitchen.DoesNotExist:
-            return render(request, "404.html")
-        except Exception as e:
-            message = f"Something went wrong {e}"            
-            print(e)
-        
+def saved_kitchens(request:HttpRequest):
 
-        return render(request, "renters/kitchen_datails.html", {"kitchen" :  kitchen,"is_saved" : is_saved, "message" : message})
-
+        return render(request, "renters/saved_kitchens.html")
     

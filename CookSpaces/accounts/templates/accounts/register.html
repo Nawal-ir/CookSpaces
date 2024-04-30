@@ -7,96 +7,47 @@
 {% endblock %}
 {% block content %}
 
-<!-- <section>
-    <div class="container">   
-
-        <h1 class="fw-light text-blak" style="margin-top: 150px;margin-bottom: 20px; text-align: center;">Sign Up</h1>
-        <div class="row">
-            <div class="col-6 d-flex justify-content-center gap-4" style="width: auto; margin-left: 200px;">
-                <div class="p-4 rounded-4" style="border-left: 5px groove; border-right: 5px groove;">
-                    <a style="text-decoration: none; color: black;" href="{% url 'KitchenOwner:register_owner' %}"><h1>Kitchen Owner</h1></a>
-                </div>
-
-                <div class="p-4 rounded-4" style="border-left: 5px groove; border-right: 5px groove;">
-                    <a style="text-decoration: none; color: black;" href="{% url 'Renters:register_renter' %}"><h1>Renters</h1></a>
-                </div>
-
-                <div class="p-4 rounded-4" style="border-left: 5px groove; border-right: 5px groove;">
-                    <a style="text-decoration: none; color: black;" href="{% url 'Chief:register_chife' %}"><h1>Chief</h1></a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section> -->
-
-
-
 <!-- Regeister section  -->
 
-<section style="position:flex; flex-direction: column; background-color: #fff ;" >
-    <div class="col">
-        <h1 style="font-size: 400%; text-align: center; padding-right: 50px; padding-top: 70px;"><u class="text-warning"><span style="color: #111;"  > ابدأ رحلتك الآن </span></u></h1>
-    </div>
-    <div style="background-color: #fff; padding: 50px; border-radius: 30px; " >
-        <div class="row">
-            <div class="col">
-                <div class="row " style="padding-left: 100px; border-radius: 20px;">
-    
-                  <div class="col-4" style="color: #F8F6EB;">
+
+  <section style="padding-top:250px;">
+    <div class="row" style="background-color: #F4F2EE; padding: 70px; border-radius: 30px;">
+        <div class="col-8" style="display: flex; justify-content: space-evenly;">
+            <div class="row d-flex justify-content-center">
+                <div class="col-6">
                     <div class="card-regeister">
                         <div class="icon-regeister">
-                            <img src="/static/images/chefhat.png" alt="" style="width: 30px;">
+                            <img src="/static/images/restaurant.png" alt="" style="width: 30px;">
                         </div>
-                        <strong> مستعد للعمل كـ شيف؟
+                        <strong> تفكر تفتح مطعم سحابي؟
                         </strong>
                         <div class="card__body" style="color:#FFD4DD">
                             ! مكانك هنا
                         </div>
-                        <a href="{% url 'Chief:register_chife' %}"><span>سجٌل معنا</span></a>
-                        
+                        <a href="{% url 'Renters:register_renter' %}"><span>سجٌل معنا</span></a>
                     </div>
                 </div>
-    
-                    <div class="col-4" style="color: #F8F6EB;">
-                        <div class="card-regeister">
-                            <div class="icon-regeister">
-                                <img src="/static/images/kitchenicon.png" alt="" style="width: 30px;">
-                            </div>
-                            <strong> عندك مطبخ وبتعرضه للايجار؟
-                            </strong>
-                            <div class="card__body" style="color:#FFD4DD">
-                                ! مكانك هنا
-                            </div>
-                          <a href="{% url 'KitchenOwner:register_owner' %}"><span>سجٌل معنا</span></a>  
+                <div class="col-6">
+                    <div class="card-regeister">
+                        <div class="icon-regeister">
+                            <img src="/static/images/kitchenicon.png" alt="" style="width: 30px;">
                         </div>
-                    </div>
-    
-                    
-                    <div class="col-4" style="color: #F8F6EB;">
-                        <div class="card-regeister">
-                            <div class="icon-regeister">
-                                <img src="/static/images/restaurant.png" alt="" style="width: 30px;">
-                            </div>
-                            <strong> تفكر تفتح مطعم سحابي؟
-                            </strong>
-                            <div class="card__body" style="color:#FFD4DD">
-                                ! مكانك هنا
-                            </div>
-                            <a href="{% url 'Renters:register_renter' %}"><span>سجٌل معنا</span></a>
+                        <strong> عندك مطبخ وبتعرضه للايجار؟
+                        </strong>
+                        <div class="card__body" style="color:#FFD4DD">
+                            ! مكانك هنا
                         </div>
+                      <a href="{% url 'KitchenOwner:register_owner' %}"><span>سجٌل معنا</span></a>  
                     </div>
-    
                 </div>
             </div>
-
+        </div>
+        <div class="col-4">
+            <div>
+                <h1 style="font-size: 300%; text-align: center; padding-top: 70px;"><u class="text-warning"><span style="color: #111;"  > ابدأ رحلتك الآن </span></u></h1>
+            </div>
         </div>
     </div>
-    
-    </section>
+  </section>
 
-
-
-
-    s
 {% endblock %}

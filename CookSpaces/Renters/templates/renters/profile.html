@@ -42,7 +42,7 @@
 
 .card{
     border:none;
-    width: 800px;
+    width: 735px;
     position:relative;
     border-radius:8px;
     cursor:pointer;
@@ -162,29 +162,21 @@
     </div>
 </div>       
 </section> -->
-<section >
-  <div class="container " >
-    
-    <div class="row d-flex justify-content-center" style="margin-right: 450px; width: 900px;">
+<section>    
+    <div class="row">
         
         <div class="col-md-7">
             
-            <div class="card p-3 py-4">
-                <div class=" d-flex justify-content-end align-items-center " >
-                    {% if request.user == user_profile %}
-                        <!-- <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a> -->
-                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-outline-warning"><i class="material-symbols-outlined">edit_square</i> </a>
-                        
-                    {% endif %}
-                </div>
+            <div class="card">
+                
                 <div class="text-center">
                   <img src="{{ user_profile.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
-                  <h5 class="mt-3">@{{user_profile.username}}</h5>
-                  
+                  <h5>@{{user_profile.username}}</h5>
+
                 </div>
                 
-                <div class="text-center mt-3 mb-5">
-                    
+                <div class="text-center mt-3">
+                    <span class="bg-secondary px-3 rounded text-white">Pro</span>
                     <h3 style="text-transform: capitalize;">{{user_profile.first_name}} {{ user_profile.last_name}}</h3>
                     <a href="mailto:{{user_profile.email}}">{{ user_profile.email }}</a>
                     <a href="tel:{{user_profile.phone}}">{{ user_profile.phone }}</a>
@@ -207,14 +199,17 @@
                 
                
                 
-                
+                <div class=" d-flex justify-content-center align-items-center" >
+                    {% if request.user == user_profile %}
+                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
+                    {% endif %}
+                </div>
             </div>
             
         </div>
         
     </div>
     
-  </div>
 </section>
 
 
