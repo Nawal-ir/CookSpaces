@@ -181,6 +181,6 @@ def order_details(request : HttpRequest,order_id):
 
     return render(request,"KitchenOwner/order_details.html",{"order":order})
 
-def final_order(request :HttpRequest):
+def final_offer(request :HttpRequest):
     
     return render(request,"KitchenOwner/final_offer.html")
