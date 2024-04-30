@@ -10,106 +10,115 @@
     background-color:cyan;
 }
 </style>
-<section>
-    <div class="container my-5">
-<div class="row ">
-    <div class="col-4 my-5">
-            <form action="{% url "KitchenOwner:add_kitchen"  %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <h4>Add Kitchen:</h4>
-                <div class="d-flex flex-column gap-1 ">
-                <!--title-->
-                <label for="title">Title</label>
-                <input type="text" name="title" placeholder="Title">
-                <!--Description-->
-                <textarea name="desc" cols="30" rows="5" placeholder="Description:"></textarea>
-                <!--poster-->
-                <label for="poster">Add Poster</label>
-                <input type="file" accept="image/*" name="poster">
-                <!--space-->
-                <label for="space">Space in m<sup>2</label>
-                <input type="text" name="space">
-                <!--equipments-->
-                {% for e in equipments %}
-                <div class="d-flex gap-2">
-                    <input type="checkbox" name="equipments" id="{{e.id}}" value="{{e.id}}" />
-                    <label for="{{e.id}}" class="d-flex align-items-center gap-1">
-                        <span class="material-symbols-outlined">{{e.icon}}</span>
-                        <h5 class="m-0 p-0">{{e.name}}</h5>
-                    </label>
-                </div>
-                {% endfor %}
 
-                    <hr>
-                <!--has_ventilation-->
-                <div class="d-flex gap-2 ">
-                <input type="checkbox" name="has_ventilation" value="True"> Has Ventilation<br>
-                </div>
-                <!--has_toilet-->
-                <div class="d-flex gap-2 ">
-                <input type="checkbox" name="has_toilet" value="True"> Has Toilet<br>
-                </div>
 
-                <!--has_storage-->
-                <div class="d-flex gap-2 ">
-                <input type="checkbox" name="has_storage" value="True"> Has Storage<br>
-                </div>
 
-                <!--has_waitingarea-->
-                <div class="d-flex gap-2 ">
-                <input type="checkbox" name="has_waitingarea" value="True"> Has Waiting Area<br>
-                </div>
+<section style="padding-top:150px;">
+    <h2 class=" title h1 fw-bold"> <u class="text-warning"><span style="color: #00815b; margin-top: 500px; ">   إضافة مطبخ </span></u></h2>
 
-                <hr>
-                <div class="d-flex flex-column gap-2 my-2">
-                <!--loc_latitude-->
-                <input type="text" name="loc_latitude" placeholder="loc_latitude" id="lat" hidden>
-                <!--loc_longitude-->
-                <input type="text" name="loc_longitude" placeholder="loc_longitude" id="lng" hidden>
-                </div>  
+    <div class="row" >
+        <div class="col-6 " style="background-color: #F4F2EE; padding: 50px;">
+            <h5 style="direction: rtl;">خدمات</h5>
+            {% for e in equipments %}
+            <div class="d-flex gap-2" style="direction: rtl;">
+                <input type="checkbox" name="equipments" id="{{e.id}}" value="{{e.id}}" />
+                <label for="{{e.id}}" class="d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined">{{e.icon}}</span>
+                    <h5 class="m-0 p-0">{{e.name}}</h5>
+                </label>
+            </div>
+            {% endfor %}
+            
+            <!--has_ventilation-->
+            <div class="d-flex gap-2 " style="direction: rtl;">
+            <input type="checkbox" name="has_ventilation" value="True"> تهوية<br>
+            </div>
+            <!--has_toilet-->
+            <div class="d-flex gap-2 " style="direction: rtl;" >
+            <input type="checkbox" name="has_toilet" value="True">  دورة مياة<br>
+            </div>
+            
+            <!--has_storage-->
+            <div class="d-flex gap-2 " style="direction: rtl;">
+            <input type="checkbox" name="has_storage" value="True"> مخزن<br>
+            </div>
+            
+            <!--has_waitingarea-->
+            <div class="d-flex gap-2 " style="direction: rtl;">
+            <input type="checkbox" name="has_waitingarea" value="True"> استراحة<br>
+            </div>
+            <br>
+              <!--is_negotiable-->
+            <div style="direction: rtl;">
+                <h5>السعر قابل للتفاوض</h5>
+                <input type="radio" name="is_negotiable" value="True">
+                <label for="html">نعم</label><br>
+                <input type="radio" name="is_negotiable" value="False">
+                <label for="css">لا</label><br>
+            </div>   
+            <br>
                 <!--price-->
-                <div class="d-felx">
-                <label for="price">Price</label>
-                <input type="text" name="price">SAR<br>
-                <!--period-->
-                <select name="period">
-                    <option value="Monthly">Monthly</option>
-                    <option value="Annually">Annually</option>
+                <h5 style="direction: rtl;">السعر</h5>
+                <label for="price" >ريال سعودي  <input class="text-end" type="text" name="price" style="direction: rtl; border-radius: 30px; "><br></label>
+            <div style="direction: rtl; ">
+                <br>
+                <h5>المدينة</h5>
+                <select name="city" class="form-select" required style="border-radius: 30px;">
+                    {% for city,val in city %}
+                        <option value="{{val}}">{{city}}</option>
+                    {% endfor %}
                 </select>
-                </div> 
+            </div>
+        </div>
 
-                  <!--is_negotiable-->
-                <div class="mt-5">
-                    <h5>السعر قابل للتفاوض</h5>
-                    <input type="radio" name="is_negotiable" value="True">
-                    <label for="html">نعم</label><br>
-                    <input type="radio" name="is_negotiable" value="False">
-                    <label for="css">لا</label><br>
-                </div>   
 
-                <!--city-->
-                <div class="">
-                    <h5>city</h5>
-                    <select name="city" class="form-select" required>
-                        {% for city,val in city %}
-                            <option value="{{val}}">{{city}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+        <div class="col-6 " style="background-color: #F4F2EE; padding: 50px; ">
+            <form action="{% url 'KitchenOwner:add_kitchen'  %}" method="post" enctype="multipart/form-data" style="direction: rtl;">
+                {% csrf_token %}
+                <div class="d-flex flex-column gap-1 "> 
+                <!--title-->
+                 <h5>  <label for="title">تصنيف المطبخ</label> </h5>  
+                <input type="text" name="title" placeholder="" style="border-radius: 30px;">
+                <!--Description-->
+                <textarea name="desc" cols="30" rows="5" placeholder="     وصف     " style="direction: rtl; border-radius: 30px;"></textarea>
+                <br>
+                <h5>  <label for="poster">صورة المطبخ</label> </h5> 
+                <input type="file" accept="image/*" name="poster" aria-label="اختر صورة">
+                <br>
+                <!--space-->
+                <h5><label for="space" >المساحة بالمتر<sup>2</label></h5> 
+                <input type="text" name="space" style="border-radius: 30px;">
+            </div>
+            <div style="direction: rtl;">
+                <br>
+                <h5>مدة الاستئجار</h5>
+                <select class="form-select" name="period" style=" border-radius: 30px; ">
+                    <option value="Monthly" >شهري  </option>
+                    <option value="Annually">سنوي  </option>
+                </select>
+            </div>
+
+        </div>
         
+    <div class="row">
+        <div class="col text-center">
+                <br>
+                <br>
+            <div id="map"></div>
+            <input type="submit" class="btn btn-outline-warning" value="Add" style="color: #00815b;margin-top: 30px;">
+         </div>
 
-                <div id="map"></div>
-
-                <input type="submit" class="btn btn-primary" value="Add">
-             </div>
-
-             
-
-            </form>
+        </div>
     </div>
-</div>
-</div>
 </section>
+
+
+
+
+
+
+
+
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1xTP268Ltwj4NX1Hku24XNFPJNZ-kTSQ&callback=initMap" async defer></script>
