@@ -94,7 +94,6 @@ def add_kitchen(request :HttpRequest):
         lng = float(request.POST["loc_longitude"])
         kitchen = Kitchen(
             kitchen_owner = request.user.kitchenowner,
-            kitchen_owner = request.user.kitchenowner,
             title = request.POST["title"],
             desc = request.POST["desc"],
             poster = request.FILES.get("poster"),
