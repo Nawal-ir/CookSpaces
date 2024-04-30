@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% block title %}CookSpaces | profile{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+<section>
+    {% if msg %}
+        <div class="alert alert-danger">{{msg}}</div>
+    {% endif %}
+    <div class="row justify-content-end mx-5">
+        <div class="col-6">
+            <form action="{% url 'renters:profile_update' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
+                 {% csrf_token %}
+
+                <input name="first_name" class="form-control" type="text" minlength="3" required placeholder="First Name" value="{{user.first_name}}"/>
+                <input name="last_name" class="form-control" type="text" minlength="3" required placeholder="Last Name" value="{{user.last_name}}"/>
+                <input name="email" class="form-control" type="email" minlength="3" required placeholder="Email" value="{{user.email}}"/>
+                <textarea name="about" class="form-control" placeholder="about yourself">{{user.profile.about}}</textarea>
+            </form>
+        </div>
+        <div class="col-5">
+            <form action="{% url 'Renters:update_profile' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h4>Choose Avatar:</h4>
+                <img src="{{user.profile.avatar.url}}" class="avatar" style="width: 100px;" />
+                <input type="file" class="form-control" name="avatar" />
+                <input type="submit" class="btn btn-warning" value="Update Profile" />
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

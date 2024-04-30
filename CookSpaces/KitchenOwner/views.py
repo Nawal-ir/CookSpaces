@@ -85,6 +85,7 @@ def update_owner_profile(request :HttpRequest,owner_username):
     return render(request,"KitchenOwner/update_owner_profile.html",{"owner":owner,"msg":msg})
 
 def add_kitchen(request :HttpRequest):
+def add_kitchen(request :HttpRequest):
     
     equipments = Equipment.objects.all()
     
@@ -93,6 +94,7 @@ def add_kitchen(request :HttpRequest):
         lat =  float(request.POST["loc_latitude"])
         lng = float(request.POST["loc_longitude"])
         kitchen = Kitchen(
+            kitchen_owner = request.user.kitchenowner,
             kitchen_owner = request.user.kitchenowner,
             title = request.POST["title"],
             desc = request.POST["desc"],

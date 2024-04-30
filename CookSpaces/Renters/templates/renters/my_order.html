@@ -6,6 +6,26 @@
 {% endblock %}
 
 {% block content %}
+	<section class="all mb-5" style="direction: rtl;">
+		<div class="container">
+			<div class="row g-4">
+				<div class="col-12 mb-3">
+					
+					<div class="d-flex justify-content-center  align-items-center mt-4">
+						<div class="d-flex gap-2">
+							<a href="{% url 'Renters:my_order' %}" class="p-2 ps-3 pe-3 rounded-pill cat  text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
+							
+							{% for val, key in status %}
+								<a href="?cat={{val}}" class="p-2 ps-3 pe-3 rounded-pill cat {% if request.GET.cat == val %} {{ val }} {% endif %} text-decoration-none "  style="color: rgb(3, 53, 36);">{{val}}</a>
+							{% endfor %}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<section>
 
-
+</section>
 {% endblock %}
