@@ -15,6 +15,6 @@ urlpatterns  = [
  path("<order_id>/reject/order/",views.reject_order,name="reject_order"),
  path("<order_id>/accept/order/",views.accept_order,name="accept_order"),
  path("<order_id>/order/details/",views.order_details,name="order_details"),
- path("final/offer/",views.final_offer,name="final_offer")
+ path("final/offer/",views.final_order,name="final_offer")
   
 ]   
