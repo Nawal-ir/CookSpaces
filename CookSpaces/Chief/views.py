@@ -101,4 +101,3 @@ def update_user_view(request: HttpRequest):
             print(e)
 
     return render(request, "chief/update.html", {"user_info":user_info, "msg" : msg})
-

@@ -22,16 +22,20 @@
                 {% csrf_token %}
 
                 
-                
-                <input name="username" class="form-control" type="text" minlength="3" required placeholder="Username" />
-                <input name="first_name" class="form-control" type="text" minlength="3" required placeholder="First Name" />
-                <input name="last_name" class="form-control" type="text" minlength="3" required placeholder="Last Name" />
-                <input name="email" class="form-control" type="email" minlength="3" required placeholder="Email" />
-                <input name="phone" class="form-control" type="number" minlength="3" required placeholder="phone" />
+            <input name="username" class="form-control" type="text" minlength="3" required placeholder="اسم المستخدم" style="direction: rtl;"/>
+            <input name="first_name" class="form-control" type="text" minlength="3" required placeholder="الاسم الاول" style="direction: rtl;"/>
+            <input name="last_name" class="form-control" type="text" minlength="3" required placeholder="الاسم الاخير" style="direction: rtl;"/>
+            <input name="email" class="form-control" type="email" minlength="3" required placeholder="الايميل" style="direction: rtl;"/>
+            <input name="phone" class="form-control" type="number" minlength="3" required placeholder="رقم الجوال" style="direction: rtl;"/>
 
-                <textarea name="about" class="form-control" placeholder="about yourself"></textarea>
-                <h4>CV:</h4>
-                <input type="file" class="form-control" name="cv" />
+            <textarea name="about" class="form-control" placeholder=" تحدث عن نفسك" style="direction: rtl;"></textarea>
+            <h6 style="direction: rtl;">السيرة الذاتية</h6>
+            <input type="file" class="form-control" name="cv" style="direction: rtl;"/>
+
+
+            <h6 style="direction: rtl;">اختر صورة</h6>
+            <input type="file" class="form-control" name="avatar" style="direction: rtl;"/>
+
 
                 <textarea class="form-control" name="about" placeholder="About you..">{{ request.user.profile.about }}</textarea>
                 <div class="d-flex align-items-center gap-2 ">
