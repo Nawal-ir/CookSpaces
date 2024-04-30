@@ -85,7 +85,6 @@ def update_owner_profile(request :HttpRequest,owner_username):
     return render(request,"KitchenOwner/update_owner_profile.html",{"owner":owner,"msg":msg})
 
 def add_kitchen(request :HttpRequest):
-def add_kitchen(request :HttpRequest):
     
     equipments = Equipment.objects.all()
     
