@@ -66,15 +66,15 @@ body{
     height: 600px;
     direction: rtl;
     width: 70%;
-    margin-bottom: 400px;">
+    margin-bottom: 130px;">
 
-    <div class="container" style="background-color: #F4F2EE; padding: 30px; border-radius: 20px; border: 20px; width: 600px; height: 500px; margin-left: 300px;  margin-top: 100px; ">   
+    <div class="container" style="background-color: #F4F2EE; padding: 30px; border-radius: 20px; border: 20px; width: 600px; height: 500px; margin-left: 300px;  margin-top: 10px; ">   
         {% if msg %}
         <div class="alert alert-danger">{{msg}}</div>
         {% endif %}
         <h1 class="mb-3" style="margin-top: 50px; margin-right: 30px;">تسجيل دخول</h1>
         <div class="row">
-            <div class="col-11" style=" margin-bottom: 100px; margin-right: 30px;  margin-top: 50px;">
+            <div class="col" style=" margin-bottom: 100px; margin-right: 30px;  margin-top: 50px;">
 
                 <form action="{% url 'accounts:login' %}" method="post" class="d-flex flex-column gap-2 ">
                     {% csrf_token %}
@@ -87,15 +87,6 @@ body{
                 </form>
                 
             </div>
-          
-            <div class="col-6">
-                <div class="mb-6 mb-lg-0" style="background-color: #FFD4DD; border-radius: 60px;">
-                  <div class="mb-2" style="margin-right: 50px; " >
-                    <img src="/static/images/whyus.jpeg" alt="certificate" class="img-fluid w-100" style="border-radius: 30px;">
-                  </div>
-        
-                </div>
-              </div>
           
           </div>
       

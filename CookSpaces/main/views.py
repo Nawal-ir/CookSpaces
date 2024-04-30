@@ -10,23 +10,9 @@ def home(request:HttpRequest):
     if request.user.is_authenticated:
         print(request.user.first_name)
     
-    return render(request, "main/home.html")
-
-def all_kitchen(request:HttpRequest):
-    
     kitchens = Kitchen.objects.all()
     
-    #calculate the page content
-    limit = 4
-    pages_count = [str(n) for n in range(1, math.ceil(kitchens.count()/limit)+1)] #use list comprehension to convert number to string number
-    start = (int(request.GET.get("page", 1))-1)*limit
-    end = (start)+limit
-    
-    #apply the limit/slicing
-    kitchens = kitchens[start:end]
-
-    # print(start, end)
-    return render(request, "main/all_kitchen.html", {"kitchens" : kitchens, "pages_count":pages_count})
+    return render(request, "main/home.html",  {"kitchens":kitchens})
 
 def delete_kitchen(request:HttpRequest, kitchen_id):
 

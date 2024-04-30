@@ -84,7 +84,7 @@ def update_owner_profile(request :HttpRequest,owner_username):
     
     return render(request,"KitchenOwner/update_owner_profile.html",{"owner":owner,"msg":msg})
 
-def add_kitchen(request :HttpRequest, owner_id):
+def add_kitchen(request :HttpRequest):
     
     equipments = Equipment.objects.all()
     
@@ -93,10 +93,10 @@ def add_kitchen(request :HttpRequest, owner_id):
         lat =  float(request.POST["loc_latitude"])
         lng = float(request.POST["loc_longitude"])
         kitchen = Kitchen(
-            kitchen_owner = KitchenOwner.objects.get(id=owner_id),
+            kitchen_owner = request.user.kitchenowner,
             title = request.POST["title"],
             desc = request.POST["desc"],
-            poster = request.FILES.get("poster"),
+            image = request.FILES.get("poster", Kitchen.image.field.default),
             space = request.POST["space"],
             
             #py default False 
@@ -105,16 +105,17 @@ def add_kitchen(request :HttpRequest, owner_id):
             has_storage = request.POST.get("has_storage", False),
             has_waitingarea = request.POST.get("has_waitingarea", False),
             price = request.POST["price"],
-            #choices:
+            is_negotiable =request.POST["is_negotiable"],
             loc_latitude = lat,
             loc_longitude = lng,
+            city = request.POST.get("city"),
             period = request.POST.get("period"),
             status = "pending"
         )
         kitchen.save()
         kitchen.equipment.set(request.POST.getlist("equipments",[]))
         
-    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"owner_id":owner_id})
+    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"city":Kitchen.cities.choices})
 
 def update_kitchen(request :HttpRequest):
     pass 
@@ -176,5 +177,5 @@ def accept_order(request : HttpRequest, order_id):
 
 def order_details(request : HttpRequest,order_id):
     order = Order.objects.get(id=order_id)
-    
+
     return render(request,"KitchenOwner/order_details.html",{"order":order})

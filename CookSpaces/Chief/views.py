@@ -41,9 +41,9 @@ def register_chife(request:HttpRequest):
     return render(request, "chief/register_chife.html", {"msg" : msg})
 
 
-def  profile_view(request:HttpRequest, user_id):
+def  profile_view(request:HttpRequest, user_name):
     try:
-        user_object = User.objects.get(pk=user_id)
+        user_object = User.objects.get(username = user_name)
         
     except:
         return render(request, "404.html")
@@ -61,6 +61,43 @@ def all_chief_view(request: HttpRequest):
 
 
 def update_user_view(request: HttpRequest):
-    return render(request,"chief/update.html")
+    msg = None
 
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
+    
+    try: 
+        user_info = User.objects.get(pk=user_id)
+    except:
+        return render(request, "404.html")
+    
+    if request.method == "POST":
+        
+        try:
 
+            with transaction.atomic():
+                user:User = request.user
+
+                user.first_name = request.POST["first_name"]
+                user.last_name = request.POST["last_name"]
+                user.email = request.POST["email"]
+
+                user.save()
+                
+                try:
+                    profile:Renter= user.renter
+                except Exception as e:
+                    profile =Renter(user=user)
+
+                profile.about = request.POST["about"]
+                profile.avatar = request.FILES.get("avatar", profile.avatar)
+
+                profile.save()
+
+                return redirect("Chief:profile", user_id=user.id)
+
+        except Exception as e:
+            msg = f"Something went wrong {e}"
+            print(e)
+
+    return render(request, "chief/update.html", {"user_info":user_info, "msg" : msg})

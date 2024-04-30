@@ -5,7 +5,7 @@
 {% block content %}
 <style>
 #map {
-    width=100%;
+    width:100%;
     height: 300px;
     background-color:cyan;
 }
@@ -14,7 +14,7 @@
     <div class="container my-5">
 <div class="row ">
     <div class="col-4 my-5">
-            <form action="{% url "KitchenOwner:add_kitchen" owner_id %}" method="post" enctype="multipart/form-data">
+            <form action="{% url "KitchenOwner:add_kitchen"  %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h4>Add Kitchen:</h4>
                 <div class="d-flex flex-column gap-1 ">
@@ -77,6 +77,26 @@
                     <option value="Annually">Annually</option>
                 </select>
                 </div> 
+
+                  <!--is_negotiable-->
+                <div class="mt-5">
+                    <h5>السعر قابل للتفاوض</h5>
+                    <input type="radio" name="is_negotiable" value="True">
+                    <label for="html">نعم</label><br>
+                    <input type="radio" name="is_negotiable" value="False">
+                    <label for="css">لا</label><br>
+                </div>   
+
+                <!--city-->
+                <div class="">
+                    <h5>city</h5>
+                    <select name="city" class="form-select" required>
+                        {% for city,val in city %}
+                            <option value="{{val}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+        
 
                 <div id="map"></div>
 
