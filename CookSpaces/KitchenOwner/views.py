@@ -131,7 +131,7 @@ def kitchen_details(request :HttpRequest,kitchen_id):
         print(e)
         
     return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved})
-    
+        
 def all_kitchens(request :HttpRequest):
     kitchens = Kitchen.objects.all()
     

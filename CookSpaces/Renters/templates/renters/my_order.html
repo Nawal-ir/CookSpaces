@@ -1,8 +1,16 @@
 {% extends 'main/base.html' %}
 {% block title %}CookSpaces | order{% endblock %}
 
-{% block style %}
-
+{% block styles %}
+<style>
+	
+    .panel-title {display: inline;font-weight: bold;}
+    .checkbox.pull-right { margin: 0; }
+    .pl-ziro { padding-left: 0px; }
+	.pay{
+		direction: rtl;
+	}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -26,6 +34,66 @@
 		</div>
 	</section>
 <section>
-
+	<!-- <div class="card" style="width: 20rem;">
+		<img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
+		<div class="card-body">
+		   <h5 class="card-title">Card title</h5>
+		   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		   <a href="#" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
+		</div>
+	 </div> -->
+</section>
+<section class="pay">
+    <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+          عملية الدفع
+        </button>
+      </p>
+      <div >
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width: 400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    تفاصيل الدفع
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form method="post" action="{% url 'Renters:my_order' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group mt-5">
+                                        <label for="cardNumber ">رقم البطاقة </label>
+                                        <input type="text" class="form-control" name="card_number" id="cardNumber" placeholder="رقم بطاقة صالح" required autofocus />
+                                    </div>
+									<div class="row mt-3">
+										<label for="expityMonth ">تاريخ الانتهاء</label>
+										<div class="col form-group">
+											<input type="text" class="form-control mb-3" name="expired_month" id="expityMonth" placeholder="MM" required />
+										</div>
+										<div class="col form-group">
+										    <input type="text" class="form-control mb-3" name="expired_year" id="expityYear" placeholder="YY" required />
+									    </div>
+									</div>
+                                    <div class="form-group">
+                                        <label for="cvCode ">cvv</label>
+                                        <input type="password" class="form-control" name="cvv" id="cvCode" placeholder="cvv" required />
+                                    </div>
+									<div>
+										<h4>القيمة</h4>
+									</div>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
 </section>
 {% endblock %}

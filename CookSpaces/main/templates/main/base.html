@@ -100,7 +100,7 @@
                      <strong>{{request.user.username }}</strong> مرحبا
                   </a>
                   <ul class="dropdown-menu" style="background: #e4e4e4b7;">
-                    <li><a class="dropdown-item" href="{% url 'Renters:profile' %}">الملف الشخصي</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Renters:profile' request.user.id %}">الملف الشخصي</a></li>
                     <li><a class="dropdown-item" href="">مطابخي المحفوظة</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
@@ -127,7 +127,7 @@
 
             {% else %}
             <div >
-              <a href="{% url 'main:home' %}" style="color: #02020b; text-decoration: none;"  >تسجيل جديد</a>
+              <a href="{% url 'accounts:register' %}" style="color: #02020b; text-decoration: none;"  >تسجيل جديد</a>
               /
               <a href="{% url 'accounts:login' %}" style="color: #02020b; text-decoration: none;">تسجيل دخول</a>
             </div>

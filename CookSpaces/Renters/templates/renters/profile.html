@@ -42,11 +42,13 @@
 
 .card{
     border:none;
-    width: 1000px;
+    width: 800px;
     position:relative;
     border-radius:8px;
     cursor:pointer;
-    margin-left: 200px;
+    margin-right: 300px;
+    padding-right: 100px;
+
 }
 
 .card:before{
@@ -57,8 +59,9 @@
     top:0;
     width:4px;
     height:100%;
-    background-color:#E1BEE7;
+    background-color:#5fe4bc;
     transform:scaleY(1);
+    
     transition:all 0.5s;
     transform-origin: bottom
 }
@@ -71,7 +74,7 @@
     top:0;
     width:4px;
     height:100%;
-    background-color:#8E24AA;
+    background-color:#00815b;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
@@ -92,33 +95,23 @@
     justify-content:center;
     padding:0;
 }
-
+/* 
 .social-list li{
     padding:10px;
     color:#8E24AA;
     font-size:19px;
 }
 
+.buttons button {
 
-.buttons button:nth-child(1){
-       border:1px solid #8E24AA !important;
-       color:#8E24AA;
-       height:40px;
-}
+    margin-right: 20px; /* إضافة مسافة بين الأزرار */
+    /* text-decoration: none;
+    background-color: black;
+    
+    
 
-.buttons button:nth-child(1):hover{
-       border:1px solid #8E24AA !important;
-       color:#fff;
-       height:40px;
-       background-color:#8E24AA;
-}
+} */ 
 
-.buttons button:nth-child(2){
-       border:1px solid #8E24AA !important;
-       background-color:#8E24AA;
-       color:#fff;
-        height:40px;
-}
 </style>
 {% endblock %}
 
@@ -169,29 +162,32 @@
     </div>
 </div>       
 </section> -->
-<section>
-  <div class="container mt-5">
+<section >
+  <div class="container " >
     
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center" style="margin-right: 450px; width: 900px;">
         
         <div class="col-md-7">
             
             <div class="card p-3 py-4">
-                
+                <div class=" d-flex justify-content-end align-items-center " >
+                    {% if request.user == user_profile %}
+                        <!-- <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a> -->
+                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-outline-warning"><i class="material-symbols-outlined">edit_square</i> </a>
+                        
+                    {% endif %}
+                </div>
                 <div class="text-center">
                   <img src="{{ user_profile.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
-                  <h5>@{{user_profile.username}}</h5>
-                  <div class=" d-flex justify-content-end align-items-center mt-5" >
-                      {% if request.user == user_profile %}
-                          <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
-                      {% endif %}
-                  </div>
+                  <h5 class="mt-3">@{{user_profile.username}}</h5>
+                  
                 </div>
                 
-                <div class="text-center mt-3">
-                    <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
+                <div class="text-center mt-3 mb-5">
+                    
                     <h3 style="text-transform: capitalize;">{{user_profile.first_name}} {{ user_profile.last_name}}</h3>
                     <a href="mailto:{{user_profile.email}}">{{ user_profile.email }}</a>
+                    <a href="tel:{{user_profile.phone}}">{{ user_profile.phone }}</a>
                     
                     
                     <div class="px-4 mt-1">
@@ -199,18 +195,11 @@
                     
                     </div>
                     
-                     <ul class="social-list">
-                        <li><i class="fa fa-facebook"></i></li>
-                        <li><i class="fa fa-dribbble"></i></li>
-                        <li><i class="fa fa-instagram"></i></li>
-                        <li><i class="fa fa-linkedin"></i></li>
-                        <li><i class="fa fa-google"></i></li>
-                    </ul>
+                     
                     
-                    <div class="buttons">
-                        
-                        <button class="btn btn-outline-primary px-4">Message</button>
-                        <button class="btn btn-primary px-4 ms-3">Contact</button>
+                    <div class="buttons mt-5">
+                            <a href="{% url 'Renters:my_order' %} " class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> طلباتي</span></a>
+                            <a href="{% url 'Renters:saved_kitchens' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> المطابخ المحفوظة</span></a>
                     </div>
                     
                     
@@ -227,4 +216,6 @@
     
   </div>
 </section>
+
+
 {% endblock %}
