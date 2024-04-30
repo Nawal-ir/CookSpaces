@@ -15,7 +15,7 @@ class Order(models.Model):
     note = models.TextField()
     status = models.CharField(max_length=64,choices=state.choices)
     created_at = models.DateTimeField(auto_now_add=True)
-    price = models.FloatField()
+    price = models.FloatField(null=True)
 
 
 class Payment(models.Model):
@@ -23,7 +23,8 @@ class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     name = models.CharField(max_length=2048)
     card_number = models.IntegerField()
-    expired_date = models.DateField()
+    expired_year = models.DateField(null=True)
+    expired_month=models.DateField(null=True)
     cvv = models.IntegerField()
 
 class BookMark(models.Model):

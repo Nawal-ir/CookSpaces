@@ -46,7 +46,9 @@
     position:relative;
     border-radius:8px;
     cursor:pointer;
-    margin-left: 200px;
+    margin-right: 300px;
+    padding-right: 100px;
+
 }
 
 .card:before{
@@ -57,8 +59,9 @@
     top:0;
     width:4px;
     height:100%;
-    background-color:#E1BEE7;
+    background-color:#5fe4bc;
     transform:scaleY(1);
+    
     transition:all 0.5s;
     transform-origin: bottom
 }
@@ -71,7 +74,7 @@
     top:0;
     width:4px;
     height:100%;
-    background-color:#8E24AA;
+    background-color:#00815b;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
@@ -92,33 +95,23 @@
     justify-content:center;
     padding:0;
 }
-
+/* 
 .social-list li{
     padding:10px;
     color:#8E24AA;
     font-size:19px;
 }
 
+.buttons button {
 
-.buttons button:nth-child(1){
-       border:1px solid #8E24AA !important;
-       color:#8E24AA;
-       height:40px;
-}
+    margin-right: 20px; /* إضافة مسافة بين الأزرار */
+    /* text-decoration: none;
+    background-color: black;
+    
+    
 
-.buttons button:nth-child(1):hover{
-       border:1px solid #8E24AA !important;
-       color:#fff;
-       height:40px;
-       background-color:#8E24AA;
-}
+} */ 
 
-.buttons button:nth-child(2){
-       border:1px solid #8E24AA !important;
-       background-color:#8E24AA;
-       color:#fff;
-        height:40px;
-}
 </style>
 {% endblock %}
 
@@ -186,6 +179,7 @@
                     <span class="bg-secondary px-3 rounded text-white">Pro</span>
                     <h3 style="text-transform: capitalize;">{{user_profile.first_name}} {{ user_profile.last_name}}</h3>
                     <a href="mailto:{{user_profile.email}}">{{ user_profile.email }}</a>
+                    <a href="tel:{{user_profile.phone}}">{{ user_profile.phone }}</a>
                     
                     
                     <div class="px-4 mt-1">
@@ -193,18 +187,11 @@
                     
                     </div>
                     
-                     <ul class="social-list">
-                        <li><i class="fa fa-facebook"></i></li>
-                        <li><i class="fa fa-dribbble"></i></li>
-                        <li><i class="fa fa-instagram"></i></li>
-                        <li><i class="fa fa-linkedin"></i></li>
-                        <li><i class="fa fa-google"></i></li>
-                    </ul>
+                     
                     
-                    <div class="buttons">
-                        
-                        <button class="btn btn-outline-primary px-4">Message</button>
-                        <button class="btn btn-primary px-4 ms-3">Contact</button>
+                    <div class="buttons mt-5">
+                            <a href="{% url 'Renters:my_order' %} " class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> طلباتي</span></a>
+                            <a href="{% url 'Renters:saved_kitchens' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> المطابخ المحفوظة</span></a>
                     </div>
                     
                     
@@ -224,4 +211,6 @@
     </div>
     
 </section>
+
+
 {% endblock %}
