@@ -148,7 +148,8 @@ def rental_request(request : HttpRequest,kitchen_id):
             start_date = request.POST["start_date"],
             end_date=request.POST["end_date"],
             note = request.POST["note"],
-            status="pending"
+            price=request.POST["price"],
+            status="تحت المراجعة"
         )
         order.save()
         msg="Your request was successfully sent!"
@@ -179,3 +180,7 @@ def order_details(request : HttpRequest,order_id):
     order = Order.objects.get(id=order_id)
 
     return render(request,"KitchenOwner/order_details.html",{"order":order})
+
+def final_order(request :HttpRequest):
+    
+    return render(request,"KitchenOwner/final_offer.html")

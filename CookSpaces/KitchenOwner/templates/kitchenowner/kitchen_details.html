@@ -170,6 +170,13 @@
             </div>
           </div>
           <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+          {% if kitchen.is_negotiable %}
+          <!-- يقدر يعدل على السعر-->
+          <input type="text" name="price" value="{{kitchen.price}}">
+          {% else %}
+          <!--فقط يشوف السعر من غير ما يقدر يعدله -->
+          <input type="text" name="price" value="{{kitchen.price}}" readonly>
+          {% endif %}
           <input type="submit" class="btn btn-primary" value="إرسال">
           {% if msg %}
           <div class="alert alert-success" role="alert">
