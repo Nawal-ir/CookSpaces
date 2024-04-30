@@ -105,16 +105,17 @@ def add_kitchen(request :HttpRequest):
             has_storage = request.POST.get("has_storage", False),
             has_waitingarea = request.POST.get("has_waitingarea", False),
             price = request.POST["price"],
-            #choices:
+            is_negotiable =request.POST["is_negotiable"],
             loc_latitude = lat,
             loc_longitude = lng,
+            city = request.POST.get("city"),
             period = request.POST.get("period"),
             status = "pending"
         )
         kitchen.save()
         kitchen.equipment.set(request.POST.getlist("equipments",[]))
         
-    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments})
+    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"city":Kitchen.cities.choices})
 
 def update_kitchen(request :HttpRequest):
     pass 
@@ -176,5 +177,5 @@ def accept_order(request : HttpRequest, order_id):
 
 def order_details(request : HttpRequest,order_id):
     order = Order.objects.get(id=order_id)
-    
+
     return render(request,"KitchenOwner/order_details.html",{"order":order})
