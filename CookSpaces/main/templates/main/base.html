@@ -46,7 +46,7 @@
           <div id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="{% url 'main:all_kitchen' %}">المطابخ</a>
+                <a class="nav-link " aria-current="page" href="{% url 'KitchenOwner:all_kitchens' %}">المطابخ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'main:articles' %}">مقالات</a>
@@ -76,7 +76,7 @@
           {% elif request.user.is_authenticated %}
             {% for group in request.user.groups.all %}
               {% if group.name == 'Kitchen_owner' %}
-                  <a class="btn btn-dark" href="{% url 'KitchenOwner:add_kitchen' request.user.id %}" style="padding: 5px;">إضافة مطبخ</a>
+                  <a class="btn btn-dark" href="{% url 'KitchenOwner:add_kitchen'  %}" style="padding: 5px;">إضافة مطبخ</a>
                   
                   <div class="d-flex gap-2">
                     <div class="nav-item dropdown">
@@ -160,7 +160,7 @@
             <hr style="margin-top: 2rem;">
             <div class="container py-3 py-md-3 px-3 px-md-3 text-body-secondary">
               <div class="row">
-                <div class="col-4 col-lg-3 mb-3">
+                <div class="col-4 mb-3">
       
                   <a class="navbar-brand d-flex flex-column align-items-center" href="{% url 'main:home' %}">
                     <h4 class="fa-fade" style="text-align: center;">CookSpaces</h4></a>
@@ -172,21 +172,20 @@
                   </ul> -->
                 </div>
       
-                <div class="col-4 col-lg-2 offset-lg-1 mb-3 text-center">
-                  <h5>تصفح</h5>
-                  <ul class="list-unstyled">
-                    <li class="mb-2"><a href="/" style="color: #080822; text-decoration: none;">الرئيسية</a></li>
-                    <li class="mb-2"><a href="{% url 'main:all_kitchen' %}" style="color: #080822; text-decoration: none;">المطابخ</a></li>
-                    <li class="mb-2"><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">من نحن</a></li>
-                    <li class="mb-2"><a href="{% url 'main:contact' %}" style="color: #080822; text-decoration: none;">تواصل معنا</a></li>
+                <div class="col-4 mb-3">
+                  <ul class="list-unstyled d-flex justify-content-center gap-5">
+                    <li><a href="/" style="color: #080822; text-decoration: none;">الرئيسية</a></li>
+                    <li><a href="{% url 'KitchenOwner:all_kitchens' %}" style="color: #080822; text-decoration: none;">المطابخ</a></li>
+                    <li><a href="{% url 'main:about' %}" style="color: #080822; text-decoration: none;">من نحن</a></li>
+                    <li><a href="{% url 'main:contact' %}" style="color: #080822; text-decoration: none;">تواصل معنا</a></li>
                   </ul>
                 </div>
       
-                <div class="col-6 mb-3">
+                <div class="col-4">
                   <div class="d-flex justify-content-center">
                     <h5>شاركنا رأيك</h5>
                   </div>
-                  <ul class="list-unstyled d-flex flex-row justify-content-center gap-5 mt-4">
+                  <ul class="list-unstyled d-flex flex-row justify-content-center gap-5 mt-2">
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-facebook"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-instagram"></i></a></li>
                     <li><a href="#" style="color: #02020b; font-size: larger;"><i class="fa-brands fa-x-twitter"></i></a></li>

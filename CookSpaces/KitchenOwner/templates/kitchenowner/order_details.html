@@ -11,6 +11,11 @@
            <h1>المطبخ</h1>
             <h1>{{order.kitchen.title}}</h1>
             {{order.kitchen.price}}
+            {{order.kitchen.desc}}
+           {% for e in order.kitchen.equipment_set.all %}
+           {{e.name}}
+           {{e.icon}}
+           {% endfor %}
         </div>
     </div>
 </section>

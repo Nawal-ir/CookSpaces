@@ -41,9 +41,9 @@ def register_chife(request:HttpRequest):
     return render(request, "chief/register_chife.html", {"msg" : msg})
 
 
-def  profile_view(request:HttpRequest, user_id):
+def  profile_view(request:HttpRequest, user_name):
     try:
-        user_object = User.objects.get(pk=user_id)
+        user_object = User.objects.get(username = user_name)
         
     except:
         return render(request, "404.html")
@@ -65,4 +65,3 @@ def update_user_view(request: HttpRequest):
 
 
     return render(request,"chief/update.html")
-
