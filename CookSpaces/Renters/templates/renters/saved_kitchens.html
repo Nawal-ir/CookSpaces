@@ -6,5 +6,22 @@
 {% endblock %}
 
 {% block content %}
+<section>
+    <h1>{{user.username }}'s Favorites</h1>
+
+    <div class="row">
+
+        {% for favorite in user.bookmark_set.all %}
+        <div class="col-4">
+            <div class="d-flex flex-column gap-2 border border-1 shadow p-3 rounded-4 h-100">
+                <img src="{{ favorite.kitchen.image.url }}"  class="w-100 rounded-4 card-poster "/>
+                <h2><a href="{% url 'KitchenOwner:kitchen_details' favorite.kitchen.id  %}" class="text-decoration-none">{{favorite.kitchen.title}}</a></h2>   
+            </div>
+        </div>
+        
+    {% endfor %}
+
+    </div>
+</section>
 
 {% endblock %}

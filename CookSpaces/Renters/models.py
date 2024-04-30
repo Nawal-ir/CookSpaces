@@ -6,14 +6,16 @@ from django.contrib.auth.models import User
 
 
 class Order(models.Model):
-    status = models.TextChoices("status",["accepted","rejected", "pending","paid"])
+    state = models.TextChoices("status",["مقبولة","مرفوضة", "تحت المراجعة","مدفوعة"])
     
     renter = models.ForeignKey(Renter,on_delete=models.CASCADE)
     kitchen = models.ForeignKey(Kitchen,on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     note = models.TextField()
-    status = models.CharField(max_length=64,choices=status.choices)
+    status = models.CharField(max_length=64,choices=state.choices)
+    created_at = models.DateTimeField(auto_now_add=True)
+    price = models.FloatField()
 
 
 class Payment(models.Model):
