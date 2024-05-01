@@ -98,7 +98,8 @@
                                     </div>
         
                                     <form  action="{% url 'accounts:login' %}" method="post" class="d-flex flex-column gap-2 ">
-                                        {% csrf_token %}
+
+                                        {% csrf_token %} 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">اسم المستخدم</label>
                                             <input name="username" class="form-control " type="text" minlength="3"  id="exampleInputEmail1"  required placeholder="اسم المستخدم" />
