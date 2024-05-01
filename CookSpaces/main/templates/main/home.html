@@ -3,6 +3,8 @@
 
 {% block style %}
 <style>
+
+
     .material-symbols-outlined {
       font-variation-settings:
       'FILL' 0,
@@ -31,7 +33,7 @@
             </div>
     </div> -->
 
-      <div class="row">
+      <div class="row" style="direction: ltr;">
         <div class="col">
           <img src="static/images/mainpink1.jpeg" alt="" style="width: 800px;padding-top: 50px;">
         </div>
@@ -116,56 +118,33 @@
 </section>
 
 
-
-
 <!-- Counter Section  -->
-
-<section class="wow fadeIn animated" style="visibility: visible; animation-name: fadeIn; background-color: #F4F2EE;">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-
-            <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated" data-wow-duration="600ms" style="visibility: visible; animation-duration: 600ms; animation-name: fadeInUp;">
-                <i class="fa fa-heart medium-icon"></i>
-                 <span class="timer counter alt-font appear" data-to="980" data-speed="7000">٦٥٧</span>
-                <span style="color: #272928; font-size: 30px;">ردة فعل ايجابية</span>
-            </div>
-
-            <div class="col-md-3 col-sm-6 bottom-margin-small text-center counter-section wow fadeInUp xs-margin-bottom-ten animated" data-wow-duration="900ms" style="visibility: visible; animation-duration: 900ms; animation-name: fadeInUp;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-kanban-fill" viewBox="0 0 16 16" style="margin-bottom:16px;">
-                    <path d="M2.5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm5 2h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1m-5 1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm9-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1"/>
-                  </svg>
-                 <span class="timer counter alt-font appear" data-to="810" data-speed="7000">٣٢٧</span>
-                <span style="color: #272928; font-size: 30px;"> قصة نجاح</span>
-            </div>
-
-            <div class="col-md-3 col-sm-6 text-center counter-section wow fadeInUp animated" data-wow-duration="1200ms" style="visibility: visible; animation-duration: 1200ms; animation-name: fadeInUp;">
-                <i class="fa fa-user medium-icon"></i>
-                 <span class="timer counter " data-to="600" data-speed="7000">٤١٠</span>
-                 <p style="color: #272928; font-size: 30px;"> عملاء</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
 
 <section class="wow fadeIn animated" style="visibility: visible; animation-name: fadeIn; background-color: #F4F2EE;">
   <div class="container">
    <div class="row justify-content-center text-center">
     <div class="col-md-4">
       <i class="fa fa-heart medium-icon"></i>
-     <span id="count1" class="display-4">  ردود فعل ايجابية </span>
+      <br>
+     <span id="count1" class="display-4"> </span>
+     <p style="color: #272928; font-size: 30px;">ردة فعل ايجابية</p>
+
     </div>
     <div class="col-md-4">
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-kanban-fill" viewBox="0 0 16 16" style="margin-bottom:16px;">
         <path d="M2.5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm5 2h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1m-5 1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zm9-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1"/>
       </svg>
-     <span id="count2" class="display-4">قصة نجاح</span>
+      <br>
+     <span id="count2" class="display-4"> </span>
+     <p style="color: #272928; font-size: 30px;"> قصة نجاح</p>
+
     </div>
     <div class="col-md-4">
       <i class="fa fa-user medium-icon"></i>
-     <span id="count3" class="display-4">عملاء</span>
+      <br>
+     <span id="count3" class="display-4"></span>
+     <p style="color: #272928; font-size: 30px;"> عملاء</p>
+
     </div>
    </div>
   </div>
@@ -174,10 +153,8 @@
 
 <!-- Article section  -->
 
-
 <section>
-  <div class="row">
-
+  <div class="row" style="direction: ltr;">
     <div class="col-6">
         <div class="row " style="padding-bottom: 10px;">
           <div class="col-6">
@@ -222,7 +199,7 @@
         <div class="mt-10 text-center d-flex justify-content-center">
           <a href="{% url 'main:articles' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> أعرف أكثر</span></a>
        </div>
-    </div>
+  </div>
 
       <div class="col-6 text-center pt-5">
         <h2 class="h1 fw-bold">  كن الرقم الصعب في <br> <u class="text-warning"><span style="color: #8EB89C;"> سوق العمل </span></u></h2>
@@ -232,12 +209,6 @@
   </div>
 
 </section>
-
-
-
-
-<!-- View Some Kitchens  -->
-
 <section style="background-color: #F4F2EE; direction: rtl; justify-content: center;box-shadow: #6E6A6A;">
 <div >
     <div class="title">
@@ -248,7 +219,7 @@
     <div class="row px-3">
         <div class="col d-flex justify-content-center" style="justify-items: center;">
             <div class="card" style="width: 20rem;">
-                <img src="{{kitchen.poster.url}}" class="card-img-top" alt="poster">
+                <img src="{{kitchen.image.url}}" class="card-img-top" alt="poster">
                 <div class="card-body">
                    <h5 class="card-title">{{kitchen.title}}</h5>
                    <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
@@ -274,8 +245,47 @@
 </section>
 
 
+<!-- View Some Kitchens  -->
+
+<section style="background-color: #F4F2EE; direction: rtl; justify-content: center;box-shadow: #6E6A6A;">
+<div >
+    <div class="title">
+        <h1 style="font-size: 100%; text-align: right;color: #8EB89C;"> ابحث عن مطبخ <u class="text-warning"><span style="color: #111;">يناسبك   </span></u></h1>
+    </div>
+
+    <div class="row px-3">
+    {% for kitchen in kitchens %}
+        <div class="col d-flex justify-content-center" style="justify-items: center;">
+            <div class="card" style="width: 20rem;">
+              <img src="{{kitchen.image.url}}" alt="poster" style="background-size: cover; height: 200px;">
+              <div class="card-body">
+                   <h5 class="card-title">{{kitchen.title}}</h5>
+                   <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
+                   <h6>Price: {{kitchen.price}} SR/{{kitchen.period}}</h6>
+                   <div class="d-flex justify-content-end">
+                        <a href="{% url 'KitchenOwner:kitchen_details' kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
+                   </div>
+                </div>
+             </div>
+        </div>
+        
+        {% endfor %}
+      </div>                    
+<br><br> <br>
+
+<div class="row">
+    <div class="text-center" style="margin-top:30px;">
+        <a href="{% url 'KitchenOwner:all_kitchens' %}" class="btn btn-dark " style="background-color: #272928; width: 100px;"> <span style="color: #F4F2EE;">أكثر</span></a>
+     </div>
+</div>
+</div>
+
+</section>
+
+
 <!-- FAQ  -->
 <section style="background-color: #fff; direction: rtl;">
+
     <h2 class="title">اسئلة شائعة</h2>
     <br>
     <div class="accordion accordion-flush" id="accordionExample">
@@ -429,9 +439,9 @@ step: function (now) {
     }
    }, step);
  }
- counter("count1", 0, 400, 3000);
- counter("count2", 100, 50, 2500);
- counter("count3", 0, 40, 3000);
+ counter("count1", 0, 410, 3000);
+ counter("count2", 100, 327, 2500);
+ counter("count3", 0, 657, 3000);
 });
 
 </script>

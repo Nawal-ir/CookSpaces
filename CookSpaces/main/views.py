@@ -10,7 +10,7 @@ def home(request:HttpRequest):
     if request.user.is_authenticated:
         print(request.user.first_name)
     
-    kitchens = Kitchen.objects.all()
+    kitchens = Kitchen.objects.all()[:3]
     
     return render(request, "main/home.html",  {"kitchens":kitchens})
 
@@ -46,6 +46,17 @@ def all_article(request:HttpRequest):
     
 # "pages_count":pages_count
     return render(request, "main/articles.html", {"kitchens" : kitchens })
+
+def article_detail(request :HttpRequest,kitchen_id):
+    try:
+        #getting a kitchen detail
+        kitchen = Article.objects.get(pk=kitchen_id)
+    except Article.DoesNotExist:
+        return render(request, "404.html")
+    except Exception as e:
+        print(e)
+        
+    return render(request, "main/article_detail.html", {"kitchen" : kitchen})
 
 def about(request:HttpRequest):
     
