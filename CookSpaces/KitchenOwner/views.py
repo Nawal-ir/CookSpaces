@@ -8,6 +8,8 @@ from main.models import Review
 from Renters.models import BookMark
 from .models import Kitchen,Equipment
 from Renters.models import Order
+from django.conf import settings
+from django.core.mail import EmailMessage
 
 
 #kitchen owner register:
@@ -118,8 +120,6 @@ def add_kitchen(request :HttpRequest):
         return redirect("KitchenOwner:all_kitchens")
     return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"city":Kitchen.cities.choices})
 
-def update_kitchen(request :HttpRequest):
-    pass 
 
 def kitchen_details(request :HttpRequest,kitchen_id):
     try:
@@ -127,12 +127,13 @@ def kitchen_details(request :HttpRequest,kitchen_id):
         kitchen = Kitchen.objects.get(pk=kitchen_id)
         reviews = Review.objects.filter(kitchen=kitchen)
         is_saved = request.user.is_authenticated and  BookMark.objects.filter(user=request.user, kitchen=kitchen).exists()
+        is_order=Order.objects.filter(renter__user__id=request.user.id,kitchen=kitchen).exists()
     except Kitchen.DoesNotExist:
         return render(request, "404.html")
     except Exception as e:
         print(e)
         
-    return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved})
+    return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved,"is_order":is_order})
         
 def all_kitchens(request :HttpRequest):
     kitchens = Kitchen.objects.all()
@@ -166,15 +167,28 @@ def owner_orders(request :HttpRequest,owner_id):
 def reject_order(request:HttpRequest,order_id):
     order = Order.objects.get(id=order_id)
     owner_id = order.kitchen.kitchen_owner.user.id
-    order.status = "rejected"
+    order.status = "مرفوضة"
     order.save()
     return redirect("KitchenOwner:owner_orders",owner_id)
 
 def accept_order(request : HttpRequest, order_id):
     order = Order.objects.get(id=order_id)
     owner_id = order.kitchen.kitchen_owner.user.id
-    order.status = "accepted"
+    order.status = "مقبولة"
     order.save()
+    
+    subject = 'حالة الطلب'
+    message = f'السلام عليكم {order.renter.user.username},شكرا لاختيارك خدماتنا! نحن نقدر تفضيلك وثقتك بنا ونتطلع إلى خدمتك مرة أخرى قريبًا,تم قبول طلبك في منصة CookSpaces الرجاء التوجع الى صفحة طلباتك للدفع.'
+    recipient_list = {order.renter.user.email}
+
+    email = EmailMessage(subject, message, settings.EMAIL_HOST_USER, recipient_list)
+    email.content_subtype = 'html'  # Enable HTML content
+    try:
+        email.send()
+    except Exception as e:
+        print(e)
+    
+    
     return redirect("KitchenOwner:owner_orders",owner_id)
 
 def order_details(request : HttpRequest,order_id):
@@ -182,7 +196,7 @@ def order_details(request : HttpRequest,order_id):
 
     return render(request,"KitchenOwner/order_details.html",{"order":order})
 
-def final_offer(request :HttpRequest , order_id):
+def final_offer(request :HttpRequest ,order_id):
     order = order = Order.objects.get(id=order_id)
     
     return render(request,"KitchenOwner/final_offer.html",{"order":order})

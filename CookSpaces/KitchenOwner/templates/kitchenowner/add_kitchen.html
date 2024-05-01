@@ -17,8 +17,33 @@
     <h2 class=" title h1 fw-bold"> <u class="text-warning"><span style="color: #00815b; margin-top: 500px; ">   إضافة مطبخ </span></u></h2>
     <form action="{% url 'KitchenOwner:add_kitchen'  %}" method="post" enctype="multipart/form-data" style="direction: rtl;">
         {% csrf_token %}
-
+        
     <div class="row" >
+        <div class="col-6 " style="background-color: #F4F2EE; padding: 50px; ">
+                <div class="d-flex flex-column gap-1 "> 
+                <!--title-->
+                 <h5>  <label for="title">تصنيف المطبخ</label> </h5>  
+                <input type="text" name="title" placeholder="العنوان" style="border-radius: 10px;">
+                <!--Description-->
+                <textarea name="desc" cols="30" rows="5" placeholder="     وصف     " style="direction: rtl; border-radius: 10px;"></textarea>
+                <br>
+                <h5>  <label for="poster">صورة المطبخ</label> </h5> 
+                <input type="file" accept="image/*" name="poster" aria-label="اختر صورة">
+                <br>
+                <!--space-->
+                <h5><label for="space" >المساحة بالمتر<sup>2</label></h5> 
+                <input type="text" name="space" style="border-radius: 10px;">
+            </div>
+            <div style="direction: rtl;">
+                <br>
+                <h5>مدة الاستئجار</h5>
+                <select class="form-select" name="period" style=" border-radius: 10px; ">
+                    <option value="Monthly" >شهري  </option>
+                    <option value="Annually">سنوي  </option>
+                </select>
+            </div>
+        
+        </div>
         <div class="col-6 " style="background-color: #F4F2EE; padding: 50px;">
             <h5 style="direction: rtl;">خدمات</h5>
             {% for e in equipments %}
@@ -58,6 +83,9 @@
                 <input type="radio" name="is_negotiable" value="False">
                 <label for="css">لا</label><br>
             </div>   
+
+            <input type="text" hidden name="loc_latitude" id="lat" />
+            <input type="text" hidden name="loc_longitude" id="lng" />
             <br>
                 <!--price-->
                 <h5 style="direction: rtl;">السعر</h5>
@@ -66,7 +94,7 @@
                 <br>
                 <h5>المدينة</h5>
                 <select name="city" class="form-select" required style="border-radius: 10px;">
-                    {% for city,val in city %}
+                    {% for city,val in cities  %}
                         <option value="{{val}}">{{city}}</option>
                     {% endfor %}
                 </select>
@@ -74,31 +102,6 @@
         </div>
 
 
-        <div class="col-6 " style="background-color: #F4F2EE; padding: 50px; ">
-                <div class="d-flex flex-column gap-1 "> 
-                <!--title-->
-                 <h5>  <label for="title">تصنيف المطبخ</label> </h5>  
-                <input type="text" name="title" placeholder="العنوان" style="border-radius: 10px;">
-                <!--Description-->
-                <textarea name="desc" cols="30" rows="5" placeholder="     وصف     " style="direction: rtl; border-radius: 10px;"></textarea>
-                <br>
-                <h5>  <label for="poster">صورة المطبخ</label> </h5> 
-                <input type="file" accept="image/*" name="poster" aria-label="اختر صورة">
-                <br>
-                <!--space-->
-                <h5><label for="space" >المساحة بالمتر<sup>2</label></h5> 
-                <input type="text" name="space" style="border-radius: 10px;">
-            </div>
-            <div style="direction: rtl;">
-                <br>
-                <h5>مدة الاستئجار</h5>
-                <select class="form-select" name="period" style=" border-radius: 10px; ">
-                    <option value="Monthly" >شهري  </option>
-                    <option value="Annually">سنوي  </option>
-                </select>
-            </div>
-
-        </div>
         
     <div class="row">
         <div class="col text-center">

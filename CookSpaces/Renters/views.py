@@ -104,13 +104,18 @@ def update_profile(request:HttpRequest, user_id):
 
 
 def my_order(request:HttpRequest,user_id):
+    orders=[]
+    msg=''
     if "cat" in request.GET:
-        orders_f= Order.objects.filter(status = request.GET["cat"])
-        orders = Order.objects.get(renter__user__id=user_id)
+        orders= Order.objects.filter(status = request.GET["cat"],renter__user__id=user_id)
+        print(request.GET["cat"])
+        if not orders:
+            msg="there is no orders in this category."
     else:
         orders = Order.objects.all().order_by("-created_at")
+
         
-    return render(request, 'renters/my_order.html',{"status":Order.state.choices, "orders":orders})
+    return render(request, 'renters/my_order.html',{"status":Order.state.choices, "orders":orders,"msg":msg})
 
 
 
@@ -164,7 +169,10 @@ def send_html_email_to_user(subject,msg,user_email):
     except Exception as e:
         print(e)
         
-        
+
+def Payment(request: HttpRequest):
+    
+    return redirect('renters:my_order')   
         
 def add_remove_saved_view(request: HttpRequest, kitchen_id):
 

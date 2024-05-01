@@ -53,7 +53,7 @@
 					
 					<div class="d-flex justify-content-center align-items-center">
 						<div class="d-flex gap-2">
-							<a href="{% url 'Renters:my_order' %}" class="p-2 ps-3 pe-3 rounded-pill cat text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
+							<a href="{% url 'Renters:my_order' request.user.id %}" class="p-2 ps-3 pe-3 rounded-pill cat text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
 							
 							{% for val, key in status %}
 								<a href="?cat={{val}}" class="p-2 ps-3 pe-3 rounded-pill cat {% if request.GET.cat == val %} {{ val }} {% endif %} text-decoration-none"  style="color: rgb(3, 53, 36);">{{val}}</a>
@@ -66,16 +66,20 @@
 		</div>
 	</section>
 <section>
+
+    <h5>
+        {{msg}}
+    </h5>
     {% for order in orders %}
         <div class="col-4 d-flex mt-2">
             <div class="card" style="width: 20rem;">
                 <img src="{{order.kitchen.image.url}}" class="card-img-top" alt="poster">
                 <div class="card-body">
                 <h5 class="card-title">{{order.kitchen.title}}</h5>
-                <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
-                <h6>Price: {{kitchen.price}} SR/{{kitchen.period}}</h6>
+                <h6>Spcae: {{order.kitchen.space}} m<sup>2</h6>
+                <h6>Price: {{order.kitchen.price}} SR/{{order.kitchen.period}}</h6>
                 <div class="d-flex justify-content-end">
-                        <a href="{% url 'KitchenOwner:kitchen_details' kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
+                        <a href="{% url 'KitchenOwner:kitchen_details' order.kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
                 </div>
                 </div>
             </div>
@@ -102,7 +106,7 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <form method="post" action="{% url 'Renters:my_order' %}">
+                                <form method="post" action="">
                                     {% csrf_token %}
                                     <div class="form-group mt-5">
                                         <label for="cardNumber ">رقم البطاقة </label>
@@ -123,7 +127,7 @@
                                     </div>
 									<div>
 										<h4>القيمة</h4>
-                                        {{}}
+                                        
 
 									</div>
                                     <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
