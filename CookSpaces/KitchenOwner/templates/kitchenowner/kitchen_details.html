@@ -155,13 +155,7 @@
 <div class="container">
   {% if is_order  %}
   <section class="pay">
-    <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-          عملية الدفع
-        </button>
-      </p>
       <div >
-        <div class="collapse collapse-horizontal" id="collapseWidthExample">
           <div class="card card-body" style="width: 400px;">
             <div class="container">
                 <div class="row">
@@ -173,7 +167,7 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <form method="post" action="">
+                                <form method="post" action="{% url 'Renters:my_order' request.user.id %}">
                                     {% csrf_token %}
                                     <div class="form-group mt-5">
                                         <label for="cardNumber ">رقم البطاقة </label>
@@ -206,46 +200,12 @@
             </div>
             
           </div>
-        </div>
       </div>
 </section>
   {% else %}
   <div class="row d-flex justify-content-center">
 
-      <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-dark">book</button>
-
-    <div class="col-8">
-      <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post">
-        {% csrf_token %}
-        <h1 class="d-flex justify-content-center">!أرسل طلب استئجار</h1>
-        <div class="d-flex flex-column">
-          <div class="row mb-3">
-            <div class="col">
-              <label for="start_date" class="form-label d-flex justify-content-end">:من</label>
-              <input type="date" name="start_date" id="start_date" class="form-control">
-            </div>
-            <div class="col">
-              <label for="end_date" class="form-label d-flex justify-content-end">:الى</label>
-              <input type="date" name="end_date" id="end_date" class="form-control">
-            </div>
-          </div>
-          <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
-          {% if kitchen.is_negotiable %}
-          <!-- يقدر يعدل على السعر-->
-          <input type="text" name="price" value="{{kitchen.price}}">
-          {% else %}
-          <!--فقط يشوف السعر من غير ما يقدر يعدله -->
-          <input type="text" name="price" value="{{kitchen.price}}" readonly>
-          {% endif %}
-          <input type="submit" class="btn btn-primary" value="إرسال">
-          {% if msg %}
-          <div class="alert alert-success" role="alert">
-            {{msg}}
-          </div>
-          {% endif %}
-        </div>
-      </form>
-    </div>
+    <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-dark">book</button>
 
   </div>
 {% endif %}
@@ -349,7 +309,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Saved Recipe</h1>
+        <h3 class="d-flex justify-content-center">!أرسل طلب استئجار</h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -367,6 +327,13 @@
               </div>
             </div>
             <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+            {% if kitchen.is_negotiable %}
+            <!-- يقدر يعدل على السعر-->
+            <input type="text" name="price" value="{{kitchen.price}}">
+            {% else %}
+            <!--فقط يشوف السعر من غير ما يقدر يعدله -->
+            <input type="text" name="price" value="{{kitchen.price}}" readonly>
+            {% endif %}
             <input type="submit" class="btn btn-primary" value="إرسال">
             {% if msg %}
             <div class="alert alert-success" role="alert">
@@ -375,11 +342,10 @@
             {% endif %}
           </div>
         </form>
-  </div>
+    </div>
     </div>
   </div>
 </div>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1xTP268Ltwj4NX1Hku24XNFPJNZ-kTSQ&callback=initMap" async defer></script>
 <script type="text/javascript">
         // JavaScript code goes here

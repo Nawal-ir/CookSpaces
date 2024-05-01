@@ -116,55 +116,10 @@
 {% endblock %}
 
 {% block content %}
-<!-- <section style="direction: rtl;">
-<div class="row justify-content-center">
-    <div class="col-4 sidebar">
-        <ul>
-            <li>
-            {% if request.user.is_authenticated %} 
-              <a class="nav-link mt-5" href="#" style="color: rgb(149, 99, 69);text-transform: capitalize;">أهلا بك<br>✦{{request.user.username }}✦</a>
-            {% endif %}
-            <li><button class="btn mt-3"><a href="{% url 'Renters:profile' request.user.username %}">حسابي</a></button></li>
-    
-            
-            </li>
-            <li><button class="btn"><a href="{% url 'Renters:my_order' %}">طلباتي</a></button></li>
-            <li><button class="btn"><a href="{% url 'Renters:saved_kitchens' %}">المطابخ المحفوظة</a></button></li>
-            
-    
-            <hr class="m-3">
-            <li><button class="btn logout"><a href="{% url 'accounts:logout' %}">تسجيل خروج</a></button></li>
-        </ul>
-    </div>
 
-
-    
-        <div class="col-4  px-5">
-            <img src="{{ user_profile.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
-            <h5>@{{user_profile.username}}</h5>
-                <div class=" d-flex justify-content-end align-items-center mt-5" >
-                    {% if request.user == user_profile %}
-                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
-                    {% endif %}
-                </div>
-        </div>
-
-        <div class="col-4 mt-5 " style="margin-right:10px">
-
-            <div class="d-flex flex-column">
-                <h3 style="text-transform: capitalize;">{{user_profile.first_name}} {{ user_profile.last_name}}</h3>
-                <a href="mailto:{{user_profile.email}}">{{ user_profile.email }}</a>
-                <p class="mt-2">{{ user_profile.renter.about }}</p>
-
-            </div>
-            <hr/>
-        </div>
-    </div>
-</div>       
-</section> -->
 <section>    
     <div class="row">
-        <div class=" d-flex justify-content-center align-items-center" >
+        <div class=" d-flex justify-content-start" >
             {% if request.user == user_profile %}
                 <!-- <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a> -->
                 <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">
@@ -178,7 +133,7 @@
             <div class="card">
                 
                 <div class="text-center">
-                  <img src="{{ user_profile.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
+                  <img src="{{ user.renter.avatar.url }}" alt="Profile Image" class="img-fluid rounded-circle" style="width: 200px;">
                   <h5>@{{user_profile.username}}</h5>
 
                 </div>
@@ -191,14 +146,14 @@
                     
                     
                     <div class="px-4 mt-1">
-                      <p class="mt-2">{{ user_profile.renter.about }}</p>
+                      <p class="mt-2">{{ user.renter.about }}</p>
                     
                     </div>
                     
                      
                     
                     <div class="buttons mt-5">
-                            <a href="{% url 'Renters:my_order' request.user.id %} " class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> طلباتي</span></a>
+                            <a href="{% url 'Renters:my_order' user.renter.id %} " class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> طلباتي</span></a>
                             <a href="{% url 'Renters:saved_kitchens' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> المطابخ المحفوظة</span></a>
                     </div>
                     

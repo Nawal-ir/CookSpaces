@@ -118,7 +118,7 @@ def add_kitchen(request :HttpRequest):
         kitchen.equipment.set(request.POST.getlist("equipments",[]))
         
         return redirect("KitchenOwner:all_kitchens")
-    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"city":Kitchen.cities.choices})
+    return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"cities":Kitchen.cities.choices})
 
 
 def kitchen_details(request :HttpRequest,kitchen_id):
