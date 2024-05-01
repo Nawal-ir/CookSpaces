@@ -11,7 +11,7 @@
                 <h2>الطلبات المقبولة</h2>
             </div>
             {% for order in orders  %}
-                {% if order.status == "accepted" %}
+            {% if order.status == "مقبولة" %}
             <div class="border border-dark">
                 {{order.start_date}}
                 {{order.end_date}}
@@ -26,7 +26,7 @@
                 <h2>الطلبات المعلقة</h2>
             </div>
             {% for order in orders  %}
-            {% if order.status == "pending" %} 
+            {% if order.status == "تحت المراجعة" %} 
             <div class="border border-dark">
                 {{order.start_date}}
                 {{order.end_date}}
@@ -46,7 +46,7 @@
                 <h2>الطلبات المرفوضة</h2>
             </div>
             {% for order in orders  %}
-            {% if order.status == "rejected" %} 
+            {% if order.status == "مرفوضة" %} 
 
             <div class="border border-dark">
                 {{order.start_date}}

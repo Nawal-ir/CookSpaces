@@ -29,12 +29,18 @@
             <h1>{{order.note}}</h1>
             {{order.start_date}}
             {{order.end_date}}
+        
+        {% if request.user %}
             <div>
                 <a href="{% url "KitchenOwner:reject_order" order.id %}" class="btn btn-danger">رفض</a>
                 <a href="{% url "KitchenOwner:accept_order" order.id %}" class="btn btn-success">قبول</a>
             </div>
+        {% endif %}
+
+            
         </div>
     </div>
+
 </section>
 
 
@@ -42,6 +48,3 @@
 
 
 {% endblock  %}
-
-
-
