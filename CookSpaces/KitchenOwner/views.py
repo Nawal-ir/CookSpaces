@@ -50,7 +50,7 @@ def register_owner(request:HttpRequest):
             print(e)
 
         except Exception as e:
-            msg = "Something went wrong. Please try again."
+            msg = f"Something went wrong. Please try again. {e}"
             print(e)
     
 
@@ -140,7 +140,7 @@ def all_kitchens(request :HttpRequest):
 
 def rental_request(request : HttpRequest,kitchen_id):
     kitchen=Kitchen.objects.get(id=kitchen_id)
-    renter =Renter.objects.get(user__id=request.user.id)
+    renter =Renter.objects.get(user=request.user)
     if request.method =="POST":
         order = Order(
             renter = renter,
@@ -148,7 +148,8 @@ def rental_request(request : HttpRequest,kitchen_id):
             start_date = request.POST["start_date"],
             end_date=request.POST["end_date"],
             note = request.POST["note"],
-            status="pending"
+            price=request.POST["price"],
+            status="تحت المراجعة"
         )
         order.save()
         msg="Your request was successfully sent!"
@@ -179,3 +180,17 @@ def order_details(request : HttpRequest,order_id):
     order = Order.objects.get(id=order_id)
 
     return render(request,"KitchenOwner/order_details.html",{"order":order})
+
+def final_offer(request :HttpRequest , order_id):
+    order = order = Order.objects.get(id=order_id)
+    
+    return render(request,"KitchenOwner/final_offer.html",{"order":order})
+
+
+def search_cities(request):
+    query = request.GET.get('city_search')
+    if query:
+        kitchens = Kitchen.objects.filter(city__icontains=query)
+    else:
+        kitchens = Kitchen.objects.all()
+    return render(request, 'your_template.html', {'kitchens': kitchens})

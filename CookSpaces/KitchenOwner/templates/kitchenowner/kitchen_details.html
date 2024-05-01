@@ -152,8 +152,11 @@
 
         <hr>
 <!--sending order-->
-<section>
+<div class="container">
   <div class="row d-flex justify-content-center">
+
+      <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-dark">book</button>
+
     <div class="col-8">
       <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post">
         {% csrf_token %}
@@ -170,6 +173,13 @@
             </div>
           </div>
           <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+          {% if kitchen.is_negotiable %}
+          <!-- يقدر يعدل على السعر-->
+          <input type="text" name="price" value="{{kitchen.price}}">
+          {% else %}
+          <!--فقط يشوف السعر من غير ما يقدر يعدله -->
+          <input type="text" name="price" value="{{kitchen.price}}" readonly>
+          {% endif %}
           <input type="submit" class="btn btn-primary" value="إرسال">
           {% if msg %}
           <div class="alert alert-success" role="alert">
@@ -179,8 +189,11 @@
         </div>
       </form>
     </div>
+
   </div>
-</section>
+
+</div>
+
 
 <!--Reviews-->
 <section>
@@ -248,12 +261,12 @@
   </div><!--END Reviews-->
 </section>
 
-<!-- Modal -->
+<!-- Saved Modal -->
 <div class="modal fade" id="savedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Saved Recipe</h1>
+        <h1 class="d-flex justify-content-center">!أرسل طلب استئجار</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -263,6 +276,49 @@
         <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
 
       </div>
+      <section>
+        <div class="row d-flex justify-content-center">
+          <div class="col-8">
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</div>
+
+<!--Booking Modal-->
+<div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Saved Recipe</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post">
+          {% csrf_token %}
+          <div class="d-flex flex-column">
+            <div class="row mb-3">
+              <div class="col">
+                <label for="start_date" class="form-label d-flex justify-content-end">:من</label>
+                <input type="date" name="start_date" id="start_date" class="form-control">
+              </div>
+              <div class="col">
+                <label for="end_date" class="form-label d-flex justify-content-end">:الى</label>
+                <input type="date" name="end_date" id="end_date" class="form-control">
+              </div>
+            </div>
+            <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+            <input type="submit" class="btn btn-primary" value="إرسال">
+            {% if msg %}
+            <div class="alert alert-success" role="alert">
+              {{msg}}
+            </div>
+            {% endif %}
+          </div>
+        </form>
+  </div>
     </div>
   </div>
 </div>

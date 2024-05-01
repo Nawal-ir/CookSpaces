@@ -3,7 +3,38 @@
 
 {% block styles %}
 <style>
-	
+	.cat {
+    background-color: rgba(21, 128, 155, 0.377);
+    color:white;
+    align-self: flex-start;
+}
+.مقبولة {
+    background-color: rgba(2, 90, 131, 0.664);
+}
+.مقبولة:hover {
+    box-shadow: 0 0 20px rgba(2, 90, 131, 0.664);
+}
+
+.مرفوضة {
+    background-color: rgba(255, 0, 0, 0.473);
+}
+.مرفوضة:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.473);
+}
+
+.تحت {
+    background-color: rgba(228, 183, 37, 0.473);
+}
+.تحت:hover {
+    box-shadow: 0 0 20px rgba(228, 183, 37, 0.473);
+}
+
+.مدفوعة {
+  background-color: rgba(0, 128, 0, 0.473);
+}
+.مدفوعة:hover {
+  box-shadow: 0 0 20px rgba(0, 128, 0, 0.473);
+}
     .panel-title {display: inline;font-weight: bold;}
     .checkbox.pull-right { margin: 0; }
     .pl-ziro { padding-left: 0px; }
@@ -14,17 +45,18 @@
 {% endblock %}
 
 {% block content %}
-	<section class="all mb-5" style="direction: rtl;">
+	<section style="direction: rtl; padding: 0; margin-top: 100px;">
 		<div class="container">
-			<div class="row g-4">
-				<div class="col-12 mb-3">
+			<div class="row">
+                <h1>طلباتي</h1>
+				<div class="col">
 					
-					<div class="d-flex justify-content-center  align-items-center mt-4">
+					<div class="d-flex justify-content-center align-items-center">
 						<div class="d-flex gap-2">
-							<a href="{% url 'Renters:my_order' %}" class="p-2 ps-3 pe-3 rounded-pill cat  text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
+							<a href="{% url 'Renters:my_order' %}" class="p-2 ps-3 pe-3 rounded-pill cat text-decoration-none" style="color: rgb(3, 53, 36);">كل الطلبات</a>
 							
 							{% for val, key in status %}
-								<a href="?cat={{val}}" class="p-2 ps-3 pe-3 rounded-pill cat {% if request.GET.cat == val %} {{ val }} {% endif %} text-decoration-none "  style="color: rgb(3, 53, 36);">{{val}}</a>
+								<a href="?cat={{val}}" class="p-2 ps-3 pe-3 rounded-pill cat {% if request.GET.cat == val %} {{ val }} {% endif %} text-decoration-none"  style="color: rgb(3, 53, 36);">{{val}}</a>
 							{% endfor %}
 							
 						</div>
@@ -49,6 +81,7 @@
             </div>
         </div>
     {% endfor %}
+
 </section>
 <section class="pay">
     <p>
@@ -91,6 +124,7 @@
 									<div>
 										<h4>القيمة</h4>
                                         {{}}
+
 									</div>
                                     <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
                                 </form>

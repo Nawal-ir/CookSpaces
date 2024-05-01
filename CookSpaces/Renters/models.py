@@ -17,6 +17,8 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     price = models.FloatField(null=True)
 
+    def __str__(self) -> str:
+        return self.kitchen.title
 
 class Payment(models.Model):
     
@@ -32,3 +34,6 @@ class BookMark(models.Model):
     kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.kitchen.title    

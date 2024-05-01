@@ -19,36 +19,36 @@
     
                             <div class="row">
                                 <div class="col">
-                                    <label for="first_name" class="form-label">First Name:</label>
-                                    <input name="first" type="text" class="form-control" id="first_name" placeholder="First Name..." required>
+                                    <label for="first_name" class="form-label">الاسم الأول</label>
+                                    <input name="first" type="text" class="form-control" id="first_name" placeholder="الاسم الأول..." required>
                                 </div>
     
                                 <div class="col">
-                                    <label for="last_name" class="form-label">Last Name:</label>
-                                    <input name="last" type="text" class="form-control" id="last_name" placeholder="Last Name..." required>
+                                    <label for="last_name" class="form-label">الاسم الأخير</label>
+                                    <input name="last" type="text" class="form-control" id="last_name" placeholder="الاسم الأخير..." required>
                                 </div>
                             </div><!--First Name & Last Name-->
     
                             <div class="col">
-                                <label for="email" class="form-label">Email Address:</label>
+                                <label for="email" class="form-label">الإيميل الالكتروني</label>
                                 <div class="input-group">
                                   <span class="input-group-text">@</span>
                                   <input name="email" type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
                                 </div>
                             </div><!--Email-->
     
-                            <label for="message">Your Message:</label>
-                            <textarea name="message" id="message" placeholder="Messages..." cols="30" rows="5" class="form-control"></textarea>
+                            <label for="message">الرسالة</label>
+                            <textarea name="message" id="message" placeholder="اكتب رسالتك..." cols="30" rows="5" class="form-control"></textarea>
             
-                            <input type="submit" class="btn btn-dark rounded-4" value="Send" style="background: linear-gradient(#081b22, #051116, #02070b);"/>
+                            <input type="submit" class="btn btn-dark rounded-4" value="إرسال" style="background: linear-gradient(#081b22, #051116, #02070b);"/>
             
                         </form>
                     </div>
     
                     <div class="col col-md-5 order-1 order-md-1 d-flex flex-column justify-content-center align-items-center fa-fade">
                         <!-- <img src="{% static 'images/plan.jpg' %}" alt="image" class="rounded-4" style="opacity: 0.8; background-size: cover; width: 100%; height: 53vh;"> -->
-                        <i class="fa fa-thin fa-paper-plane fa-3x" style="color: #ffffff;"></i>
-                        <h1>Contact Us</h1>
+                        <i class="fa fa-thin fa-paper-plane fa-4x" style="color: #ffffff;"></i>
+                        <!-- <h1>تواصل معنا</h1> -->
                     </div>
                 </div> <!-- row 2 : Contact Form -->
 
@@ -66,62 +66,64 @@
 
     <hr>
 <!-- FAQ  -->
-<section style="background-color: #fff; direction: rtl;">
+<section>
     <h2 class="title">اسئلة شائعة</h2>
     <br>
     <div class="accordion accordion-flush" id="accordionExample">
-        <div class="border-bottom py-3" id="headingOne">
-           <h3 class="mb-0 fw-bold" >
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <span class="material-symbols-outlined" style="color: #6E6A6A; " >
-                add
-                </span><span class="me-auto text-end" style="color: #6E6A6A; ;">
+        <div class="border-bottom py-3 row " style="display: flex; justify-content: space-between;" id="headingOne">
+          <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+           <h3 class="mb-0 fw-bold col-11" >
+              <span class="text-end" style="color: #6E6A6A; ;">
 اقدر افاوض بأسعار المطابخ؟ </span>
-              <span class="collapse-toggle ms-4">
-              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
-              </span>
-              </a>
-           </h3>
+</h3>
+          <span class="material-symbols-outlined justify-content-end col-1" style="color: #6E6A6A; " >
+              add
+          </span>
+          <span class="collapse-toggle ms-4">
+            <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+          </span>
+          </a>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
            <div class="py-3 fs-4" style="color: #818181;">
 كل مطبخ يختلف عن الثاني. بعض المطابخ المعروضة أسعارها قابلة للتفاوض وبعضها غير قابلة للتفاوض
-          </div>
         </div>
+      </div>
 
-
-        <div class="border-bottom py-3" id="headingTwo">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <span class="material-symbols-outlined" style="color: #6E6A6A;" >
+        <div class="border-bottom py-3 row " style="display: flex; justify-content: space-between;" id="headingTwo">
+          <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h3 class="mb-0 fw-bold col-11" >
+              <span class="" style="color: #6E6A6A;">
+اقدر أستأجر المطبخ لفترة محددة؟              </span>
+</h3>
+            <span class="material-symbols-outlined justify-content-end col-1" style="color: #6E6A6A; " >
                 add
-                </span><span class="me-auto" style="color: #6E6A6A;">
-اقدر أسأجر المطبخ لفترة محددة؟              </span>
-              <span class="collapse-toggle ms-4">
-              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
               </span>
-              </a>
-           </h3>
+            <span class="collapse-toggle ms-4">
+              <i class="fe fe-plus" style="color: #6E6A6A;"></i>
+            </span>
+            </a>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
            <div class="py-3 fs-4" style="color: #818181;">
 طبعًا تقدر ! تحدد الموعد المرغوب من وإلى متى وقت حجز المطبخ  
-           </div>
-        </div>
+         </div>
+      </div>
 
 
-        <div class="border-bottom py-3 " id="headingThree">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              <span class="material-symbols-outlined" style="color: #6E6A6A;" >
-                add
-                </span><span class="me-auto" style="color: #6E6A6A;">
+        <div class="border-bottom py-3 row " style="display: flex; justify-content: space-between;" id="headingThree">
+          <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h3 class="mb-0 fw-bold col-11">
+              <span class="" style="color: #6E6A6A;">
 كيف أعرف إذا صاحب المطبخ موثوق ومعلومات المطبخ صحيحة؟              </span>
+</h3>
+<span class="material-symbols-outlined justify-content-end col-1" style="color: #6E6A6A; " >
+  add
+              </span>
               <span class="collapse-toggle ms-4">
               <i class="fe fe-plus" style="color: #6E6A6A;"></i>
               </span>
               </a>
-           </h3>
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
            <div class="py-3 fs-4" style="color: #818181;">
@@ -130,26 +132,27 @@
         </div>
 
         
-        <div class="pt-3 " id="headingFour">
-           <h3 class="mb-0 fw-bold">
-              <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-               <span class="material-symbols-outlined" style="color: #6E6A6A;" >
-                add
-                </span><span class="me-auto" style="color: #6E6A6A;">
+        <div class="border-bottom py-3 row " style="display: flex; justify-content: space-between;" id="headingFour">
+          <a href="#" class="d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <h3 class="mb-0 fw-bold col-11">
+              <span class="" style="color: #6E6A6A;">
 كيف اتواصل مع أصحاب المطابخ قبل الحجز؟              </span>
+</h3>
+                <span class="material-symbols-outlined justify-content-end col-1" style="color: #6E6A6A; " >
+                  add
+                </span>
               <span class="collapse-toggle ms-4">
               <i class="fe fe-plus" style="color: #6E6A6A;"></i>
               </span>
               </a>
-           </h3>
         </div>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
            <div class="py-3 fs-4" style="color: #818181;">
-            معلومات أصحاب المطابخ موجودة في حال احتجت أي استفسار تقدر تتواصل معهم  
+            معلومات أصحاب المطابخ موجودة في حال احتجت أي استفسار تقدر تتواصل معهم 
 
-            </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </section>
 </div>
 

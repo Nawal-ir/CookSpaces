@@ -7,19 +7,19 @@
 <div class="container">
     <div class="row" style="margin-top: 120px;">
         <div class="col">
-            <h1>Messages from Users</h1>
+            <h1>رسائل المستخدمين</h1>
             <div class="row mt-4">
-                {% for recipe in message %}
+                {% for msg in message %}
                 <div class="col-4 ">
                     <div class="d-flex flex-column p-3 rounded-4 w-100" style="border-left: 5px groove; border-right: 5px groove;">
                         <div class="d-flex flex-row gap-2">
                             <span class="material-symbols-rounded ">account_circle</span>
-                            <h5>{{recipe.first_name}} {{recipe.last_name}}</h5>
+                            <h5>{{msg.first_name}} {{msg.last_name}}</h5>
                         </div>
 
-                        <h6><a href="mailto:{{ recipe.email }} " target='_blank' rel=noopener noreferrer>{{ recipe.email }}</a></h6>
-                        <h6>{{ recipe.message }}</h6>
-                        <h6 class="text-muted">{{ recipe.created_at }}</h6>
+                        <h6><a href="mailto:{{ msg.email }} " target='_blank' rel=noopener noreferrer>{{ msg.email }}</a></h6>
+                        <h6>{{ msg.message }}</h6>
+                        <h6 class="text-muted">{{ msg.created_at }}</h6>
                     </div>
                 </div>
                 {% endfor %}
