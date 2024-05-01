@@ -153,6 +153,63 @@
         <hr>
 <!--sending order-->
 <div class="container">
+  {% if is_order  %}
+  <section class="pay">
+    <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+          عملية الدفع
+        </button>
+      </p>
+      <div >
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width: 400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    تفاصيل الدفع
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="form-group mt-5">
+                                        <label for="cardNumber ">رقم البطاقة </label>
+                                        <input type="text" class="form-control" name="card_number" id="cardNumber" placeholder="رقم بطاقة صالح" required autofocus />
+                                    </div>
+									<div class="row mt-3">
+										<label for="expityMonth ">تاريخ الانتهاء</label>
+										<div class="col form-group">
+											<input type="text" class="form-control mb-3" name="expired_month" id="expityMonth" placeholder="MM" required />
+										</div>
+										<div class="col form-group">
+										    <input type="text" class="form-control mb-3" name="expired_year" id="expityYear" placeholder="YY" required />
+									    </div>
+									</div>
+                                    <div class="form-group">
+                                        <label for="cvCode ">cvv</label>
+                                        <input type="password" class="form-control" name="cvv" id="cvCode" placeholder="cvv" required />
+                                    </div>
+									<div
+										<h4>القيمة</h4>
+                                        
+
+									</div>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+</section>
+  {% else %}
   <div class="row d-flex justify-content-center">
 
       <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-dark">book</button>
@@ -191,7 +248,7 @@
     </div>
 
   </div>
-
+{% endif %}
 </div>
 
 
