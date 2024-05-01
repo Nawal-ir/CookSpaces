@@ -127,12 +127,13 @@ def kitchen_details(request :HttpRequest,kitchen_id):
         kitchen = Kitchen.objects.get(pk=kitchen_id)
         reviews = Review.objects.filter(kitchen=kitchen)
         is_saved = request.user.is_authenticated and  BookMark.objects.filter(user=request.user, kitchen=kitchen).exists()
+        is_order=Order.objects.filter(renter__user__id=request.user.id,kitchen=kitchen).exists()
     except Kitchen.DoesNotExist:
         return render(request, "404.html")
     except Exception as e:
         print(e)
         
-    return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved})
+    return render(request, "kitchenowner/kitchen_details.html", {"kitchen" : kitchen, "reviews" : reviews, "is_saved" : is_saved,"is_order":is_order})
         
 def all_kitchens(request :HttpRequest):
     kitchens = Kitchen.objects.all()

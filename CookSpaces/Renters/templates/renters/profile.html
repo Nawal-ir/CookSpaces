@@ -164,8 +164,16 @@
 </section> -->
 <section>    
     <div class="row">
-        
+        <div class=" d-flex justify-content-center align-items-center" >
+            {% if request.user == user_profile %}
+                <!-- <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a> -->
+                <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">
+                    <i class="material-symbols-outlined">edit_square</i> Update
+                </a>
+            {% endif %}
+        </div>
         <div class="col-md-7">
+            
             
             <div class="card">
                 
@@ -190,7 +198,7 @@
                      
                     
                     <div class="buttons mt-5">
-                            <a href="{% url 'Renters:my_order' %} " class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> طلباتي</span></a>
+                            <a href="{% url 'Renters:my_order' request.user.id %} " class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> طلباتي</span></a>
                             <a href="{% url 'Renters:saved_kitchens' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> المطابخ المحفوظة</span></a>
                     </div>
                     
@@ -199,11 +207,7 @@
                 
                
                 
-                <div class=" d-flex justify-content-center align-items-center" >
-                    {% if request.user == user_profile %}
-                        <a href="{% url 'Renters:update_profile' user_profile.id %}" class="btn btn-warning">Update</a>
-                    {% endif %}
-                </div>
+                
             </div>
             
         </div>
