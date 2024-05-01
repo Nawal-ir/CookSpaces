@@ -33,10 +33,10 @@
 
   </head>
   <!-- <body style="background: linear-gradient(#ffffff, #a8a8a893); background-attachment:  fixed;"> -->
-    <body style="background: #fff; background-attachment:  fixed; ">
+    <body style="background: #fff; background-attachment:  fixed; direction: rtl;">
 
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-collapse fixed-top p-2 mb-1 " style="background-color: #fff; direction: rtl;">
+        <nav class="navbar navbar-expand-lg navbar-collapse fixed-top p-2 mb-1 " style="background-color: #fff;">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -107,7 +107,7 @@
                     <li><a class="dropdown-item" href="{% url 'Renters:profile' request.user.id %}">الملف الشخصي</a></li>
 
                     <li><a class="dropdown-item" href="{% url 'Renters:saved_kitchens' %}">مطابخي المحفوظة</a></li>
-                    <li><a class="dropdown-item" href="{% url 'Renters:my_order' %}">طلباتي</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Renters:my_order' request.user.id %}">طلباتي</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">تسجيل الخروج</a></li>
                   </ul>
