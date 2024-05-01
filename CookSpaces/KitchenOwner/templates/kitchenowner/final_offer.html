@@ -1,2 +1,34 @@
 {% extends "main/base.html" %}
 
+{% block title %}Finl offer{% endblock  %}
+
+{% block content %}
+<section>
+    <div class="row">
+        <div class="col">
+
+            <h1>العرض النهائي</h1>
+            {{order.kitchen.title}}
+            {{order.kitchen.desc}}
+            {% for e in order.kitchen.equipment.all %}
+                <span class="material-symbols-outlined">{{e.icon}}</span>
+                {{e.name}}
+            {% endfor %}
+            <h3>مدة الاستئجار </h3>
+            {{order.start_date}}من 
+            {{order.end_date}}الى 
+            <h3>السعر النهائي</h3>
+            {{order.price}}
+            <!-- هنا الدفع -->
+
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock  %}
+
+
+
+
