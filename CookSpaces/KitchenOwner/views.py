@@ -50,7 +50,7 @@ def register_owner(request:HttpRequest):
             print(e)
 
         except Exception as e:
-            msg = "Something went wrong. Please try again."
+            msg = f"Something went wrong. Please try again. {e}"
             print(e)
     
 
@@ -140,7 +140,7 @@ def all_kitchens(request :HttpRequest):
 
 def rental_request(request : HttpRequest,kitchen_id):
     kitchen=Kitchen.objects.get(id=kitchen_id)
-    renter =Renter.objects.get(user__id=request.user.id)
+    renter =Renter.objects.get(user=request.user)
     if request.method =="POST":
         order = Order(
             renter = renter,
