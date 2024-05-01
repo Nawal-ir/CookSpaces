@@ -184,3 +184,14 @@ def order_details(request : HttpRequest,order_id):
 def final_order(request :HttpRequest):
     
     return render(request,"KitchenOwner/final_offer.html")
+
+
+
+
+def search_cities(request):
+    query = request.GET.get('city_search')
+    if query:
+        kitchens = Kitchen.objects.filter(city__icontains=query)
+    else:
+        kitchens = Kitchen.objects.all()
+    return render(request, 'your_template.html', {'kitchens': kitchens})
