@@ -19,8 +19,8 @@ def register_renter(request:HttpRequest):
                 new_user = User.objects.create_user(
                     username=request.POST["username"], 
                     email=request.POST["email"], 
-                    first_name=request.POST["first"], 
-                    last_name=request.POST["last"], 
+                    first_name=request.POST["first_name"], 
+                    last_name=request.POST["last_name"], 
                     password=request.POST["password"]
                     )
                 new_user.save()
@@ -29,9 +29,6 @@ def register_renter(request:HttpRequest):
                     group = Group.objects.get(name="Renter")
                     new_user.groups.add(group)
 
-                if not new_user.groups.filter(name='Renter').exists():
-                    group = Group.objects.get(name="Renter")
-                    new_user.groups.add(group)
                 register_renter = Renter(
                     user=new_user, 
                     about=request.POST["about"],
@@ -40,7 +37,6 @@ def register_renter(request:HttpRequest):
                     )
                 register_renter.save()
 
-            return redirect("accounts:login")
             return redirect("accounts:login")
         
         except IntegrityError as e:

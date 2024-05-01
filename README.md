@@ -38,8 +38,8 @@
 
 
 ## USER Stories, Wireframe and UML
-**USER STORIES URL:**
+**USER STORIES URL:** (https://docs.google.com/document/d/14mcJJDaQa6RpXGbZ8haPhj1ryR76HBfX7GIFA8CCZIA/edit)
 
-**Wireframe URL:**
+**Wireframe URL:** (https://www.figma.com/file/TVo5ZpYKmFpOgXpjE9J4FO/Final-Project-CookSpaces?type=design&node-id=0-1&mode=design&t=eo2TW41ou74hKOfu-0)
 
-**UML URL:**
+**UML URL:** (https://miro.com/app/board/uXjVKRKUlbM=/#)
