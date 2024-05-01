@@ -211,41 +211,6 @@
   </div>
 
 </section>
-<section style="background-color: #F4F2EE; direction: rtl; justify-content: center;box-shadow: #6E6A6A;">
-<div >
-    <div class="title">
-        <h1 style="font-size: 100%; text-align: right;color: #8EB89C;"> ابحث عن مطبخ <u class="text-warning"><span style="color: #111;">يناسبك   </span></u></h1>
-    </div>
-
-    {% for kitchen in kitchens %}
-    <div class="row px-3">
-        <div class="col d-flex justify-content-center" style="justify-items: center;">
-            <div class="card" style="width: 20rem;">
-                <img src="{{kitchen.image.url}}" class="card-img-top" alt="poster">
-                <div class="card-body">
-                   <h5 class="card-title">{{kitchen.title}}</h5>
-                   <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
-                   <h6>Price: {{kitchen.price}} SR/{{kitchen.period}}</h6>
-                   <div class="d-flex justify-content-end">
-                        <a href="{% url 'KitchenOwner:kitchen_details' kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
-                   </div>
-                </div>
-             </div>
-        </div>
-    </div>                    
-
-    {% endfor %}
-<br><br> <br>
-
-<div class="row">
-    <div class="text-center" style="margin-top:30px;">
-        <a href="{% url 'KitchenOwner:all_kitchens' %}" class="btn btn-dark " style="background-color: #272928; width: 100px;"> <span style="color: #F4F2EE;">أكثر</span></a>
-     </div>
-</div>
-</div>
-
-</section>
-
 
 
 
