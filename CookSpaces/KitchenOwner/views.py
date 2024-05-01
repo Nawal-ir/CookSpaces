@@ -90,8 +90,8 @@ def add_kitchen(request :HttpRequest):
     
     if request.method == "POST":
         
-        lat =  float(request.POST["loc_latitude"])
-        lng = float(request.POST["loc_longitude"])
+        lat =  float(request.POST.get("loc_latitude",False))
+        lng = float(request.POST.get("loc_longitude",False))
         kitchen = Kitchen(
             kitchen_owner = request.user.kitchenowner,
             title = request.POST["title"],
@@ -105,7 +105,7 @@ def add_kitchen(request :HttpRequest):
             has_storage = request.POST.get("has_storage", False),
             has_waitingarea = request.POST.get("has_waitingarea", False),
             price = request.POST["price"],
-            is_negotiable =request.POST["is_negotiable"],
+            is_negotiable =request.POST.get("is_negotiable"),
             loc_latitude = lat,
             loc_longitude = lng,
             city = request.POST.get("city"),
@@ -115,6 +115,7 @@ def add_kitchen(request :HttpRequest):
         kitchen.save()
         kitchen.equipment.set(request.POST.getlist("equipments",[]))
         
+        return redirect("KitchenOwner:all_kitchens")
     return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"city":Kitchen.cities.choices})
 
 def update_kitchen(request :HttpRequest):
@@ -193,4 +194,4 @@ def search_cities(request):
         kitchens = Kitchen.objects.filter(city__icontains=query)
     else:
         kitchens = Kitchen.objects.all()
-    return render(request, 'your_template.html', {'kitchens': kitchens})
+    return render(request, 'kitchenowner/all_kitchens.html', {'kitchens': kitchens})
