@@ -181,6 +181,7 @@ def order_details(request : HttpRequest,order_id):
 
     return render(request,"KitchenOwner/order_details.html",{"order":order})
 
-def final_offer(request :HttpRequest):
+def final_offer(request :HttpRequest , order_id):
+    order = order = Order.objects.get(id=order_id)
     
-    return render(request,"KitchenOwner/final_offer.html")
+    return render(request,"KitchenOwner/final_offer.html",{"order":order})
