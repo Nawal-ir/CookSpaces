@@ -1,8 +1,8 @@
 {% extends "main/base.html" %}
 
 {% block title %} all kitchens {% endblock  %}
-{% block content  %}
 <div class="container">
+
     <div class="row" style="margin-top: 100px;">
                 <h1>كل المطابخ ({{kitchens.count}})</h1>
                 <hr>
@@ -14,12 +14,32 @@
                                    <h5 class="card-title">{{kitchen.title}}</h5>
                                    <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
                                    <h6>Price: {{kitchen.price}} SR/{{kitchen.period}}</h6>
+                                   <h6> cities: {{kitchen.cities}}</h6>
                                    <div class="d-flex justify-content-end">
                                         <a href="{% url 'KitchenOwner:kitchen_details' kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
                                    </div>
                                 </div>
                              </div>
                         </div>
+
+
+        <form action="{% url 'search_cities' %}" method="GET">
+        <input type="text" name="city_search" placeholder="Search by city...">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="container">
+        <div class="row">
+            {% for kitchen in kitchens %}
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ kitchen.title }}</h5>
+                            <p class="card-text">City: {{ kitchen.city }}</p>
+                            <!-- Other kitchen details -->
+                        </div>
+                    </div>
+                </div>
                         
                     {% endfor %}
             </div>                    
@@ -27,6 +47,5 @@
 
 
 
-{% endblock  %}
 
 
