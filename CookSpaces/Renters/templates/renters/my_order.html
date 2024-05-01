@@ -63,33 +63,25 @@
 					</div>
 				</div>
 			</div>
-            
-            <div class="row py-4">
-                {% for order in orders %}
-                <div class="col">
-                    <div class="card" style="width: 20rem;">
-                        <img src="{{order.kitchen.image.url}}" alt="poster" style="background-size: cover; height: 200px;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{order.kitchen.title}}</h5>
-                            <h6 class="text-muted">{{order.status}}</h6>
-                            <div class="d-flex justify-content-end">
-                                <a href="{% url 'KitchenOwner:kitchen_details' order.kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                {% endfor %}
-            </div>
-            <!-- <div class="card" style="width: 20rem;">
-                <img src="/static/images/kitchen1.jpeg" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		   <a href="#" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
 		</div>
-	 </div> -->
-    </div>
+	</section>
+<section>
+    {% for order in orders %}
+        <div class="col-4 d-flex mt-2">
+            <div class="card" style="width: 20rem;">
+                <img src="{{order.kitchen.image.url}}" class="card-img-top" alt="poster">
+                <div class="card-body">
+                <h5 class="card-title">{{order.kitchen.title}}</h5>
+                <h6>Spcae: {{kitchen.space}} m<sup>2</h6>
+                <h6>Price: {{kitchen.price}} SR/{{kitchen.period}}</h6>
+                <div class="d-flex justify-content-end">
+                        <a href="{% url 'KitchenOwner:kitchen_details' kitchen.id %}" class="btn btn-outline-warning" style="color: #6E6A6A;">التفاصيل</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
 </section>
 <section class="pay">
     <p>
@@ -131,7 +123,8 @@
                                     </div>
 									<div>
 										<h4>القيمة</h4>
-                                        <p>{{orders.price}}</p>
+                                        {{}}
+
 									</div>
                                     <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
                                 </form>

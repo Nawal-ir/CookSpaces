@@ -107,9 +107,10 @@ def update_profile(request:HttpRequest, user_id):
     return render(request, "renters/profile_update.html", {"user_info":user_info, "msg" : msg})
 
 
-def my_order(request:HttpRequest):
+def my_order(request:HttpRequest,user_id):
     if "cat" in request.GET:
-        orders= Order.objects.filter(status = request.GET["cat"])
+        orders_f= Order.objects.filter(status = request.GET["cat"])
+        orders = Order.objects.get(renter__user__id=user_id)
     else:
         orders = Order.objects.all().order_by("-created_at")
         
@@ -126,13 +127,8 @@ def accept(request: HttpRequest):
         subject = 'حالة الطلب'
         message = f'السلام عليكم {user.username}, السعر: {total_price}ريال. شكرا لاختيارك خدماتنا! نحن نقدر تفضيلك وثقتك بنا ونتطلع إلى خدمتك مرة أخرى قريبًا,تم قبول الطلب.'
         send_html_email_to_user(subject, message, user.email)
-        return render(request, 'renters/my_order.html')
-    else:
-        user = request.user
-        kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
-        total_price = sum(item.kitchen.price for item in kitchen)        
         return render(request, 'renters/my_order.html', {'kitchen': kitchen, 'total_price': total_price,'message': message})
-
+    
 
 def send_html_email_to_user(subject,msg,user_email):
     subject = subject
@@ -155,12 +151,8 @@ def reject(request: HttpRequest):
         kitchen = user.order_set.all()  # Example, replace with actual retrieval logic
         subject = 'حالة الطلب'
         message = f'السلام عليكم {user.username}, تم رفض الطلب'
-        send_html_email_to_user(subject, message, user.email)
-        return render(request, 'renters/my_order.html')
-    else:
-        user = request.user
-        kitchen = user.order_set.all()  # Example, replace with actual retrieval logic       
-    return render(request, 'renters/my_order.html', {'kitchen': kitchen,'message': message})
+        send_html_email_to_user(subject, message, user.email)  
+        return render(request, 'renters/my_order.html', {'kitchen': kitchen,'message': message})
 
 
 def send_html_email_to_user(subject,msg,user_email):
