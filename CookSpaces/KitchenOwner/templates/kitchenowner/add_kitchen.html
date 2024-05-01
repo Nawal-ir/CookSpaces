@@ -15,6 +15,8 @@
 
 <section style="padding-top:150px;">
     <h2 class=" title h1 fw-bold"> <u class="text-warning"><span style="color: #00815b; margin-top: 500px; ">   إضافة مطبخ </span></u></h2>
+    <form action="{% url 'KitchenOwner:add_kitchen'  %}" method="post" enctype="multipart/form-data" style="direction: rtl;">
+        {% csrf_token %}
 
     <div class="row" >
         <div class="col-6 " style="background-color: #F4F2EE; padding: 50px;">
@@ -73,12 +75,10 @@
 
 
         <div class="col-6 " style="background-color: #F4F2EE; padding: 50px; ">
-            <form action="{% url 'KitchenOwner:add_kitchen'  %}" method="post" enctype="multipart/form-data" style="direction: rtl;">
-                {% csrf_token %}
                 <div class="d-flex flex-column gap-1 "> 
                 <!--title-->
                  <h5>  <label for="title">تصنيف المطبخ</label> </h5>  
-                <input type="text" name="title" placeholder="" style="border-radius: 10px;">
+                <input type="text" name="title" placeholder="العنوان" style="border-radius: 10px;">
                 <!--Description-->
                 <textarea name="desc" cols="30" rows="5" placeholder="     وصف     " style="direction: rtl; border-radius: 10px;"></textarea>
                 <br>
@@ -110,6 +110,7 @@
 
         </div>
     </div>
+    </form>
 </section>
 
 

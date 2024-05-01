@@ -112,7 +112,7 @@
             gap: 10px;">
                 <div class="d-flex justify-content-end">
                   <a href="{% url 'Renters:add_remove_saved_view' kitchen.id %}" {% if not request.user.is_authenticated %} data-bs-toggle="modal" data-bs-target="#savedModal" {% endif %} class="text-decoration-none"><i class="bi {% if is_saved %} bi-bookmark-fill {% else %} bi-bookmark {% endif %} bookmark"></i></a>
-                  {% if request.user.is_authenticated and request.user.username == kitchen.user.username or request.user.is_superuser %}
+                  {% if request.user.is_authenticated and request.user.username == kitchen.kitchen_owner.user.username or request.user.is_superuser %}
                     <a href="{% url 'main:delete_kitchen' kitchen.id %}" class="btn"><span class="material-symbols-rounded">delete</span></a>
                   {% endif %}
                 </div>
