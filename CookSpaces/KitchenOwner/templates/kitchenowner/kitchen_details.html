@@ -6,7 +6,7 @@
 <style>
 
   .sc{
-    padding: 30px 30px;
+    padding: 90px;
   }
 
   #map {
@@ -100,115 +100,123 @@
 <!--kitchen-->
 <section class="sc mt-5">
     <div class="container">
-      <div class="row">
+      <div class="row" style="direction: ltr;">
         <div class="col-6">
-              <img src="{{kitchen.image.url}}" alt="" class="w-100 rounded-4 ">
+              <img src="{{kitchen.image.url}}" alt="poster" class="w-100 rounded-4 "
+              style="background-size: cover; height: 400px;">
             </div>
             
             <div class="col"
             style="display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 10px;">
-                <div class="d-flex justify-content-end">
-                  <a href="{% url 'Renters:add_remove_saved_view' kitchen.id %}" {% if not request.user.is_authenticated %} data-bs-toggle="modal" data-bs-target="#savedModal" {% endif %} class="text-decoration-none"><i class="bi {% if is_saved %} bi-bookmark-fill {% else %} bi-bookmark {% endif %} bookmark"></i></a>
+            gap: 10px;
+            direction: rtl;">
+                <div style="display: flex; justify-content: end;">
+                  <a href="{% url 'Renters:add_remove_saved_view' kitchen.id %}" {% if not request.user.is_authenticated %} data-bs-toggle="modal" data-bs-target="#savedModal" {% elif user.renter.id %} class="text-decoration-none"><i class="bi {% if is_saved %} bi-bookmark-fill {% else %} bi-bookmark {% endif %} bookmark"{% endif %}></i></a>
                   {% if request.user.is_authenticated and request.user.username == kitchen.kitchen_owner.user.username or request.user.is_superuser %}
-                    <a href="{% url 'main:delete_kitchen' kitchen.id %}" class="btn"><span class="material-symbols-rounded">delete</span></a>
+                  <a href="{% url 'main:delete_kitchen' kitchen.id %}" class="btn"><span class="material-symbols-rounded">delete</span></a>
                   {% endif %}
                 </div>
+                
                 <h1>{{kitchen.title}}</h1>
-
                 <div class="row">
-                  <h4>Equipments: </h4>
-                  <div class="col d-flex align-items-center gap-2">
+                  <h5>الأجهزة:
                     {% for e in kitchen.equipment.all %}
                     <span class="material-symbols-outlined">{{e.icon}}</span>
                       {{e.name}}
                     {% endfor %}
+                  </h5>
+                  <div class="d-flex align-items-center gap-2">
+
                   </div>
 
                 </div>
-                <h5>Space: {{kitchen.space}} m<sup>2</sup></h5>
-                <h5>Price:{{kitchen.price}} SAR/{{kitchen.period}}</h5>
+                <h5>المساحة: {{kitchen.space}} م<sup>2</sup></h5>
+                <h5>السعر: {{kitchen.price}} ريال سعودي/{{kitchen.period}}</h5>
         </div>
       </div> <!--Kitchen Detail-->
 
       <!--decription-->
       <div class="row">
         <div class="col">
-          <h2>Description</h2>
+          <h2>وصف المطبخ:</h2>
           <p class="d-flex justify-content-center">{{kitchen.desc}}</p>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <h2>Our location</h2>
+          <h2>مكان الموقع:</h2>
             <div id="map"></div>
         </div>
       </div> <!--Our Locations-->
     </div>
 </section>
 
-        <hr>
+<hr>
 <!--sending order-->
 <div class="container">
   {% if is_order  %}
   <section class="pay">
-      <div >
-          <div class="card card-body" style="width: 400px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    تفاصيل الدفع
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <form method="post" action="{% url 'Renters:my_order' request.user.id %}">
-                                    {% csrf_token %}
-                                    <div class="form-group mt-5">
-                                        <label for="cardNumber ">رقم البطاقة </label>
-                                        <input type="text" class="form-control" name="card_number" id="cardNumber" placeholder="رقم بطاقة صالح" required autofocus />
-                                    </div>
-									<div class="row mt-3">
-										<label for="expityMonth ">تاريخ الانتهاء</label>
-										<div class="col form-group">
-											<input type="text" class="form-control mb-3" name="expired_month" id="expityMonth" placeholder="MM" required />
-										</div>
-										<div class="col form-group">
+    <div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">تفاصيل الدفع</h3>
+                </div>
+                <div class="panel-body">
+                  <form method="post" action="{% url 'Renters:my_order' request.user.id %}">
+                    {% csrf_token %}
+                    <div class="form-group mt-5">
+                      <label for="cardNumber ">رقم البطاقة </label>
+                      <input type="text" class="form-control" name="card_number" id="cardNumber" placeholder="رقم بطاقة صالح" required autofocus />
+                    </div>
+									  <div class="row mt-3">
+										  <label for="expityMonth ">تاريخ الانتهاء</label>
+										  <div class="col form-group">
+											  <input type="text" class="form-control mb-3" name="expired_month" id="expityMonth" placeholder="MM" required />
+										  </div>
+										  <div class="col form-group">
 										    <input type="text" class="form-control mb-3" name="expired_year" id="expityYear" placeholder="YY" required />
 									    </div>
-									</div>
-                                    <div class="form-group">
-                                        <label for="cvCode ">cvv</label>
-                                        <input type="password" class="form-control" name="cvv" id="cvCode" placeholder="cvv" required />
-                                    </div>
-									<div
-										<h4>القيمة</h4>
-                                        
-
-									</div>
-                                    <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
-                                </form>
-                            </div>
-                        </div>
+									  </div>
+                    <div class="form-group">
+                      <label for="cvCode ">cvv</label>
+                      <input type="password" class="form-control" name="cvv" id="cvCode" placeholder="cvv" required />
                     </div>
+                    <div>
+                      <h4>القيمة</h4>
+                      <div class="row">
+                        <div class="col">
+                          <div class="d-flex align-items-center">
+                            <input type="text" name="price" class="form-control w-50" value="{{kitchen.price}}" readonly>
+                            <label for="price"> ريال سعودي </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg btn-block mt-5" style="width: 350px;">دفع</button>
+                  </form>
                 </div>
+              </div>
             </div>
-            
           </div>
-      </div>
-</section>
+        </div>
+            
+    </div>
+  </section>
+  {% elif  order.status == "مرفوضة" %}
+  <h6>Rejected</h6>
   {% else %}
-  <div class="row d-flex justify-content-center">
-
-    <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-dark">book</button>
-
-  </div>
-{% endif %}
+    {% if request.user.is_authenticated and user.renter.id %}
+    <div class="row d-flex justify-content-center">
+      <button data-bs-toggle="modal" data-bs-target="#bookModal" class="btn btn-outline-warning" style="color: #02070b;">طلب استئجار</button>
+    </div>
+    {% endif %}
+  {% endif %}
 </div>
 
 
@@ -216,7 +224,7 @@
 <section>
   <hr>
 
-  <h2 id="reviews">Reviews ({{reviews.count}})</h2>
+  <h2 id="reviews">التقييمات ({{reviews.count}})</h2>
   <div class="container">
       
       <div class="row mt-4">
@@ -247,7 +255,7 @@
                   <form action="{% url 'main:add_review' kitchen.id %}" method="post" class="d-flex flex-column gap-2">
                       {% csrf_token %}
                       
-                      <label for="content" class="d-flex justify-content-center" style="font-size: 32px;">Share Your Review</label>
+                      <label for="content" class="d-flex justify-content-center" style="font-size: 32px;">شاركنا تقييمك</label>
                       <div class="star-rating">
                           <input class="radio-input" type="radio" id="star5" name="evaluation" value="5" />
                           <label class="radio-label" class for="star5" title="5 stars">5 stars</label>
@@ -264,9 +272,9 @@
                           <input class="radio-input" type="radio" id="star1" name="evaluation" value="1" />
                           <label class="radio-label" for="star1" title="1 star">1 star</label>
                       </div>
-                      <textarea id="content" name="content" class="form-control" placeholder="Write Your Review..." required></textarea>
+                      <textarea id="content" name="content" class="form-control" placeholder="اكتب تعليقك..." required></textarea>
   
-                      <input type="submit" value="Add Review" class="btn btn-dark" style="background: linear-gradient(#081b22, #051116, #02070b);"/>
+                      <input type="submit" value="إضافة" class="btn btn-dark" style="background: linear-gradient(#081b22, #051116, #02070b);"/>
                   </form>
                   {% else %} 
                       <div class="alert alert-warning">You must <a href="{% url 'accounts:login' %}">Sign in</a> to write a review.</div>
@@ -309,14 +317,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="d-flex justify-content-center">!أرسل طلب استئجار</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h3>أرسل طلب استئجار مطبخ</h3>
       </div>
       <div class="modal-body">
         <form action="{% url 'KitchenOwner:rental_request' kitchen.id%}" method="post">
           {% csrf_token %}
           <div class="d-flex flex-column">
-            <div class="row mb-3">
+            <div class="row mb-3" style="direction: ltr;">
               <div class="col">
                 <label for="start_date" class="form-label d-flex justify-content-end">:من</label>
                 <input type="date" name="start_date" id="start_date" class="form-control">
@@ -327,14 +334,30 @@
               </div>
             </div>
             <textarea name="note" class="form-control mb-3"  placeholder="يرجى كتابة تفاصيل طلبك هنا" cols="30" rows="5"></textarea>
+            <h5>السعر الإجمالي:</h5>
             {% if kitchen.is_negotiable %}
             <!-- يقدر يعدل على السعر-->
-            <input type="text" name="price" value="{{kitchen.price}}">
-            {% else %}
+            <div class="row">
+              <div class="col">
+                <div class="d-flex align-items-center">
+                  <label for="price"> ريال سعودي</label>
+                  <input type="text" name="price" class="form-control w-50" value="{{kitchen.price}}">
+                </div>
+              </div>
+            </div>
+          {% else %}
             <!--فقط يشوف السعر من غير ما يقدر يعدله -->
-            <input type="text" name="price" value="{{kitchen.price}}" readonly>
+            <div class="row">
+              <div class="col">
+                <div class="d-flex align-items-center">
+                  <input type="text" name="price" class="form-control w-50" value="{{kitchen.price}}" readonly>
+                  <label for="price"> ريال سعودي</label>
+                </div>
+              </div>
+            </div>
             {% endif %}
-            <input type="submit" class="btn btn-primary" value="إرسال">
+            
+            <input type="submit" class="btn btn-primary mt-2" value="إرسال">
             {% if msg %}
             <div class="alert alert-success" role="alert">
               {{msg}}

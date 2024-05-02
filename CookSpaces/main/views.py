@@ -11,13 +11,14 @@ def home(request:HttpRequest):
         print(request.user.first_name)
     
     kitchens = Kitchen.objects.all()[:3]
+    articles = Article.objects.all()[:4]
     
-    return render(request, "main/home.html",  {"kitchens":kitchens})
+    return render(request, "main/home.html",  {"kitchens":kitchens, "articles":articles})
 
 def delete_kitchen(request:HttpRequest, kitchen_id):
 
     #limit access to this view for only staff
-    if not request.user.is_staff:
+    if not request.user.username:
         return render(request, "no_permission.html")
 
     try:
@@ -50,13 +51,13 @@ def all_article(request:HttpRequest):
 def article_detail(request :HttpRequest,kitchen_id):
     try:
         #getting a kitchen detail
-        kitchen = Article.objects.get(pk=kitchen_id)
+        article = Article.objects.get(pk=kitchen_id)
     except Article.DoesNotExist:
         return render(request, "404.html")
     except Exception as e:
         print(e)
         
-    return render(request, "main/article_detail.html", {"kitchen" : kitchen})
+    return render(request, "main/article_detail.html", {"article" : article})
 
 def about(request:HttpRequest):
     

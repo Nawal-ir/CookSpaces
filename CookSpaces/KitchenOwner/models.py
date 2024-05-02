@@ -13,9 +13,9 @@ class Equipment(models.Model):
     
 class Kitchen (models.Model):    
     #choices 
-    periods = models.TextChoices("period",["Monthly","Annually"])
+    periods = models.TextChoices("period",["شهري","سنوي"])
     status_choices = models.TextChoices("status",["accepted","rejected", "pending"])
-    cities = models.TextChoices("city",[('Riyadh', 'الرياض'), ('Jeddah', 'جدة'), ('Dammam', 'الدمام')])
+    cities = models.TextChoices("city",['الرياض','جدة','الدمام'])
     
     kitchen_owner = models.ForeignKey(KitchenOwner,on_delete=models.CASCADE)
     title = models.CharField(max_length=1000)

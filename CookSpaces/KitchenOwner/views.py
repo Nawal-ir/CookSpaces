@@ -120,14 +120,13 @@ def add_kitchen(request :HttpRequest):
         return redirect("KitchenOwner:all_kitchens")
     return render(request,"KitchenOwner/add_kitchen.html",{"period":Kitchen.periods.choices,"equipments":equipments,"cities":Kitchen.cities.choices})
 
-
 def kitchen_details(request :HttpRequest,kitchen_id):
     try:
         #getting a kitchen detail
         kitchen = Kitchen.objects.get(pk=kitchen_id)
         reviews = Review.objects.filter(kitchen=kitchen)
         is_saved = request.user.is_authenticated and  BookMark.objects.filter(user=request.user, kitchen=kitchen).exists()
-        is_order=Order.objects.filter(renter__user__id=request.user.id,kitchen=kitchen).exists()
+        is_order=Order.objects.filter(renter__user__id=request.user.id,kitchen=kitchen,status="مقبولة").exists()
     except Kitchen.DoesNotExist:
         return render(request, "404.html")
     except Exception as e:
@@ -157,7 +156,6 @@ def rental_request(request : HttpRequest,kitchen_id):
         msg="Your request was successfully sent!"
         
     return render(request,"kitchenowner/kitchen_details.html",{"kitchen":kitchen,"msg":msg})
-
 
 def owner_orders(request :HttpRequest,owner_id):
     orders = Order.objects.filter(kitchen__kitchen_owner__user__id=owner_id)
@@ -200,7 +198,6 @@ def final_offer(request :HttpRequest ,order_id):
     order = order = Order.objects.get(id=order_id)
     
     return render(request,"KitchenOwner/final_offer.html",{"order":order})
-
 
 def search_cities(request):
     query = request.GET.get('city_search')

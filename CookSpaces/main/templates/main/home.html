@@ -144,50 +144,21 @@
 <section>
   <div class="row" style="direction: ltr;">
     <div class="col-6">
-        <div class="row " style="padding-bottom: 10px;">
-          <div class="col-6">
-            <div class="notification">
-              <div class="notiglow"></div>
-              <div class="notiborderglow"></div>
-              <div class="notititle">Welcome To Uiverse</div>
-              <div class="notibody">Contribute to Open Source UI Elements</div>
-            </div>
-          </div>
-          <div class="col-6">
-   
-                <div class="notification">
-                  <div class="notiglow"></div>
-                  <div class="notiborderglow"></div>
-                  <div class="notititle">Welcome To Uiverse</div>
-                  <div class="notibody">Contribute to Open Source UI Elements</div>
-
-              </div>
-          </div>
-        </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col" style="display: contents; direction: rtl;">
+            {% for article in articles %}
             <div class="notification">
               <div class="notiglow"></div>
               <div class="notiborderglow"></div>
-              <div class="notititle">Welcome To Uiverse</div>
-              <div class="notibody">Contribute to Open Source UI Elements</div>
+              <div class="notititle">{{article.title}}</div>
             </div>
-          </div>
-          <div class="col-6">
-
-                <div class="notification">
-                  <div class="notiglow"></div>
-                  <div class="notiborderglow"></div>
-                  <div class="notititle">Welcome To Uiverse</div>
-                  <div class="notibody">Contribute to Open Source UI Elements</div>
-                </div>
-
+            {% endfor %}
           </div>
         </div>
         <div class="mt-10 text-center d-flex justify-content-center">
           <a href="{% url 'main:articles' %}" class="btn " style="background-color: #272928;margin-top: 40px; "><span style="color: #F4F2EE;"> أعرف أكثر</span></a>
        </div>
-  </div>
+    </div>
 
       <div class="col-6 text-center pt-5">
         <h2 class="h1 fw-bold">  كن الرقم الصعب في <br> <u class="text-warning"><span style="color: #8EB89C;"> سوق العمل </span></u></h2>

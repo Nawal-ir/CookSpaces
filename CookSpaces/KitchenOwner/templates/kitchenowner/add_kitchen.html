@@ -19,7 +19,7 @@
         {% csrf_token %}
         
     <div class="row" >
-        <div class="col-6 " style="background-color: #F4F2EE; padding: 50px; ">
+        <div class="col-6" style="background-color: #F4F2EE; padding: 50px; ">
                 <div class="d-flex flex-column gap-1 "> 
                 <!--title-->
                  <h5>  <label for="title">تصنيف المطبخ</label> </h5>  
@@ -44,35 +44,43 @@
             </div>
         
         </div>
-        <div class="col-6 " style="background-color: #F4F2EE; padding: 50px;">
-            <h5 style="direction: rtl;">خدمات</h5>
-            {% for e in equipments %}
-            <div class="d-flex gap-2" style="direction: rtl;">
-                <input type="checkbox" name="equipments" id="{{e.id}}" value="{{e.id}}" />
-                <label for="{{e.id}}" class="d-flex align-items-center gap-1">
-                    <span class="material-symbols-outlined">{{e.icon}}</span>
-                    <h5 class="m-0 p-0">{{e.name}}</h5>
-                </label>
-            </div>
-            {% endfor %}
-            
-            <!--has_ventilation-->
-            <div class="d-flex gap-2 " style="direction: rtl;">
-            <input type="checkbox" name="has_ventilation" value="True"> تهوية<br>
-            </div>
-            <!--has_toilet-->
-            <div class="d-flex gap-2 " style="direction: rtl;" >
-            <input type="checkbox" name="has_toilet" value="True">  دورة مياة<br>
-            </div>
-            
-            <!--has_storage-->
-            <div class="d-flex gap-2 " style="direction: rtl;">
-            <input type="checkbox" name="has_storage" value="True"> مخزن<br>
-            </div>
-            
-            <!--has_waitingarea-->
-            <div class="d-flex gap-2 " style="direction: rtl;">
-            <input type="checkbox" name="has_waitingarea" value="True"> استراحة<br>
+        
+        <div class="col-6" style="background-color: #F4F2EE; padding: 50px;">
+            <div class="row">
+                <div class="col">
+                    <h5 style="direction: rtl;">الأجهزة</h5>
+                    {% for e in equipments %}
+                    <div class="d-flex gap-2" style="direction: rtl;">
+                        <input type="checkbox" name="equipments" id="{{e.id}}" value="{{e.id}}" />
+                        <label for="{{e.id}}" class="d-flex align-items-center gap-1">
+                            <span class="material-symbols-outlined">{{e.icon}}</span>
+                            <h6 class="m-0 p-0">{{e.name}}</h6>
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col">
+
+                    <h5 style="direction: rtl;">الخدمات</h5>
+                    <!--has_ventilation-->
+                    <div class="d-flex gap-2 " style="direction: rtl;">
+                        <input type="checkbox" name="has_ventilation" value="True"> تهوية<br>
+                    </div>
+                    <!--has_toilet-->
+                    <div class="d-flex gap-2 " style="direction: rtl;" >
+                        <input type="checkbox" name="has_toilet" value="True">  دورة مياة<br>
+                    </div>
+                    
+                    <!--has_storage-->
+                    <div class="d-flex gap-2 " style="direction: rtl;">
+                        <input type="checkbox" name="has_storage" value="True"> مخزن<br>
+                    </div>
+                    
+                    <!--has_waitingarea-->
+                    <div class="d-flex gap-2 " style="direction: rtl;">
+                        <input type="checkbox" name="has_waitingarea" value="True"> استراحة<br>
+                    </div>
+                </div>
             </div>
             <br>
               <!--is_negotiable-->
@@ -89,7 +97,7 @@
             <br>
                 <!--price-->
                 <h5 style="direction: rtl;">السعر</h5>
-                <label for="price" >ريال سعودي  <input class="text-end" type="text" name="price" style="direction: rtl; border-radius: 10px; "><br></label>
+                <label for="price" ><input class="text-end" type="text" name="price" style="direction: rtl; border-radius: 10px; ">   ريال سعودي<br></label>
             <div style="direction: rtl; ">
                 <br>
                 <h5>المدينة</h5>
@@ -108,7 +116,7 @@
                 <br>
                 <br>
             <div id="map"></div>
-            <input type="submit" class="btn btn-outline-warning" value="Add" style="color: #00815b;margin-top: 30px;">
+            <input type="submit" class="btn btn-outline-warning" value="إضافة مطبخ" style="color: #00815b; margin-top: 30px;">
          </div>
 
         </div>

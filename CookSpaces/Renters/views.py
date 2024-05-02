@@ -110,7 +110,7 @@ def my_order(request:HttpRequest,user_id):
         orders= Order.objects.filter(status = request.GET["cat"],renter__user__id=user_id)
         print(request.GET["cat"])
         if not orders:
-            msg="there is no orders in this category."
+            msg="ليس لديك أي طلبات"
     else:
         orders = Order.objects.all().order_by("-created_at")
 

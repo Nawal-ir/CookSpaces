@@ -93,7 +93,7 @@
     <div class=" row align-items-center ">
           <div class="col">
             <div >
-              <form action="{% url 'KitchenOwner:register_owner' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style=" padding: 180px 30px; border-radius: 20px; border: 20px; ">
+              <form action="{% url 'accounts:login' %}" method="post" class="d-flex flex-column gap-2" enctype="multipart/form-data" style=" padding: 180px 30px; border-radius: 20px; border: 20px; ">
                   {% csrf_token %}
                   <h2 class="h1 fw-bold text-center" > <u class="text-warning "><span style="color: #232524;">  مرحبا !</span></u></h2>
 

@@ -327,6 +327,7 @@ section{
 .notification {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   isolation: isolate;
   position: relative;
   width: 18rem;

@@ -1,44 +1,28 @@
 {% extends 'main/base.html' %}
 {% block title %}CookSpaces | ARTICLES{% endblock %}
 
-{% block style %}
+{% block styles %}
 
 {% endblock %}
 
 {% block content %}
-<!-- <div class="row">
-    <div class="col">
-                <img src="{{kitchen.poster.url}}" alt="poster">
-
-        <h1>{{kitchen.title}}</h1>
-        <p>{{kitchen.content}}</p>
-
-    </div>
-</div> -->
 
 
 
 <section style="padding-top:150px;">
 
     <div class="row" >
-        <div class="col">
-            <img src="{{kitchen.poster.url}}" alt="poster" style="width:500px;">
+        <div class="col order-2">
+            <img src="{{article.poster.url}}" alt="poster" style="width:500px;">
         </div>
-        <div class="col ">
-            <!-- <h2 class=" title h1 fw-bold"> <u class="text-warning"><span style="color: #00815b; padding-top: 500px; ">  {{kitchen.title}}</span></u></h2> -->
-            <h1 class="display- mt-4 mb-5" style="color: #8EB89C; direction: rtl; text-align: center; padding-top:60px ;" > <br><u class="text-warning"><span style="color: #1E4D57;font-size: 150%;">{{kitchen.title}}</span></u></h1>
-
-
+        <div class="col order-1">
+            <h1 class="display- mb-5" style="color: #8EB89C; direction: rtl; text-align: center; padding-top:10px ;" > <br><u class="text-warning"><span style="color: #1E4D57;font-size: 150%;">{{article.title}}</span></u></h1>
         </div>
 
     </div>
     <div>
-        <p style="padding-top:50px;color: rgb(23, 23, 23); direction: rtl; font-size: 25px; white-space: pre-line; padding-right: 30px; padding-left: 30px;">{{kitchen.content}}</p>
+        <p style="padding-top:50px;color: rgb(23, 23, 23); direction: rtl; font-size: 25px; white-space: pre-line; padding-right: 30px; padding-left: 30px;">{{article.content}}</p>
     </div>
-
-
-
-
 
 </section>
 {% endblock %}
